@@ -1,0 +1,386 @@
+Order,Family,Subfamily,Tribe,Common_name,Binomial,Genus,IUCN_2023,Synonyms
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Long-tailed Duck,Clangula_hyemalis,Clangula,VU,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Spectacled Eider,Somateria_fischeri,Somateria,NT,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,King Eider,Somateria_spectabilis,Somateria,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Common Eider,Somateria_mollissima,Somateria,NT,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Steller's Eider,Polysticta_stelleri,Polysticta,VU,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Surf Scoter,Melanitta_perspicillata,Melanitta,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Velvet Scoter,Melanitta_fusca,Melanitta,VU,Melanitta fusca
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Siberian Scoter,Melanitta_stejnegeri,Melanitta,LC,Melanitta fusca
+ANSERIFORMES,Anatidae,Anatinae,Mergini,White-winged Scoter,Melanitta_deglandi,Melanitta,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Common Scoter,Melanitta_nigra,Melanitta,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Black Scoter,Melanitta_americana,Melanitta,NT,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Bufflehead,Bucephala_albeola,Bucephala,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Common Goldeneye,Bucephala_clangula,Bucephala,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Barrow's Goldeneye,Bucephala_islandica,Bucephala,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Smew,Mergellus_albellus,Mergellus,LC,Mergus albellus
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Hooded Merganser,Lophodytes_cucullatus,Lophodytes,LC,Mergus cucullatus
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Goosander,Mergus_merganser,Mergus,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Scaly-sided Merganser,Mergus_squamatus,Mergus,EN,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Red-breasted Merganser,Mergus_serrator,Mergus,LC,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,New Zealand Merganser,Mergus_australis,Mergus,EX,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Brazilian Merganser,Mergus_octosetaceus,Mergus,CR,NA
+ANSERIFORMES,Anatidae,Anatinae,Mergini,Harlequin Duck,Histrionicus_histrionicus,Histrionicus,LC,NA
+PHAETHONTIFORMES,Phaethontidae,NA,NA,Red-billed Tropicbird,Phaethon_aethereus,Phaethon,LC,NA
+PHAETHONTIFORMES,Phaethontidae,NA,NA,Red-tailed Tropicbird,Phaethon_rubricauda,Phaethon,LC,NA
+PHAETHONTIFORMES,Phaethontidae,NA,NA,White-tailed Tropicbird,Phaethon_lepturus,Phaethon,LC,NA
+GAVIIFORMES,Gaviidae,NA,NA,Red-throated Loon,Gavia_stellata,Gavia,LC,NA
+GAVIIFORMES,Gaviidae,NA,NA,Arctic Loon,Gavia_arctica,Gavia,LC,NA
+GAVIIFORMES,Gaviidae,NA,NA,Pacific Loon,Gavia_pacifica,Gavia,LC,NA
+GAVIIFORMES,Gaviidae,NA,NA,Common Loon,Gavia_immer,Gavia,LC,NA
+GAVIIFORMES,Gaviidae,NA,NA,Yellow-billed Loon,Gavia_adamsii,Gavia,NT,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,King Penguin,Aptenodytes_patagonicus,Aptenodytes,LC,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Emperor Penguin,Aptenodytes_forsteri,Aptenodytes,NT,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Gentoo Penguin,Pygoscelis_papua,Pygoscelis,LC,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Adelie Penguin,Pygoscelis_adeliae,Pygoscelis,LC,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Chinstrap Penguin,Pygoscelis_antarcticus,Pygoscelis,LC,Pygoscelis antarctica
+SPHENISCIFORMES,Spheniscidae,NA,NA,Royal Penguin,Eudyptes_schlegeli,Eudyptes,LC,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Macaroni Penguin,Eudyptes_chrysolophus,Eudyptes,VU,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Northern Rockhopper Penguin,Eudyptes_moseleyi,Eudyptes,EN,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Southern Rockhopper Penguin,Eudyptes_chrysocome,Eudyptes,VU,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Erect-crested Penguin,Eudyptes_sclateri,Eudyptes,EN,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Fiordland Penguin,Eudyptes_pachyrhynchus,Eudyptes,NT,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Snares Penguin,Eudyptes_robustus,Eudyptes,VU,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Yellow-eyed Penguin,Megadyptes_antipodes,Megadyptes,EN,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Little Penguin,Eudyptula_minor,Eudyptula,LC,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,African Penguin,Spheniscus_demersus,Spheniscus,EN,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Magellanic Penguin,Spheniscus_magellanicus,Spheniscus,LC,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Humboldt Penguin,Spheniscus_humboldti,Spheniscus,VU,NA
+SPHENISCIFORMES,Spheniscidae,NA,NA,Galapagos Penguin,Spheniscus_mendiculus,Spheniscus,EN,NA
+PROCELLARIIFORMES,Oceanitidae,NA,NA,Wilson's Storm-petrel,Oceanites_oceanicus,Oceanites,LC,NA
+PROCELLARIIFORMES,Oceanitidae,NA,NA,White-vented Storm-petrel,Oceanites_gracilis,Oceanites,DD,NA
+PROCELLARIIFORMES,Oceanitidae,NA,NA,Pincoya Storm-petrel,Oceanites_pincoyae,Oceanites,DD,NA
+PROCELLARIIFORMES,Oceanitidae,NA,NA,Grey-backed Storm-petrel,Garrodia_nereis,Garrodia,LC,Oceanites nereis
+PROCELLARIIFORMES,Oceanitidae,NA,NA,White-faced Storm-petrel,Pelagodroma_marina,Pelagodroma,LC,NA
+PROCELLARIIFORMES,Oceanitidae,NA,NA,White-bellied Storm-petrel,Fregetta_grallaria,Fregetta,LC,NA
+PROCELLARIIFORMES,Oceanitidae,NA,NA,Black-bellied Storm-petrel,Fregetta_tropica,Fregetta,LC,NA
+PROCELLARIIFORMES,Oceanitidae,NA,NA,New Zealand Storm-petrel,Fregetta_maoriana,Fregetta,CR,Pealeornis maoriana; Oceanites maorianus
+PROCELLARIIFORMES,Oceanitidae,NA,NA,New Caledonian Storm-petrel,Fregetta_lineata,Fregetta,DD,Thalassidroma lineata
+PROCELLARIIFORMES,Oceanitidae,NA,NA,Polynesian Storm-petrel,Nesofregetta_fuliginosa,Nesofregetta,EN,NA
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,European Storm-petrel,Hydrobates_pelagicus,Hydrobates,LC,NA
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Cape Verde Storm-petrel,Hydrobates_jabejabe,Hydrobates,LC,NA
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Band-rumped Storm-petrel,Hydrobates_castro,Hydrobates,LC,Oceanodroma castro
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Monteiro's Storm-petrel,Hydrobates_monteiroi,Hydrobates,VU,Oceanodroma monteiroi
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Matsudaira's Storm-petrel,Hydrobates_matsudairae,Hydrobates,VU,Oceanodroma matsudairae
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Black Storm-petrel,Hydrobates_melania,Hydrobates,LC,Oceanodroma melania
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Ashy Storm-petrel,Hydrobates_homochroa,Hydrobates,EN,Oceanodroma homochroa
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Least Storm-petrel,Hydrobates_microsoma,Hydrobates,LC,Halocyptena microsoma; Oceanodroma microsoma
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Wedge-rumped Storm-petrel,Hydrobates_tethys,Hydrobates,LC,Oceanodroma tethys
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Townsend's Storm-petrel,Hydrobates_socorroensis,Hydrobates,EN,Oceanodroma leucorhoa
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Ainley's Storm-petrel,Hydrobates_cheimomnestes,Hydrobates,VU,Oceanodroma leucorhoa
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Leach's Storm-petrel,Hydrobates_leucorhous,Hydrobates,VU,Oceanodroma leucorhoa
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Swinhoe's Storm-petrel,Hydrobates_monorhis,Hydrobates,NT,Hydrobates monorhis; Oceanodroma monorhis
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Tristram's Storm-petrel,Hydrobates_tristrami,Hydrobates,LC,Hydrobates tristrami; Oceanodroma tristrami
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Markham's Storm-petrel,Hydrobates_markhami,Hydrobates,NT,Oceanodroma markhami
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Fork-tailed Storm-petrel,Hydrobates_furcatus,Hydrobates,LC,Oceanodroma furcata
+PROCELLARIIFORMES,Hydrobatidae,NA,NA,Ringed Storm-petrel,Hydrobates_hornbyi,Hydrobates,NT,Oceanodroma hornbyi
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Northern Royal Albatross,Diomedea_sanfordi,Diomedea,EN,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Southern Royal Albatross,Diomedea_epomophora,Diomedea,VU,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Wandering Albatross,Diomedea_exulans,Diomedea,VU,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Antipodean Albatross,Diomedea_antipodensis,Diomedea,EN,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Amsterdam Albatross,Diomedea_amsterdamensis,Diomedea,EN,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Tristan Albatross,Diomedea_dabbenena,Diomedea,CR,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Sooty Albatross,Phoebetria_fusca,Phoebetria,EN,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Light-mantled Albatross,Phoebetria_palpebrata,Phoebetria,NT,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Waved Albatross,Phoebastria_irrorata,Phoebastria,CR,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Black-footed Albatross,Phoebastria_nigripes,Phoebastria,NT,Diomedea nigripes
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Laysan Albatross,Phoebastria_immutabilis,Phoebastria,NT,Diomedea immutabilis
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Short-tailed Albatross,Phoebastria_albatrus,Phoebastria,VU,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Atlantic Yellow-nosed Albatross,Thalassarche_chlororhynchos,Thalassarche,EN,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Indian Yellow-nosed Albatross,Thalassarche_carteri,Thalassarche,EN,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Grey-headed Albatross,Thalassarche_chrysostoma,Thalassarche,EN,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Black-browed Albatross,Thalassarche_melanophris,Thalassarche,LC,Thalassarche melanophris
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Buller's Albatross,Thalassarche_bulleri,Thalassarche,NT,Diomedea bulleri
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Shy Albatross,Thalassarche_cauta,Thalassarche,NT,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Chatham Albatross,Thalassarche_eremita,Thalassarche,VU,NA
+PROCELLARIIFORMES,Diomedeidae,NA,NA,Salvin's Albatross,Thalassarche_salvini,Thalassarche,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Northern Giant Petrel,Macronectes_halli,Macronectes,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Southern Giant Petrel,Macronectes_giganteus,Macronectes,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Northern Fulmar,Fulmarus_glacialis,Fulmarus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Southern Fulmar,Fulmarus_glacialoides,Fulmarus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Antarctic Petrel,Thalassoica_antarctica,Thalassoica,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Cape Petrel,Daption_capense,Daption,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Snow Petrel,Pagodroma_nivea,Pagodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Blue Petrel,Halobaena_caerulea,Halobaena,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Broad-billed Prion,Pachyptila_vittata,Pachyptila,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Salvin's Prion,Pachyptila_salvini,Pachyptila,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,MacGillivray's Prion,Pachyptila_macgillivrayi,Pachyptila,CR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Antarctic Prion,Pachyptila_desolata,Pachyptila,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Slender-billed Prion,Pachyptila_belcheri,Pachyptila,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Fairy Prion,Pachyptila_turtur,Pachyptila,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Fulmar Prion,Pachyptila_crassirostris,Pachyptila,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Kerguelen Petrel,Aphrodroma_brevirostris,Aphrodroma,LC,Aphrodroma brevirostris; Pterodroma brevirostris; Lugensa brevirostris
+PROCELLARIIFORMES,Procellariidae,NA,NA,Large Saint Helena Petrel,Pterodroma_rupinarum,Pterodroma,EX,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,White-winged Petrel,Pterodroma_leucoptera,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Collared Petrel,Pterodroma_brevipes,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Masatierra Petrel,Pterodroma_defilippiana,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Stejneger's Petrel,Pterodroma_longirostris,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Cook's Petrel,Pterodroma_cookii,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Pycroft's Petrel,Pterodroma_pycrofti,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Bonin Petrel,Pterodroma_hypoleuca,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Black-winged Petrel,Pterodroma_nigripennis,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Chatham Islands Petrel,Pterodroma_axillaris,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Murphy's Petrel,Pterodroma_ultima,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Providence Petrel,Pterodroma_solandri,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Kermadec Petrel,Pterodroma_neglecta,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Trindade Petrel,Pterodroma_arminjoniana,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Herald Petrel,Pterodroma_heraldica,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Henderson Petrel,Pterodroma_atrata,Pterodroma,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Phoenix Petrel,Pterodroma_alba,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Barau's Petrel,Pterodroma_baraui,Pterodroma,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Mottled Petrel,Pterodroma_inexpectata,Pterodroma,NT,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Hawaiian Petrel,Pterodroma_sandwichensis,Pterodroma,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Galapagos Petrel,Pterodroma_phaeopygia,Pterodroma,CR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,White-necked Petrel,Pterodroma_cervicalis,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Juan Fernandez Petrel,Pterodroma_externa,Pterodroma,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Soft-plumaged Petrel,Pterodroma_mollis,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Bermuda Petrel,Pterodroma_cahow,Pterodroma,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Black-capped Petrel,Pterodroma_hasitata,Pterodroma,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Jamaican Petrel,Pterodroma_caribbaea,Pterodroma,CR (PE),NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Cape Verde Petrel,Pterodroma_feae,Pterodroma,NT,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Zino's Petrel,Pterodroma_madeira,Pterodroma,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Magenta Petrel,Pterodroma_magentae,Pterodroma,CR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Atlantic Petrel,Pterodroma_incerta,Pterodroma,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,White-headed Petrel,Pterodroma_lessonii,Pterodroma,LC,Pterodroma lessoni
+PROCELLARIIFORMES,Procellariidae,NA,NA,Great-winged Petrel,Pterodroma_macroptera,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Grey-faced Petrel,Pterodroma_gouldi,Pterodroma,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Grey Petrel,Procellaria_cinerea,Procellaria,NT,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,White-chinned Petrel,Procellaria_aequinoctialis,Procellaria,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Spectacled Petrel,Procellaria_conspicillata,Procellaria,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Westland Petrel,Procellaria_westlandica,Procellaria,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Black Petrel,Procellaria_parkinsoni,Procellaria,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Wedge-tailed Shearwater,Ardenna_pacifica,Ardenna,LC,Ardenna pacifica; Puffinus pacificus
+PROCELLARIIFORMES,Procellariidae,NA,NA,Buller's Shearwater,Ardenna_bulleri,Ardenna,VU,Puffinus bulleri
+PROCELLARIIFORMES,Procellariidae,NA,NA,Short-tailed Shearwater,Ardenna_tenuirostris,Ardenna,LC,Ardenna tenuirostris; Puffinus tenuirostris
+PROCELLARIIFORMES,Procellariidae,NA,NA,Sooty Shearwater,Ardenna_grisea,Ardenna,NT,Ardenna grisea; Puffinus griseus
+PROCELLARIIFORMES,Procellariidae,NA,NA,Great Shearwater,Ardenna_gravis,Ardenna,LC,Ardenna gravis; Puffinus gravis
+PROCELLARIIFORMES,Procellariidae,NA,NA,Flesh-footed Shearwater,Ardenna_carneipes,Ardenna,NT,Ardenna carneipes; Puffinus carneipes
+PROCELLARIIFORMES,Procellariidae,NA,NA,Pink-footed Shearwater,Ardenna_creatopus,Ardenna,VU,Puffinus creatopus
+PROCELLARIIFORMES,Procellariidae,NA,NA,Streaked Shearwater,Calonectris_leucomelas,Calonectris,NT,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Scopoli's Shearwater,Calonectris_diomedea,Calonectris,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Cape Verde Shearwater,Calonectris_edwardsii,Calonectris,NT,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Christmas Shearwater,Puffinus_nativitatis,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Galapagos Shearwater,Puffinus_subalaris,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Fluttering Shearwater,Puffinus_gavia,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Hutton's Shearwater,Puffinus_huttoni,Puffinus,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Black-vented Shearwater,Puffinus_opisthomelas,Puffinus,NT,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Bryan's Shearwater,Puffinus_bryani,Puffinus,CR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Rapa Shearwater,Puffinus_myrtae,Puffinus,CR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Newell's Shearwater,Puffinus_newelli,Puffinus,CR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Townsend's Shearwater,Puffinus_auricularis,Puffinus,CR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Tropical Shearwater,Puffinus_bailloni,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Persian Shearwater,Puffinus_persicus,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Bannerman's Shearwater,Puffinus_bannermani,Puffinus,EN,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Manx Shearwater,Puffinus_puffinus,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Yelkouan Shearwater,Puffinus_yelkouan,Puffinus,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Balearic Shearwater,Puffinus_mauretanicus,Puffinus,CR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Subantarctic Shearwater,Puffinus_elegans,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Little Shearwater,Puffinus_assimilis,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Audubon's Shearwater,Puffinus_lherminieri,Puffinus,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Heinroth's Shearwater,Puffinus_heinrothi,Puffinus,VU,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Fiji Petrel,Pseudobulweria_macgillivrayi,Pseudobulweria,CR,Thalassidroma macgillivrayi
+PROCELLARIIFORMES,Procellariidae,NA,NA,Mascarene Petrel,Pseudobulweria_aterrima,Pseudobulweria,CR,Procellaria aterrima
+PROCELLARIIFORMES,Procellariidae,NA,NA,Beck's Petrel,Pseudobulweria_becki,Pseudobulweria,CR,Procellaria becki
+PROCELLARIIFORMES,Procellariidae,NA,NA,Tahiti Petrel,Pseudobulweria_rostrata,Pseudobulweria,NT,Pterodroma rostrata
+PROCELLARIIFORMES,Procellariidae,NA,NA,Bulwer's Petrel,Bulweria_bulwerii,Bulweria,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Jouanin's Petrel,Bulweria_fallax,Bulweria,NT,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Small Saint Helena Petrel,Bulweria_bifax,Bulweria,EX,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Peruvian Diving-petrel,Pelecanoides_garnotii,Pelecanoides,NT,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Magellanic Diving-petrel,Pelecanoides_magellani,Pelecanoides,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,South Georgia Diving-petrel,Pelecanoides_georgicus,Pelecanoides,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,Common Diving-petrel,Pelecanoides_urinatrix,Pelecanoides,LC,NA
+PELECANIFORMES,Pelecanidae,NA,NA,Dalmatian Pelican,Pelecanus_crispus,Pelecanus,NT,NA
+PELECANIFORMES,Pelecanidae,NA,NA,Spot-billed Pelican,Pelecanus_philippensis,Pelecanus,NT,NA
+PELECANIFORMES,Pelecanidae,NA,NA,Pink-backed Pelican,Pelecanus_rufescens,Pelecanus,LC,NA
+PELECANIFORMES,Pelecanidae,NA,NA,Australian Pelican,Pelecanus_conspicillatus,Pelecanus,LC,NA
+PELECANIFORMES,Pelecanidae,NA,NA,Great White Pelican,Pelecanus_onocrotalus,Pelecanus,LC,NA
+PELECANIFORMES,Pelecanidae,NA,NA,Brown Pelican,Pelecanus_occidentalis,Pelecanus,LC,NA
+PELECANIFORMES,Pelecanidae,NA,NA,Peruvian Pelican,Pelecanus_thagus,Pelecanus,NT,NA
+PELECANIFORMES,Pelecanidae,NA,NA,American White Pelican,Pelecanus_erythrorhynchos,Pelecanus,LC,NA
+SULIFORMES,Fregatidae,NA,NA,Lesser Frigatebird,Fregata_ariel,Fregata,LC,NA
+SULIFORMES,Fregatidae,NA,NA,Great Frigatebird,Fregata_minor,Fregata,LC,NA
+SULIFORMES,Fregatidae,NA,NA,Christmas Island Frigatebird,Fregata_andrewsi,Fregata,VU,NA
+SULIFORMES,Fregatidae,NA,NA,Magnificent Frigatebird,Fregata_magnificens,Fregata,LC,NA
+SULIFORMES,Fregatidae,NA,NA,Ascension Frigatebird,Fregata_aquila,Fregata,VU,NA
+SULIFORMES,Sulidae,NA,NA,Abbott's Booby,Papasula_abbotti,Papasula,EN,NA
+SULIFORMES,Sulidae,NA,NA,Northern Gannet,Morus_bassanus,Morus,LC,Sula bassana
+SULIFORMES,Sulidae,NA,NA,Cape Gannet,Morus_capensis,Morus,EN,NA
+SULIFORMES,Sulidae,NA,NA,Australasian Gannet,Morus_serrator,Morus,LC,Sula serrator
+SULIFORMES,Sulidae,NA,NA,Red-footed Booby,Sula_sula,Sula,LC,NA
+SULIFORMES,Sulidae,NA,NA,Brown Booby,Sula_leucogaster,Sula,LC,NA
+SULIFORMES,Sulidae,NA,NA,Blue-footed Booby,Sula_nebouxii,Sula,LC,NA
+SULIFORMES,Sulidae,NA,NA,Peruvian Booby,Sula_variegata,Sula,LC,NA
+SULIFORMES,Sulidae,NA,NA,Masked Booby,Sula_dactylatra,Sula,LC,NA
+SULIFORMES,Sulidae,NA,NA,Nazca Booby,Sula_granti,Sula,LC,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Crowned Cormorant,Microcarbo_coronatus,Microcarbo,LC,Phalacrocorax coronatus
+SULIFORMES,Phalacrocoracidae,NA,NA,Long-tailed Cormorant,Microcarbo_africanus,Microcarbo,LC,Phalacrocorax africanus
+SULIFORMES,Phalacrocoracidae,NA,NA,Pygmy Cormorant,Microcarbo_pygmaeus,Microcarbo,LC,Phalacrocorax pygmaeus; Halietor pygmeus
+SULIFORMES,Phalacrocoracidae,NA,NA,Little Cormorant,Microcarbo_niger,Microcarbo,LC,Phalacrocorax niger
+SULIFORMES,Phalacrocoracidae,NA,NA,Little Pied Cormorant,Microcarbo_melanoleucos,Microcarbo,LC,Microcarbo melanoleucos; Phalacrocorax melanoleucos
+SULIFORMES,Phalacrocoracidae,NA,NA,Red-legged Cormorant,Poikilocarbo_gaimardi,Poikilocarbo,NT,Phalacrocorax gaimardi
+SULIFORMES,Phalacrocoracidae,NA,NA,Rock Shag,Leucocarbo_magellanicus,Leucocarbo,LC,Phalacrocorax magellanicus
+SULIFORMES,Phalacrocoracidae,NA,NA,Guanay Cormorant,Leucocarbo_bougainvilliorum,Leucocarbo,NT,Phalacrocorax bougainvilliorum
+SULIFORMES,Phalacrocoracidae,NA,NA,Imperial Shag,Leucocarbo_atriceps,Leucocarbo,LC,Phalacrocorax atriceps
+SULIFORMES,Phalacrocoracidae,NA,NA,Kerguelen Islands Shag,Leucocarbo_verrucosus,Leucocarbo,LC,Phalacrocorax verrucosus
+SULIFORMES,Phalacrocoracidae,NA,NA,Rough-faced Shag,Leucocarbo_carunculatus,Leucocarbo,VU,Phalacrocorax carunculatus
+SULIFORMES,Phalacrocoracidae,NA,NA,Stewart Island Shag,Leucocarbo_chalconotus,Leucocarbo,VU,Phalacrocorax chalconotus
+SULIFORMES,Phalacrocoracidae,NA,NA,Chatham Islands Shag,Leucocarbo_onslowi,Leucocarbo,CR,Phalacrocorax onslowi
+SULIFORMES,Phalacrocoracidae,NA,NA,Campbell Island Shag,Leucocarbo_campbelli,Leucocarbo,VU,Phalacrocorax campbelli
+SULIFORMES,Phalacrocoracidae,NA,NA,Bounty Islands Shag,Leucocarbo_ranfurlyi,Leucocarbo,VU,Phalacrocorax ranfurlyi
+SULIFORMES,Phalacrocoracidae,NA,NA,Auckland Islands Shag,Leucocarbo_colensoi,Leucocarbo,VU,Phalacrocorax colensoi
+SULIFORMES,Phalacrocoracidae,NA,NA,Double-crested Cormorant,Nannopterum_auritum,Nannopterum,LC,Phalacrocorax auritus
+SULIFORMES,Phalacrocoracidae,NA,NA,Neotropical Cormorant,Nannopterum_brasilianum,Nannopterum,LC,Phalacrocorax brasilianus
+SULIFORMES,Phalacrocoracidae,NA,NA,Flightless Cormorant,Nannopterum_harrisi,Nannopterum,VU,Phalacrocorax harrisi
+SULIFORMES,Phalacrocoracidae,NA,NA,Brandt's Cormorant,Urile_penicillatus,Urile,LC,Phalacrocorax penicillatus
+SULIFORMES,Phalacrocoracidae,NA,NA,Pelagic Cormorant,Urile_pelagicus,Urile,LC,Phalacrocorax pelagicus
+SULIFORMES,Phalacrocoracidae,NA,NA,Red-faced Cormorant,Urile_urile,Urile,LC,Phalacrocorax urile
+SULIFORMES,Phalacrocoracidae,NA,NA,Spectacled Cormorant,Urile_perspicillatus,Urile,EX,Phalacrocorax perspicillatus
+SULIFORMES,Phalacrocoracidae,NA,NA,European Shag,Gulosus_aristotelis,Gulosus,LC,Phalacrocorax aristotelis
+SULIFORMES,Phalacrocoracidae,NA,NA,Great Cormorant,Phalacrocorax_carbo,Phalacrocorax,LC,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Japanese Cormorant,Phalacrocorax_capillatus,Phalacrocorax,LC,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Cape Cormorant,Phalacrocorax_capensis,Phalacrocorax,EN,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Socotra Cormorant,Phalacrocorax_nigrogularis,Phalacrocorax,VU,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Bank Cormorant,Phalacrocorax_neglectus,Phalacrocorax,EN,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Indian Cormorant,Phalacrocorax_fuscicollis,Phalacrocorax,LC,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Little Black Cormorant,Phalacrocorax_sulcirostris,Phalacrocorax,LC,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Black-faced Cormorant,Phalacrocorax_fuscescens,Phalacrocorax,LC,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Great Pied Cormorant,Phalacrocorax_varius,Phalacrocorax,LC,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,Spotted Shag,Phalacrocorax_punctatus,Phalacrocorax,LC,Stictocarbo punctatus
+SULIFORMES,Phalacrocoracidae,NA,NA,Pitt Island Shag,Phalacrocorax_featherstoni,Phalacrocorax,EN,NA
+CHARADRIIFORMES,Scolopacidae,Tringinae,Phalaropodini,Wilson's Phalarope,Steganopus_tricolor,Steganopus,LC,Phalaropus tricolor
+CHARADRIIFORMES,Scolopacidae,Tringinae,Phalaropodini,Red-necked Phalarope,Phalaropus_lobatus,Phalaropus,LC,NA
+CHARADRIIFORMES,Scolopacidae,Tringinae,Phalaropodini,Red Phalarope,Phalaropus_fulicarius,Phalaropus,LC,Phalaropus fulicaria
+CHARADRIIFORMES,Laridae,Anoinae,NA,Brown Noddy,Anous_stolidus,Anous,LC,NA
+CHARADRIIFORMES,Laridae,Anoinae,NA,Lesser Noddy,Anous_tenuirostris,Anous,LC,NA
+CHARADRIIFORMES,Laridae,Anoinae,NA,Black Noddy,Anous_minutus,Anous,LC,NA
+CHARADRIIFORMES,Laridae,Anoinae,NA,Blue Noddy,Anous_ceruleus,Anous,LC,Procelsterna cerulea
+CHARADRIIFORMES,Laridae,Anoinae,NA,Grey Noddy,Anous_albivittus,Anous,LC,Procelsterna albivitta
+CHARADRIIFORMES,Laridae,Gyginae,NA,Atlantic White Tern,Gygis_alba,Gygis,LC,NA
+CHARADRIIFORMES,Laridae,Rynchopinae,NA,Black Skimmer,Rynchops_niger,Rynchops,LC,Rhynchops niger
+CHARADRIIFORMES,Laridae,Rynchopinae,NA,African Skimmer,Rynchops_flavirostris,Rynchops,LC,NA
+CHARADRIIFORMES,Laridae,Rynchopinae,NA,Indian Skimmer,Rynchops_albicollis,Rynchops,EN,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Saunders's Gull,Saundersilarus_saundersi,Saundersilarus,VU,Larus saundersi
+CHARADRIIFORMES,Laridae,Larinae,NA,Little Gull,Hydrocoloeus_minutus,Hydrocoloeus,LC,Larus minutus
+CHARADRIIFORMES,Laridae,Larinae,NA,Ross's Gull,Rhodostethia_rosea,Rhodostethia,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Swallow-tailed Gull,Creagrus_furcatus,Creagrus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Sabine's Gull,Xema_sabini,Xema,LC,Larus sabini
+CHARADRIIFORMES,Laridae,Larinae,NA,Ivory Gull,Pagophila_eburnea,Pagophila,NT,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Red-legged Kittiwake,Rissa_brevirostris,Rissa,VU,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Black-legged Kittiwake,Rissa_tridactyla,Rissa,VU,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Bonaparte's Gull,Larus_philadelphia,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Slender-billed Gull,Larus_genei,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Brown-headed Gull,Larus_brunnicephalus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Black-headed Gull,Larus_ridibundus,Larus,LC,Chroicocephalus ridibundus
+CHARADRIIFORMES,Laridae,Larinae,NA,Andean Gull,Larus_serranus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Brown-hooded Gull,Larus_maculipennis,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Hartlaub's Gull,Larus_hartlaubii,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Grey-headed Gull,Larus_cirrocephalus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Silver Gull,Larus_novaehollandiae,Larus,LC,Larus scopulinus
+CHARADRIIFORMES,Laridae,Larinae,NA,Black-billed Gull,Larus_bulleri,Larus,NT,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Grey Gull,Larus_modestus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Dolphin Gull,Larus_scoresbii,Larus,LC,Larus scoresbii; Gabianus scoresbii; Leucophaeus scoresbii
+CHARADRIIFORMES,Laridae,Larinae,NA,Franklin's Gull,Larus_pipixcan,Larus,LC,Leucophaeus pipixcan
+CHARADRIIFORMES,Laridae,Larinae,NA,Laughing Gull,Larus_atricilla,Larus,LC,Leucophaeus atricilla
+CHARADRIIFORMES,Laridae,Larinae,NA,Lava Gull,Larus_fuliginosus,Larus,VU,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Pallas's Gull,Larus_ichthyaetus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Relict Gull,Larus_relictus,Larus,VU,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Mediterranean Gull,Larus_melanocephalus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Sooty Gull,Larus_hemprichii,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,White-eyed Gull,Larus_leucophthalmus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Audouin's Gull,Larus_audouinii,Larus,VU,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Heermann's Gull,Larus_heermanni,Larus,NT,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Pacific Gull,Larus_pacificus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Black-tailed Gull,Larus_crassirostris,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Belcher's Gull,Larus_belcheri,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Olrog's Gull,Larus_atlanticus,Larus,NT,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Ring-billed Gull,Larus_delawarensis,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Mew Gull,Larus_canus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Yellow-footed Gull,Larus_livens,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Western Gull,Larus_occidentalis,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,California Gull,Larus_californicus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Kelp Gull,Larus_dominicanus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Lesser Black-backed Gull,Larus_fuscus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,European Herring Gull,Larus_argentatus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Armenian Gull,Larus_armenicus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Yellow-legged Gull,Larus_michahellis,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Caspian Gull,Larus_cachinnans,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Iceland Gull,Larus_glaucoides,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Slaty-backed Gull,Larus_schistisagus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Glaucous-winged Gull,Larus_glaucescens,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Glaucous Gull,Larus_hyperboreus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Larinae,NA,Great Black-backed Gull,Larus_marinus,Larus,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Aleutian Tern,Onychoprion_aleuticus,Onychoprion,VU,Onychoprion aleuticus; Sterna aleutica
+CHARADRIIFORMES,Laridae,Sterninae,NA,Sooty Tern,Onychoprion_fuscatus,Onychoprion,LC,Onychoprion fuscatus; Sterna fuscata
+CHARADRIIFORMES,Laridae,Sterninae,NA,Bridled Tern,Onychoprion_anaethetus,Onychoprion,LC,Onychoprion anaethetus; Sterna anaethetus
+CHARADRIIFORMES,Laridae,Sterninae,NA,Grey-backed Tern,Onychoprion_lunatus,Onychoprion,LC,Onychoprion lunatus; Sterna lunata
+CHARADRIIFORMES,Laridae,Sterninae,NA,Little Tern,Sternula_albifrons,Sternula,LC,Sternula albifrons; Sterna albifrons
+CHARADRIIFORMES,Laridae,Sterninae,NA,Saunders's Tern,Sternula_saundersi,Sternula,LC,Sterna saundersi
+CHARADRIIFORMES,Laridae,Sterninae,NA,Least Tern,Sternula_antillarum,Sternula,LC,Sternula antillarum; Sterna antillarum
+CHARADRIIFORMES,Laridae,Sterninae,NA,Yellow-billed Tern,Sternula_superciliaris,Sternula,LC,Sternula superciliaris; Sterna superciliaris
+CHARADRIIFORMES,Laridae,Sterninae,NA,Peruvian Tern,Sternula_lorata,Sternula,EN,Sterna lorata
+CHARADRIIFORMES,Laridae,Sterninae,NA,Fairy Tern,Sternula_nereis,Sternula,VU,Sterna nereis
+CHARADRIIFORMES,Laridae,Sterninae,NA,Damara Tern,Sternula_balaenarum,Sternula,LC,Sterna balaenarum
+CHARADRIIFORMES,Laridae,Sterninae,NA,Large-billed Tern,Phaetusa_simplex,Phaetusa,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Common Gull-billed Tern,Gelochelidon_nilotica,Gelochelidon,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Australian Gull-billed Tern,Gelochelidon_macrotarsa,Gelochelidon,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Caspian Tern,Hydroprogne_caspia,Hydroprogne,LC,Hydroprogne caspia; Sterna caspia
+CHARADRIIFORMES,Laridae,Sterninae,NA,Inca Tern,Larosterna_inca,Larosterna,NT,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Black-fronted Tern,Chlidonias_albostriatus,Chlidonias,EN,Sterna albostriata; Chlidonias albostriatus; Hydrochelidon albostriata
+CHARADRIIFORMES,Laridae,Sterninae,NA,Whiskered Tern,Chlidonias_hybrida,Chlidonias,LC,Chlidonias hybridus
+CHARADRIIFORMES,Laridae,Sterninae,NA,White-winged Tern,Chlidonias_leucopterus,Chlidonias,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Black Tern,Chlidonias_niger,Chlidonias,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,River Tern,Sterna_aurantia,Sterna,VU,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Roseate Tern,Sterna_dougallii,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,White-fronted Tern,Sterna_striata,Sterna,NT,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Black-naped Tern,Sterna_sumatrana,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,South American Tern,Sterna_hirundinacea,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Common Tern,Sterna_hirundo,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,White-cheeked Tern,Sterna_repressa,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Arctic Tern,Sterna_paradisaea,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Antarctic Tern,Sterna_vittata,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Kerguelen Tern,Sterna_virgata,Sterna,NT,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Forster's Tern,Sterna_forsteri,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Snowy-crowned Tern,Sterna_trudeaui,Sterna,LC,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Black-bellied Tern,Sterna_acuticauda,Sterna,EN,NA
+CHARADRIIFORMES,Laridae,Sterninae,NA,Lesser Crested Tern,Thalasseus_bengalensis,Thalasseus,LC,Thalasseus bengalensis; Sterna bengalensis
+CHARADRIIFORMES,Laridae,Sterninae,NA,Chinese Crested Tern,Thalasseus_bernsteini,Thalasseus,CR,Sterna bernsteini
+CHARADRIIFORMES,Laridae,Sterninae,NA,Elegant Tern,Thalasseus_elegans,Thalasseus,NT,Thalasseus elegans; Sterna elegans
+CHARADRIIFORMES,Laridae,Sterninae,NA,Sandwich Tern,Thalasseus_sandvicensis,Thalasseus,LC,Thalasseus sandvicensis; Sterna sandvicensis
+CHARADRIIFORMES,Laridae,Sterninae,NA,Royal Tern,Thalasseus_maximus,Thalasseus,LC,Thalasseus maximus; Sterna maxima
+CHARADRIIFORMES,Laridae,Sterninae,NA,Greater Crested Tern,Thalasseus_bergii,Thalasseus,LC,Thalasseus bergii; Sterna bergii
+CHARADRIIFORMES,Stercorariidae,NA,NA,Long-tailed Jaeger,Stercorarius_longicaudus,Stercorarius,LC,NA
+CHARADRIIFORMES,Stercorariidae,NA,NA,Arctic Jaeger,Stercorarius_parasiticus,Stercorarius,LC,NA
+CHARADRIIFORMES,Stercorariidae,NA,NA,Pomarine Jaeger,Stercorarius_pomarinus,Stercorarius,LC,NA
+CHARADRIIFORMES,Stercorariidae,NA,NA,Great Skua,Catharacta_skua,Catharacta,LC,Stercorarius skua
+CHARADRIIFORMES,Stercorariidae,NA,NA,South Polar Skua,Catharacta_maccormicki,Catharacta,LC,Stercorarius maccormicki
+CHARADRIIFORMES,Stercorariidae,NA,NA,Brown Skua,Catharacta_antarctica,Catharacta,LC,Catharacta lonnbergi; Stercorarius lonnbergi
+CHARADRIIFORMES,Stercorariidae,NA,NA,Chilean Skua,Catharacta_chilensis,Catharacta,LC,Stercorarius chilensis
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Rhinoceros Auklet,Cerorhinca_monocerata,Cerorhinca,LC,NA
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Tufted Puffin,Fratercula_cirrhata,Fratercula,LC,Lunda cirrhata
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Atlantic Puffin,Fratercula_arctica,Fratercula,VU,NA
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Horned Puffin,Fratercula_corniculata,Fratercula,LC,NA
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Cassin's Auklet,Ptychoramphus_aleuticus,Ptychoramphus,NT,NA
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Parakeet Auklet,Aethia_psittacula,Aethia,LC,Cyclorrhynchus psittacula
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Least Auklet,Aethia_pusilla,Aethia,LC,NA
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Whiskered Auklet,Aethia_pygmaea,Aethia,LC,NA
+CHARADRIIFORMES,Alcidae,Aethiinae,NA,Crested Auklet,Aethia_cristatella,Aethia,LC,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Long-billed Murrelet,Brachyramphus_perdix,Brachyramphus,NT,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Marbled Murrelet,Brachyramphus_marmoratus,Brachyramphus,EN,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Kittlitz's Murrelet,Brachyramphus_brevirostris,Brachyramphus,NT,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Black Guillemot,Cepphus_grylle,Cepphus,LC,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Pigeon Guillemot,Cepphus_columba,Cepphus,LC,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Spectacled Guillemot,Cepphus_carbo,Cepphus,LC,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Ancient Murrelet,Synthliboramphus_antiquus,Synthliboramphus,LC,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Japanese Murrelet,Synthliboramphus_wumizusume,Synthliboramphus,VU,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Scripps's Murrelet,Synthliboramphus_scrippsi,Synthliboramphus,VU,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Guadalupe Murrelet,Synthliboramphus_hypoleucus,Synthliboramphus,EN,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Craveri's Murrelet,Synthliboramphus_craveri,Synthliboramphus,VU,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Razorbill,Alca_torda,Alca,LC,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Great Auk,Pinguinus_impennis,Pinguinus,EX,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Little Auk,Alle_alle,Alle,LC,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Thick-billed Murre,Uria_lomvia,Uria,LC,NA
+CHARADRIIFORMES,Alcidae,Alcinae,NA,Common Murre,Uria_aalge,Uria,LC,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,NA,Pterodroma_occulta,Pterodroma,NR,NA
+PROCELLARIIFORMES,Procellariidae,NA,NA,NA,Puffinus_baroli,Puffinus,NR,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,NA,Phalacrocorax_georgianus,Phalacrocorax,NR,NA
+SULIFORMES,Phalacrocoracidae,NA,NA,NA,Phalacrocorax_bransfieldensis,Phalacrocorax,NR,NA
