@@ -116,5 +116,5 @@ matches <- match(seabirds$Binomial, seabird_tree$tip.label, nomatch = 0)
 seabirds2 <- seabirds[matches > 0,]
 
 # Save the list
-write_csv(seabirds2, file = "data-raw/seabird-list-tree.csv")
+write_csv(seabirds2, file = "data/seabird-list-tree.csv")
 
