@@ -28,7 +28,7 @@ birds <- read_xlsx(path = "data-raw/Handbook of the Birds of the World and BirdL
 # Remove anything with NA for order as these are subspecies
 birds <- 
   birds %>%
-  filter(!is.na(Order)) 
+  filter(!is.na(Order))
 
 # Select seabirds
 seabirds <- 
@@ -56,7 +56,9 @@ seabirds <-
   dplyr::select(Order, Family = `Family name`, Subfamily, Tribe, 
                 Common_name = `Common name`, Binomial = `Scientific name`, 
                 Genus, IUCN_2023 = `2023 IUCN Red List category`,
-                Synonyms)
+                Synonyms) %>%
+  distinct(Binomial, .keep_all = TRUE)
+
 # Save the list
 write_csv(seabirds, file = "data-raw/seabird-list-HBW.csv")
 
