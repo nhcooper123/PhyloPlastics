@@ -107,7 +107,7 @@ seabird_tree <- drop.tip(tree1, x$tree_not_data)
 str(seabird_tree)
 # should have 385 tips (415 - 30)
 # Write out
-write.nexus(seabird_tree, file = "data-raw/seabird-tree.nex")
+write.nexus(seabird_tree, file = "data/seabird-tree.nex")
 
 #-------------------
 # Prune seabird list
