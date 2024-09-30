@@ -1,0 +1,11 @@
+README: Old project -> new project
+
+Updated taxonomy to HBW 8.1. This makes very few changes, just two species with different spellings, plus an extra 40 species either excluded from the previous analysis or not present
+in HBW v 6.
+Also removed the scaup as Alex said these should not have been included
+This removes plastic study IDs 351 and 352 only.
+
+Data S1 -> plastic-ingestion [update with new plastics data]
+Data S2 ocean basins -> ocean-basins [update for each new study added]
+Data S2 behavioural and life history data -> trait-data [needs data adding for 40 missing species] 
+
