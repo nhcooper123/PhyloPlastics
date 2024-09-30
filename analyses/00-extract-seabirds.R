@@ -53,11 +53,12 @@ seabirds <-
   filter(`Scientific name` != "Camptorhynchus labradorius" &
          `Scientific name` != "Hydrobates macrodactylus") %>%
   # select only the required columns and tidy up names a bit
-  dplyr::select(Order, Family = `Family name`, Subfamily, Tribe, 
-                Common_name = `Common name`, Binomial = `Scientific name`, 
-                Genus, IUCN_2023 = `2023 IUCN Red List category`,
-                Synonyms) %>%
-  distinct(Binomial, .keep_all = TRUE)
+  dplyr::select(HBWv8.1_Order = Order, HBWv8.1_Family = `Family name`, HBWv8.1_Subfamily = Subfamily, 
+                HBWv8.1_Tribe = Tribe, 
+                HBWv8.1_Common_name = `Common name`, HBWv8.1_Binomial = `Scientific name`, 
+                HBWv8.1_Genus = Genus, IUCN_2023 = `2023 IUCN Red List category`,
+                HBWv8.1_Synonyms = Synonyms) %>%
+  distinct(HBWv8.1_Binomial, .keep_all = TRUE)
 
 # Save the list
 write_csv(seabirds, file = "data-raw/seabird-list-HBW-2024-09-30.csv")
@@ -67,8 +68,8 @@ write_csv(seabirds, file = "data-raw/seabird-list-HBW-2024-09-30.csv")
 # -------------------
 
 # By order
-seabirds %>% group_by(Order) %>% summarise(n())
+seabirds %>% group_by(HBWv8.1_Order) %>% summarise(n())
 # By family
-seabirds %>% group_by(Family) %>% summarise(n())
+seabirds %>% group_by(HBWv8.1_Family) %>% summarise(n())
 # Total
 seabirds %>% summarise(n())

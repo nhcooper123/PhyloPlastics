@@ -19,7 +19,7 @@ library(geiger) # for name check
 seabirds <- read_csv("data-raw/seabird-list-HBW-2024-09-30.csv")
 
 # Add _ between species names to match tree
-seabirds$Binomial <- gsub(" ", "_", seabirds$Binomial)
+seabirds$HBWv8.1_Binomial <- gsub(" ", "_", seabirds$HBWv8.1_Binomial)
 
 # ----------------
 # Read in MCC tree
@@ -61,7 +61,7 @@ tree1$tip.label <- gsub("Leucocarbo_georgianus", "Phalacrocorax_georgianus", tre
 tree1$tip.label <- gsub("Phalaropus_tricolor", "Steganopus_tricolor", tree1$tip.label)
 
 # What's missing from the tree?
-x <- name.check(tree1, seabirds, data.names = seabirds$Binomial)
+x <- name.check(tree1, seabirds, data.names = seabirds$HBWv8.1_Binomial)
 x$data_not_tree
 length(x$data_not_tree) # Should be 30
 
@@ -112,7 +112,7 @@ write.nexus(seabird_tree, file = "data/seabird-tree-HBW-2024-09-30.nex")
 #-------------------
 # Prune seabird list
 # ------------------
-matches <- match(seabirds$Binomial, seabird_tree$tip.label, nomatch = 0)
+matches <- match(seabirds$HBWv8.1_Binomial, seabird_tree$tip.label, nomatch = 0)
 seabirds2 <- seabirds[matches > 0,]
 
 # Save the list
