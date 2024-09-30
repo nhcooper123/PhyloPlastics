@@ -16,7 +16,7 @@ library(geiger) # for name check
 # --------------------
 # Read in seabird list
 # --------------------
-seabirds <- read_csv("data-raw/seabird-list-HBW.csv")
+seabirds <- read_csv("data-raw/seabird-list-HBW-2024-09-30.csv")
 
 # Add _ between species names to match tree
 seabirds$Binomial <- gsub(" ", "_", seabirds$Binomial)
@@ -28,7 +28,7 @@ tree1 <- read.nexus("data-raw/summary_dated_clements.nex") #mcc tree
 # Check it read in correctly
 str(tree1)
 
-# Update taxonomy for some species
+# Update taxonomy for some species to match HBW
 tree1$tip.label <- gsub("Anous_albivitta", "Anous_albivittus", tree1$tip.label)
 tree1$tip.label <- gsub("Stercorarius_antarcticus", "Catharacta_antarctica", tree1$tip.label)
 tree1$tip.label <- gsub("Stercorarius_chilensis", "Catharacta_chilensis", tree1$tip.label)
@@ -107,7 +107,7 @@ seabird_tree <- drop.tip(tree1, x$tree_not_data)
 str(seabird_tree)
 # should have 385 tips (415 - 30)
 # Write out
-write.nexus(seabird_tree, file = "data/seabird-tree.nex")
+write.nexus(seabird_tree, file = "data/seabird-tree-HBW-2024-09-30.nex")
 
 #-------------------
 # Prune seabird list
@@ -116,5 +116,5 @@ matches <- match(seabirds$Binomial, seabird_tree$tip.label, nomatch = 0)
 seabirds2 <- seabirds[matches > 0,]
 
 # Save the list
-write_csv(seabirds2, file = "data/seabird-list-tree.csv")
+write_csv(seabirds2, file = "data/seabird-list-tree-HBW-2024-09-30.csv")
 

@@ -60,7 +60,7 @@ seabirds <-
   distinct(Binomial, .keep_all = TRUE)
 
 # Save the list
-write_csv(seabirds, file = "data-raw/seabird-list-HBW.csv")
+write_csv(seabirds, file = "data-raw/seabird-list-HBW-2024-09-30.csv")
 
 #---------------------
 # Summarise the data
