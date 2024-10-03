@@ -22,8 +22,9 @@ library(tidyverse)
 
 # Read in HBW taxonomy
 # skip first 3 lines as data starts on row 4
+# Also exclude the last several thousand entries which describe non-valid taxa
 birds <- read_xlsx(path = "data-raw/Handbook of the Birds of the World and BirdLife International Digital Checklist of the Birds of the World_Version_81.xlsx",
-                   skip = 3)
+                   skip = 3, n_max = 31219)
 
 # Remove anything with NA for order as these are subspecies
 birds <- 
