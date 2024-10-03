@@ -39,7 +39,9 @@ both <- both %>%
 # Add new scientific name and sampling method columns
 both <- both %>%
   mutate(Sci.name_Plastic.study = NA) %>%
-  mutate(Sampling_method = NA)
+  mutate(Sampling_method = NA) %>%
+  mutate(Added_by = "SA-G") %>%
+  mutate(Comments = NA)
 
 #--------------------------------------------
 # Add ocean basin data
@@ -61,7 +63,7 @@ cleaned_data <-
   select(SISRecID_BLVr9, HBWv8.1_Binomial = TipLabel_HBWBLv6, UniqueID_Plastic.study, Source,
          Common.name_Plastic.study, Sci.name_Plastic.study,
          Site = Site.x, lat = lat.x, lon = lon.x, MarineRegion, Age.Class, Date_Text, Date_FirstYR, Date_LastYR, Date_MedianYR, Study.Duration, 
-         n, n_plastic, FO, Plastic, Sampling_method)
+         n, n_plastic, FO, Plastic, Sampling_method, Added_by, Comments)
 
 # Save file
 write_csv(cleaned_data, "data-raw/plastic-ingestion-data-2024-10-02.csv")
