@@ -10,7 +10,7 @@ library(tidyverse)
 glove <- read_csv("data-raw/Glove-2024-10-01-BIRDS_ONLY.csv")
 
 # Read in plastic ingestion data
-ds <- read_csv("data-raw/plastic-ingestion-2024-09-30.csv")
+ds <- read_csv("data-raw/plastic-ingestion-2024-10-02.csv")
 
 glove_seabirds <-
   glove %>%
