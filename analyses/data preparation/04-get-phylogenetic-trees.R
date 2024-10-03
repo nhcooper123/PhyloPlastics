@@ -12,6 +12,7 @@
 library(ape) # to read in and manipulate trees
 library(tidyverse) # for data manipulation
 library(geiger) # for name check
+library(phytools) # for tip binding
 
 # --------------------
 # Read in seabird list
@@ -60,44 +61,20 @@ tree1$tip.label <- gsub("Leucocarbo_bransfieldensis", "Phalacrocorax_bransfielde
 tree1$tip.label <- gsub("Leucocarbo_georgianus", "Phalacrocorax_georgianus", tree1$tip.label)
 tree1$tip.label <- gsub("Phalaropus_tricolor", "Steganopus_tricolor", tree1$tip.label)
 
+
 # What's missing from the tree?
 x <- name.check(tree1, seabirds, data.names = seabirds$HBWv8.1_Binomial)
 x$data_not_tree
-length(x$data_not_tree) # Should be 30
+length(x$data_not_tree) # Should be 7
 
-# These species should be missing. These are generally either newly 
-# discovered species not in trees yet, species recently elevated 
-# from subspecies, or species with uncertain taxonomic placement
-#                 "Calonectris_borealis", 
-#                 "Catharacta_lonnbergi"
-#                 "Diomedea_cauta"               
-#                "Diomedea_chlororhynchos"       
-#               "Diomedea_gibsoni"             
-#                "Diomedea_melanophris"          
-#                "Eudyptes_filholi"
-#                "Gygis_candida"
-#                "Gygis_microrhyncha" 
-#                "Larus_atlantis" 
-#                "Larus_barabensis"             
-#                "Larus_graellsii"              
-#                "Larus_heuglini"     
-#                "Larus_mongolicus"
-#                "Larus_scopulinus"            
-#                "Larus_smithsonianus"          
-#                "Larus_taimyrensis"            
-#                "Larus_thayeri"
-#                "Larus_vegae"
-#                "Pelecanoides_whenuahouensis" 
-#                "Pelagodroma_albiclunis" 
-#                "Phalacrocorax_atriceps"
-#                "Phalacrocorax_kenyoni"
-#                "Procelsterna_cerulea"
-#                "Pterodroma_deserta"
-#                "Sterna_nilotica"  
-#                "Sula_tasmani"                  
-#                "Thalassarche_impavida"        
-#                "Thalassarche_platei"           
-#                "Thalassarche_steadi"   
+# These species should be missing. These are generally species recently elevated 
+# from subspecies, or where the taxonomy is debated. We can add these to the 
+# pruned tree
+
+#[1] "Calonectris_borealis"        "Gygis_candida"              
+#[3] "Gygis_microrhyncha"          "Larus_smithsonianus"        
+#[5] "Pelecanoides_whenuahouensis" "Pterodroma_deserta"         
+#[7] "Thalassarche_impavida"       
 
 #------------------
 # Prune tree
@@ -105,16 +82,23 @@ length(x$data_not_tree) # Should be 30
 seabird_tree <- drop.tip(tree1, x$tree_not_data) 
 # Check
 str(seabird_tree)
-# should have 385 tips (415 - 30)
+# should have 382 tips
+ 
+# -------------------- 
+# Add missing species
+# --------------------
+# 
+# Read in the data
+to_add <- read_csv("data-raw/tips-to-add.csv")
+
+for (i in 1:length(to_add$Species)){
+  node <- which(seabird_tree$tip.label == to_add$Tip[i])
+  seabird_tree <- bind.tip(seabird_tree, tip.label = to_add$Species[i],
+                 where = node, position = 0.0001)
+}
+
+str(seabird_tree)
+# should have 389 tips
+
 # Write out
 write.nexus(seabird_tree, file = "data/seabird-tree-HBW-2024-09-30.nex")
-
-#-------------------
-# Prune seabird list
-# ------------------
-matches <- match(seabirds$HBWv8.1_Binomial, seabird_tree$tip.label, nomatch = 0)
-seabirds2 <- seabirds[matches > 0,]
-
-# Save the list
-write_csv(seabirds2, file = "data/seabird-list-tree-HBW-2024-09-30.csv")
-
