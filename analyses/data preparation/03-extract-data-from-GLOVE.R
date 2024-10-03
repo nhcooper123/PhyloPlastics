@@ -61,17 +61,3 @@ glove_seabirds <-
 
 # Save to file
 write_csv(glove_seabirds, file = "data-raw/Glove-2024-10-01-SEABIRDS.csv")
-
-# Save only 2018 onwards
-glove_seabirds_recent <-
-  glove_seabirds %>% 
-  filter(Year >= 2018)
-  
-write_csv(glove_seabirds_recent, file = "data-raw/Glove-2024-10-01-SEABIRDS_2018-2021.csv")
-
-# Extract the references
-glove_refs <- select(glove_seabirds, Reference) %>% distinct()
-write_csv(glove_refs, file = "data-raw/Glove-refs.csv")
-
-our_refs <- select(ds, Source) %>% distinct()
-write_csv(our_refs, file = "data-raw/our-refs.csv")
