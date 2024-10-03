@@ -36,20 +36,31 @@ both <- both %>%
   mutate(n_plastic = round(FO * n, digits = 0))
 
 #--------------------------------------------
-# Add new DOI, scientific name and sampling method columns
+# Add new scientific name and sampling method columns
 both <- both %>%
-  mutate(DOI = NA) %>%
   mutate(Sci.name_Plastic.study = NA) %>%
   mutate(Sampling_method = NA)
 
 #--------------------------------------------
-# Remove un-necessary columns and reorganise
+# Add ocean basin data
+old_oceans <- read_csv("data-raw/Old data/2022-08-05 Data S2. Ocean Basins for UniqueID_Plastic_Study(2).csv")
 
+# Remove the scaup records (numbers 351 and 352) which should be excluded as they aren't seabirds
+oceans <- 
+  old_oceans %>%
+  filter(UniqueID_Plastic_study != 351 & UniqueID_Plastic_study != 352) %>%
+  rename(UniqueID_Plastic.study = UniqueID_Plastic_study)
+
+# Merge with ingestion data
+all <- left_join(both, oceans, by = "UniqueID_Plastic.study")
+
+#----------------------------------------------
+# Remove un-necessary columns and reorganise
 cleaned_data <- 
-  both %>%
-  select(SISRecID_BLVr9, HBWv8.1_Binomial = TipLabel_HBWBLv6, UniqueID_Plastic.study, Source, DOI,
+  all %>%
+  select(SISRecID_BLVr9, HBWv8.1_Binomial = TipLabel_HBWBLv6, UniqueID_Plastic.study, Source,
          Common.name_Plastic.study, Sci.name_Plastic.study,
-         Site, lat, lon, Age.Class, Date_Text, Date_FirstYR, Date_LastYR, Date_MedianYR, Study.Duration, 
+         Site = Site.x, lat = lat.x, lon = lon.x, MarineRegion, Age.Class, Date_Text, Date_FirstYR, Date_LastYR, Date_MedianYR, Study.Duration, 
          n, n_plastic, FO, Plastic, Sampling_method)
 
 # Save file
@@ -90,17 +101,3 @@ cleaned_data_traits <-
 
 # Save file
 write_csv(cleaned_data_traits, "data-raw/trait-data-2024-10-02.csv")
-
-#------------------------------------------
-# 3. Ocean basins
-#------------------------------------------
-# Read in the old data and modify as needed
-old_oceans <- read_csv("data-raw/Old data/2022-08-05 Data S2. Ocean Basins for UniqueID_Plastic_Study(2).csv")
-
-# Remove the scaup records (numbers 351 and 352) which should be excluded as they aren't seabirds
-oceans <- 
-  old_oceans %>%
-  filter(UniqueID_Plastic_study != 351 & UniqueID_Plastic_study != 352)
-
-# Save file
-write_csv(oceans, "data-raw/ocean-basins-data-2024-10-02.csv")
