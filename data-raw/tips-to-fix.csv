@@ -1,0 +1,96 @@
+Species,Tree,Tip,Justification
+Anous_albivittus,Procelsterna_albivitta,NA,NA
+Anous_ceruleus,Procelsterna_cerulea,NA,NA
+Aphrodroma_brevirostris,NA,NA,Uncertain taxonomy
+Ardenna_bulleri,Puffinus_bulleri,NA,NA
+Ardenna_carneipes,Puffinus_carneipes,NA,NA
+Ardenna_creatopus,Puffinus_creatopus,NA,NA
+Ardenna_gravis,Puffinus_gravis,NA,NA
+Ardenna_grisea,Puffinus_griseus,NA,NA
+Ardenna_pacifica,Puffinus_pacificus,NA,NA
+Ardenna_tenuirostris,Puffinus_tenuirostris,NA,NA
+Calonectris_borealis,NA,Calonectris_diomedea,Considered conspecific with C.diomedea
+Chlidonias_albostriatus,NA,Chlidonias_hybrida,Considered a race of hybrida
+Fregetta_lineata,NA,NA,New species
+Fregetta_maoriana,Oceanites_maorianus,NA,NA
+Gelochelidon_macrotarsa,NA,Gelochelidon_nilotica,Lumped with nilotica til recently
+Gelochelidon_nilotica,Sterna_nilotica,NA,NA
+Gulosus_aristotelis,Phalacrocorax_aristotelis,NA,NA
+Gygis_candida,NA,Gygis_alba,Previously considered Gygis alba
+Hydrobates_castro,Oceanodroma_castro,NA,NA
+Hydrobates_cheimomnestes,NA,Hydrobates_leucorhous,Originally subspecies of leucorhous
+Hydrobates_furcatus,Oceanodroma_furcata,NA,NA
+Hydrobates_homochroa,Oceanodroma_homochroa,NA,NA
+Hydrobates_hornbyi,Oceanodroma_hornbyi,NA,NA
+Hydrobates_jabejabe,NA,Hydrobates_castro,Recently split from castro complex
+Hydrobates_leucorhous,Oceanodroma_leucorhoa,NA,NA
+Hydrobates_markhami,Oceanodroma_markhami,NA,NA
+Hydrobates_matsudairae,Oceanodroma_matsudairae,NA,NA
+Hydrobates_melania,Oceanodroma_melania,NA,NA
+Hydrobates_microsoma,Halocyptena_microsoma,NA,NA
+Hydrobates_monorhis,Oceanodroma_monorhis,NA,NA
+Hydrobates_monteiroi,Oceanodroma_monteiroi,NA,NA
+Hydrobates_socorroensis,NA,Hydrobates_leucorhous,Originally subspecies of leucorhous
+Hydrobates_tethys,Oceanodroma_tethys,NA,NA
+Hydrobates_tristrami,Oceanodroma_tristrami,NA,NA
+Hydrocoloeus_minutus,Larus_minutus,NA,NA
+Hydroprogne_caspia,Sterna_caspia,NA,NA
+Larus_scoresbii,Leucophaeus_scoresbii,NA,NA
+Larus_smithsonianus,NA,Larus_argentatus,Considered a subspecies of Larus_argentatus
+Leucocarbo_atriceps,Phalacrocorax_atriceps,NA,NA
+Leucocarbo_bougainvilliorum,Phalacrocorax_bougainvillii,NA,NA
+Leucocarbo_campbelli,Phalacrocorax_campbelli,NA,NA
+Leucocarbo_carunculatus,Phalacrocorax_carunculatus,NA,NA
+Leucocarbo_chalconotus,Phalacrocorax_chalconotus,NA,NA
+Leucocarbo_colensoi,Phalacrocorax_colensoi,NA,NA
+Leucocarbo_magellanicus,Phalacrocorax_magellanicus,NA,NA
+Leucocarbo_onslowi,Phalacrocorax_onslowi,NA,NA
+Leucocarbo_ranfurlyi,Phalacrocorax_ranfurlyi,NA,NA
+Leucocarbo_verrucosus,NA,Leucocarbo_atriceps,Considered a race of atriceps
+Melanitta_americana,NA,Melanitta_nigra,Often treated as conspecific with nigra
+Melanitta_deglandi,NA,Melanitta_fusca,Until recently treated as conspecific with fusca
+Melanitta_stejnegeri,NA,Melanitta_fusca,Until recently treated as conspecific with fusca
+Microcarbo_africanus,Phalacrocorax_africanus,NA,NA
+Microcarbo_coronatus,Phalacrocorax_coronatus,NA,NA
+Microcarbo_melanoleucos,Phalacrocorax_melanoleucos,NA,NA
+Microcarbo_niger,Phalacrocorax_niger,NA,NA
+Microcarbo_pygmaeus,Phalacrocorax_pygmeus,NA,NA
+Nannopterum_auritum,Phalacrocorax_auritus,NA,NA
+Nannopterum_brasilianum,Phalacrocorax_brasilianus,NA,NA
+Nannopterum_harrisi,Phalacrocorax_harrisi,NA,NA
+Oceanites_pincoyae,NA,NA,New species
+Onychoprion_aleuticus,Sterna_aleutica,NA,NA
+Onychoprion_anaethetus,Sterna_anaethetus,NA,NA
+Onychoprion_fuscatus,Sterna_fuscata,NA,NA
+Onychoprion_lunatus,Sterna_lunata,NA,NA
+Pachyptila_macgillivrayi,NA,Pachyptila_vittata,Previously considered part of vitatta
+Pelecanoides_whenuahouensis,NA,Pelecanoides_georgicus,Considered a subspecies of Pelecanoides georgicus
+Poikilocarbo_gaimardi,Phalacrocorax_gaimardi,NA,NA
+Pterodroma_deserta,NA,Pterodroma_mollis,Previously a subspecies of Pterodroma mollis
+Pterodroma_gouldi,NA,Pterodroma_macroptera,Until recently considered part of Pterodroma_macroptera
+Puffinus_bailloni,NA,Puffinus_lherminieri,Formerly conspecific with Puffinus_lherminieri
+Puffinus_bannermani,NA,Puffinus_lherminieri,Formerly conspecific with Puffinus_lherminieri
+Puffinus_bryani,NA,NA,New species
+Puffinus_elegans,NA,Puffinus_assimilis,Previously included in assimilis
+Puffinus_myrtae,NA,Puffinus_auricularis,Previously a subspecies of auricularis
+Puffinus_persicus,NA,Puffinus_lherminieri,Formerly conspecific with Puffinus_lherminieri
+Puffinus_subalaris,NA,Puffinus_lherminieri,Formerly conspecific with Puffinus_lherminieri
+Saundersilarus_saundersi,Larus_saundersi,NA,NA
+Sternula_albifrons,Sterna_albifrons,NA,NA
+Sternula_antillarum,Sterna_antillarum,NA,NA
+Sternula_balaenarum,Sterna_balaenarum,NA,NA
+Sternula_lorata,Sterna_lorata,NA,NA
+Sternula_nereis,Sterna_nereis,NA,NA
+Sternula_saundersi,Sterna_saundersi,NA,NA
+Sternula_superciliaris,Sterna_superciliaris,NA,NA
+Synthliboramphus_scrippsi,NA,Synthliboramphus_hypoleucus,Until recently was part of Synthliboramphus_hypoleucus
+Thalassarche_melanophris,Thalassarche_melanophrys,NA,NA
+Thalasseus_bengalensis,Sterna_bengalensis,NA,NA
+Thalasseus_bergii,Sterna_bergii,NA,NA
+Thalasseus_bernsteini,Sterna_bernsteini,NA,NA
+Thalasseus_elegans,Sterna_elegans,NA,NA
+Thalasseus_maximus,Sterna_maxima,NA,NA
+Thalasseus_sandvicensis,Sterna_sandvicensis,NA,NA
+Urile_pelagicus,Phalacrocorax_pelagicus,NA,NA
+Urile_penicillatus,Phalacrocorax_penicillatus,NA,NA
+Urile_urile,Phalacrocorax_urile,NA,NA
