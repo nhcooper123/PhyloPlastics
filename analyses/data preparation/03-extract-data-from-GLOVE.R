@@ -57,7 +57,12 @@ glove_seabirds <-
   filter(family != "Anhingidae") %>%
   # Remove two extinct species
   filter(species != "Camptorhynchus labradorius" &
-           species != "Hydrobates macrodactylus") 
+           species != "Hydrobates macrodactylus"&
+           species != "Bulweria bifax" &
+           species != "Mergus australis" &
+           species != "Pinguinus impennis" &
+           species != "Pterodroma rupinarum" &
+           species != "Urile perspicillatus")
 
 # Save to file
 write_csv(glove_seabirds, file = "data-raw/Glove-2024-10-01-SEABIRDS.csv")
