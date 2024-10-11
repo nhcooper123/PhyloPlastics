@@ -13,8 +13,8 @@
 # 6) Within Pelecaniformes, Pelecanidae (pelicans)
 # 7) Within Charadriiformes, Laridae (gulls), Alcidae (auks), Stercorariidae (skuas) and Phalaropus (phalaropes)
 # 8) Within Anserifromes, Mergini (diving ducks)
-# We also exclude the extinct species Camptorhynchus labradorius and Hydrobates macrodactylus
-
+# We also exclude the extinct species Camptorhynchus labradorius, Hydrobates macrodactylus
+# Bulweria_bifax, Mergus_australis, Pinguinus_impennis, Pterodroma_rupinarum, and Urile_perspicillatus
 # -----------------------------------------
 # Load libraries
 library(readxl)
@@ -50,9 +50,14 @@ seabirds <-
            Tribe == "Phalaropodini") %>%
   # Remove Anhingidae from Suliformes
   filter(`Family name` != "Anhingidae") %>%
-  # Remove two extinct species
+  # Remove extinct species
   filter(`Scientific name` != "Camptorhynchus labradorius" &
-         `Scientific name` != "Hydrobates macrodactylus") %>%
+         `Scientific name` != "Hydrobates macrodactylus" &
+         `Scientific name` != "Bulweria bifax" &
+          `Scientific name` != "Mergus australis" &
+          `Scientific name` != "Pinguinus impennis" &
+          `Scientific name` != "Pterodroma rupinarum" &
+           `Scientific name` != "Urile perspicillatus") %>%
   # select only the required columns and tidy up names a bit
   dplyr::select(HBWv8.1_Order = Order, HBWv8.1_Family = `Family name`, HBWv8.1_Subfamily = Subfamily, 
                 HBWv8.1_Tribe = Tribe, 

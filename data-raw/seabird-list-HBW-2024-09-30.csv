@@ -18,7 +18,6 @@ ANSERIFORMES,Anatidae,Anatinae,Mergini,Hooded Merganser,Lophodytes cucullatus,Lo
 ANSERIFORMES,Anatidae,Anatinae,Mergini,Goosander,Mergus merganser,Mergus,LC,NA
 ANSERIFORMES,Anatidae,Anatinae,Mergini,Scaly-sided Merganser,Mergus squamatus,Mergus,EN,NA
 ANSERIFORMES,Anatidae,Anatinae,Mergini,Red-breasted Merganser,Mergus serrator,Mergus,LC,NA
-ANSERIFORMES,Anatidae,Anatinae,Mergini,New Zealand Merganser,Mergus australis,Mergus,EX,NA
 ANSERIFORMES,Anatidae,Anatinae,Mergini,Brazilian Merganser,Mergus octosetaceus,Mergus,CR,NA
 ANSERIFORMES,Anatidae,Anatinae,Mergini,Harlequin Duck,Histrionicus histrionicus,Histrionicus,LC,NA
 PHAETHONTIFORMES,Phaethontidae,NA,NA,Red-billed Tropicbird,Phaethon aethereus,Phaethon,LC,NA
@@ -112,7 +111,6 @@ PROCELLARIIFORMES,Procellariidae,NA,NA,Slender-billed Prion,Pachyptila belcheri,
 PROCELLARIIFORMES,Procellariidae,NA,NA,Fairy Prion,Pachyptila turtur,Pachyptila,LC,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,Fulmar Prion,Pachyptila crassirostris,Pachyptila,LC,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,Kerguelen Petrel,Aphrodroma brevirostris,Aphrodroma,LC,Aphrodroma brevirostris; Pterodroma brevirostris; Lugensa brevirostris
-PROCELLARIIFORMES,Procellariidae,NA,NA,Large Saint Helena Petrel,Pterodroma rupinarum,Pterodroma,EX,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,White-winged Petrel,Pterodroma leucoptera,Pterodroma,VU,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,Collared Petrel,Pterodroma brevipes,Pterodroma,VU,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,Masatierra Petrel,Pterodroma defilippiana,Pterodroma,VU,NA
@@ -188,7 +186,6 @@ PROCELLARIIFORMES,Procellariidae,NA,NA,Beck's Petrel,Pseudobulweria becki,Pseudo
 PROCELLARIIFORMES,Procellariidae,NA,NA,Tahiti Petrel,Pseudobulweria rostrata,Pseudobulweria,NT,Pterodroma rostrata
 PROCELLARIIFORMES,Procellariidae,NA,NA,Bulwer's Petrel,Bulweria bulwerii,Bulweria,LC,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,Jouanin's Petrel,Bulweria fallax,Bulweria,NT,NA
-PROCELLARIIFORMES,Procellariidae,NA,NA,Small Saint Helena Petrel,Bulweria bifax,Bulweria,EX,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,Whenua Hou Diving-petrel,Pelecanoides whenuahouensis,Pelecanoides,CR,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,Peruvian Diving-petrel,Pelecanoides garnotii,Pelecanoides,NT,NA
 PROCELLARIIFORMES,Procellariidae,NA,NA,Magellanic Diving-petrel,Pelecanoides magellani,Pelecanoides,LC,NA
@@ -239,7 +236,6 @@ SULIFORMES,Phalacrocoracidae,NA,NA,Flightless Cormorant,Nannopterum harrisi,Nann
 SULIFORMES,Phalacrocoracidae,NA,NA,Brandt's Cormorant,Urile penicillatus,Urile,LC,Phalacrocorax penicillatus
 SULIFORMES,Phalacrocoracidae,NA,NA,Pelagic Cormorant,Urile pelagicus,Urile,LC,Phalacrocorax pelagicus
 SULIFORMES,Phalacrocoracidae,NA,NA,Red-faced Cormorant,Urile urile,Urile,LC,Phalacrocorax urile
-SULIFORMES,Phalacrocoracidae,NA,NA,Spectacled Cormorant,Urile perspicillatus,Urile,EX,Phalacrocorax perspicillatus
 SULIFORMES,Phalacrocoracidae,NA,NA,European Shag,Gulosus aristotelis,Gulosus,LC,Phalacrocorax aristotelis
 SULIFORMES,Phalacrocoracidae,NA,NA,Great Cormorant,Phalacrocorax carbo,Phalacrocorax,LC,NA
 SULIFORMES,Phalacrocoracidae,NA,NA,Japanese Cormorant,Phalacrocorax capillatus,Phalacrocorax,LC,NA
@@ -384,7 +380,6 @@ CHARADRIIFORMES,Alcidae,Alcinae,NA,Scripps's Murrelet,Synthliboramphus scrippsi,
 CHARADRIIFORMES,Alcidae,Alcinae,NA,Guadalupe Murrelet,Synthliboramphus hypoleucus,Synthliboramphus,EN,NA
 CHARADRIIFORMES,Alcidae,Alcinae,NA,Craveri's Murrelet,Synthliboramphus craveri,Synthliboramphus,VU,NA
 CHARADRIIFORMES,Alcidae,Alcinae,NA,Razorbill,Alca torda,Alca,LC,NA
-CHARADRIIFORMES,Alcidae,Alcinae,NA,Great Auk,Pinguinus impennis,Pinguinus,EX,NA
 CHARADRIIFORMES,Alcidae,Alcinae,NA,Little Auk,Alle alle,Alle,LC,NA
 CHARADRIIFORMES,Alcidae,Alcinae,NA,Thick-billed Murre,Uria lomvia,Uria,LC,NA
 CHARADRIIFORMES,Alcidae,Alcinae,NA,Common Murre,Uria aalge,Uria,LC,NA
