@@ -78,4 +78,4 @@ seabirds %>% group_by(HBWv8.1_Order) %>% summarise(n())
 # By family
 seabirds %>% group_by(HBWv8.1_Family) %>% summarise(n())
 # Total
-seabirds %>% summarise(n())
+seabirds %>% summarise(n()) #384
