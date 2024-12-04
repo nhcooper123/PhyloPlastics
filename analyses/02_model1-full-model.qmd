@@ -19,11 +19,12 @@ library(here)
 
 # Need to install CmdStan. Unpack and place folder into Phyloplastics folder
 # https://github.com/stan-dev/cmdstan/releases/tag/v2.35.0
+# Then in Terminal navigate to this folder and run "make build"
 # For cmdstanr
 # install.packages("cmdstanr", repos = c('https://stan-dev.r-universe.dev', getOption("repos")))
 library(cmdstanr)
 # Provide path to where your CmdStan folder is
-set_cmdstan_path(path = here("cmdstan-2.35.0"))
+set_cmdstan_path(path = here("cmdstan-2.35.0/"))
 
 # Add custom functions written by AM
 source(here::here("analyses/functions.R"))
@@ -33,9 +34,6 @@ Read in data and tree, without NAs
 ```{r}
 # Read in data
 data_noNA <- readr::read_csv(file = here::here("data/plastic-data-aggregated-noNA.csv"))
-
-# Add tips column
-data_noNA <- data_noNA %>% mutate(tips = gsub(" ", "_", data_noNA$HBWv8.1_Binomial))
 
 # Read in tree
 tree <- read.nexus(here::here("data/plastic-tree-noNA.nex"))
@@ -49,15 +47,16 @@ data_noNA_trait <- data_noNA |>
 ```
 
 Fit a full model
-```{r model-fit, eval=TRUE}
 
-model1_full_model_bf <- bf(
+Note that we need to specify to use brms for bf as it is an internal function in geiger and can cause issues if this package is already loaded.
+```{r model-fit, eval=TRUE}
+model1_full_model_bf <- brms::bf(
   n_plastic | trials(n_total) ~ 1 + 
     mi(is_freeflying) + 
     Date_median + 
     (1 | Source) + 
     (1 | MarineRegion) + 
-    (1 + Date_median| tips) + 
+    (1 + Date_median| HBWv8.1_Binomial) + 
     (1               | gr(tips, cov = A)) + 
     (0 + Date_median | gr(tips, cov = A)) + 
     (1|diet_type)  + 
@@ -65,9 +64,13 @@ model1_full_model_bf <- bf(
     body_mass_2sd + 
     pelagic_specialist_CR,
   family = "binomial") + 
-  bf(is_freeflying | mi() ~ 1 + (1|Source)) + 
+  brms::bf(is_freeflying | mi() ~ 1 + (1|Source)) + 
   set_rescor(FALSE)
+```
 
+Set priors
+
+```{r}
 model1_full_model_priors <- c(
   prior(normal(.5, .5), class = "Intercept", resp = "isfreeflying"),
   prior(exponential(3), class = "sd",        resp = "isfreeflying"),
@@ -75,16 +78,19 @@ model1_full_model_priors <- c(
   prior(normal(0, .2),  class = "Intercept", resp = "nplastic"),
   prior(normal(0, .2),  class = "b", coef = "Date_median", resp = "nplastic"),
   prior(normal(1, .5),  class = "b", coef = "miis_freeflying", resp = "nplastic"),
-  prior(lkj(2),         class = "cor", group = "tips"),
+  prior(lkj(2),         class = "cor", group = "HBWv8.1_Binomial"),
   prior(normal(0, .2), class = "b", resp = "nplastic")
 )
+```
 
+Run model
+```{r}
 # job::job({
 model1_full_model <- brm(model1_full_model_bf, 
                           data = data_noNA_trait, 
                           data2 = list(A = A.matrix),
                           prior = model1_full_model_priors, 
-                          backend = "cmdstanr", chains= 4, cores = 4,
+                          backend = "cmdstanr", chains = 4, cores = 4,
                           file = here::here("output/model1_full_model.rds"),
                           file_refit = "never")
 # })
