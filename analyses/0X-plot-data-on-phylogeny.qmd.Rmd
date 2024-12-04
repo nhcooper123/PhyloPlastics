@@ -1,0 +1,108 @@
+---
+title: "Plot data on phylogeny"
+author: "Natalie Cooper"
+---
+
+### WEIGHTED MEAN FREQ of OCCURRENCE with bar plots around and coloured by order and/or suborder?
+### groupOTU for colours
+
+Load libraries
+```{r}
+library(ape) # for reading and manipulating trees
+library(tidyverse) # for data manipulation
+library(geiger) # for checking names in phylogeny and data match
+library(ggtree) # for plotting trees
+library(ggstance) # for geombarh function to make bars
+library(ggnewscale) # for different scales in ggplot
+
+# Helper functions for plotting
+remove_y <- 
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+Read in the phylogeny
+
+```{r}
+seabirdtree <- read.nexus(here("data/plastic-tree-full.nex"))
+# look at it
+str(seabirdtree)
+```
+Read in dataset
+```{r}
+plastic <- read_csv(here("data/plastic-data-full.csv"))
+
+# Look at it
+plastic
+```
+
+### Plotting on the phylogeny ###
+
+Ensure the data is in the same order as the tree and make it into a dataframe
+```{r}
+# Reorder to match tree
+plastic <- plastic[match(seabirdtree$tip.label, plastic$HBWv8.1_Binomial),]
+
+# Create a new dataframe object that
+# contains only the variable you want to plot
+# with the species/tip names as rownames...
+found <-
+    plastic %>%
+    mutate(plastic = as.factor(plastic)) %>%
+    select(plastic) %>%
+    as.data.frame()
+  # Add rownames as species names  
+  rownames(found) <- plastic$HBWv8.1_Binomial
+  
+number <-
+    plastic %>%
+    select(n) %>%
+    as.data.frame()
+  # Add rownames as species names  
+  rownames(number) <- plastic$HBWv8.1_Binomial
+```
+
+Make trees using ggtree.
+
+Note that this code will throw lots of warnings about scales which can be ignored
+```{r}
+# Make the tree base
+seabirdtree$tip.label <- gsub("_", " ", seabirdtree$tip.label)
+  
+base <- 
+  ggtree(seabirdtree, layout = "circular") +
+  geom_tiplab(geom = "text", offset = 8, size = 1, fontface = "italic") +
+  xlim(0,110)
+
+# Plot stripes as facet
+p1 <- gheatmap(base, found, offset = 0.5, width = 0.1,
+           colnames = FALSE, color = "black", legend_title = "plastic",)+
+# add fill colours using standard scale fill manual
+  scale_fill_manual(values = c("cyan4", "gold"), na.value = "white") +
+  labs(fill = "Plastic?")
+p1
+
+# Save plot
+# ggsave(p1, file = here("phylogeny.pdf"), height = 10)
+```
+
+```{r}
+# For adding more variables...
+
+# If we do add number will need to cut out the one with 3500 birds as it skews the scale
+
+# Now tell ggtree to add another plot but remove the existing scale
+# Give this a name too - here I called in cool_plot2
+p2 <- p1 + new_scale_fill()
+
+# Now add the second heatmap
+# Make sure the offset is bigger than the first one so it plots
+# next to the first one - this might need a bit of fiddling to get right
+p3 <- gheatmap(p2, number, offset = 3.5, width = 0.1,
+         colnames = FALSE, color = "black") +
+  scale_fill_viridis_c(option = "plasma")
+
+p3
+```
+
