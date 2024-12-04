@@ -1,0 +1,333 @@
+---
+title: "Plastic ingestion meta-analysis: data preparation and checking"
+author: Andrew MacDonald with updates from Natalie Cooper
+format: html
+editor: source
+bibliography: references.bib
+---
+
+*** before final run of models need to update tree and check which species need to be removed from data because
+they are not in the tree, and which species have NAs for diet***
+
+This document performs data cleaning and checking for this study. Note that I (NC) strip down the phylogeny from the full bird phylogeny in a different script (data-preparation/04-get-phylogenetic-trees-mcc.R)
+
+### Reading data
+
+```{r}
+# Load libraries
+library(ape) # for phylogeny import
+library(tidyverse) # for data import and manipulation
+library(here) # to ensure paths work
+library(naniar) # to look for NAs
+library(geiger) # to check tips and species match in tree and data
+```
+
+Import tree
+
+This is the Hackett backbone version of the Jetz tree for now, with taxonomy updates to current HBW v 8. Update to clements tree when a dated version is available.
+
+```{r}
+# Read in tree
+tree.seabird <- read.nexus(here::here("data/seabird-tree-HBW-2024-10-11.nex"))
+
+# Look at it
+str(tree.seabird) # should have 380 tips
+plot(tree.seabird, no.margin = TRUE, cex = 0.5, type = "fan")
+```
+
+Read in data
+
+These are datasets from Oct 2024. Update to most recent.
+```{r}
+# Read in trait data and plastic data
+data0.1 <- read_csv(here::here("data-raw/trait-data-2024-10-02.csv"))
+data0.2 <- read_csv(here::here("data-raw/plastic-ingestion-data-2024-10-02.csv"))
+
+# Look at the data
+glimpse(data0.1) # 388 species of seabird
+glimpse(data0.2) # ? plastic studies. Note that one Unique plastic ID was removed when we excluded scaup.
+```
+
+## Data transformations and calculations
+
+We do some data transformations before we get to work:
+
+-   median year of a study is recalculated, to give a decimal number
+
+-   some columns are dropped
+
+-   body size is standardized with TWO standard deviations, as suggested by @gelman2008
+
+-   data0.1 and data0.2 are merged
+
+-   add a column called tips which is the HBW binomial with _ to match the tree
+
+### Calculate median date
+
+```{r median-calc}
+## recalculate median so we have a number or NA
+data0.2 <- data0.2 |> 
+  rowwise() |> 
+  mutate(Date_median = median(c(Date_FirstYR, Date_LastYR))) |> 
+  ungroup()
+```
+
+### Merge datasets
+
+```{r data-merge}
+# Join the two data files
+data2_joined <- data0.2 |> 
+  left_join(data0.1, by = "HBWv8.1_Binomial")
+```
+
+### Convert factors to binary
+Make the "Yes/No" variables into 0 or 1 (helps to clarify how they work in the models). 0 = No, 1 = Yes
+
+```{r binary-factors}
+## Factors that are "YES" vs "No" can just be binary.-------------
+# Set factors
+data2_binary <- data2_joined |> 
+  mutate(across(c(Carrion.NonFishVertebrates, Cephalopods, Crustaceans, Fish,
+                  Other.Inverts, Anthropogenic.Subsidy,
+                  pelagic_specialist_CR,DMS.responsive_Dell.Ariccia,
+                  AS.Fishery, AS.Refuse, AS.Agriculture),
+                ~ if_else(.x == "Yes", true = 1, false = 0)))
+```
+
+## Add tips column
+
+```{r}
+data2_tips <-
+  data2_binary %>%
+  mutate(tips = gsub(" ", "_", data2_binary$HBWv8.1_Binomial))
+```
+
+## Select columns for the models
+
+```{r}
+# n  = sample size
+# F0 = frequency of occurrence
+data2 <- data2_tips |> 
+  select(HBWv8.1_Binomial,
+    HBWv8.1_Order, tips,
+    # main response variable and sample sizes
+    n, n_plastic, FO, Plastic,
+    ## species level stuff
+    Body.Mass.g,
+    # diet as a factor
+    Diet, 
+    ## diet breakdown
+    Carrion.NonFishVertebrates, Cephalopods, Crustaceans, Fish,
+    Other.Inverts, Anthropogenic.Subsidy,
+    pelagic_specialist_CR,
+    AS.Fishery, AS.Refuse, AS.Agriculture,
+    # olfactory trap
+    DMS.responsive_Dell.Ariccia,
+    ## Study-level predictors
+    Source,
+    Date_median,
+    Feeding.Method.Simple,
+    MarineRegion,
+    # Site,
+    Age.Class, UniqueID_Plastic.study
+    ) |>
+  # body size standardized with TWO standard deviations, as suggested by @gelman2008
+  mutate(body_mass_2sd = (
+           Body.Mass.g - mean(Body.Mass.g, na.rm = TRUE)) / (2 * sd(Body.Mass.g, na.rm = TRUE))
+         )
+```
+
+### Freeflying
+
+Rather than recognizing the fine distinctions between different life-history stages, we are aggregating into just two life history stages: free-flying and not (ie nestbound). This is important because freeflying birds are foraging for themselves, which nestbound birds are consuming food foraged by parents. However, this is in fact a study-level variable, as studies typically focus on either one the other life history stage.
+
+```{r}
+data2_freefly <- data2 |> 
+  mutate(is_freeflying = case_when(
+    Age.Class == "Nest-bound" ~ 0L,
+    Age.Class %in% c("Subadult/Adult", "Adult", "Subadult") ~ 1L,
+    Age.Class == "Mixed" ~ NA_integer_
+  ))
+
+```
+
+### Drop species that are not in the phylogeny
+
+Check this with the new phylogeny!
+
+```{r}
+check <- name.check(tree.seabird, data2_freefly, data.names = data2_freefly$tips)
+unique(check$data_not_tree)
+
+data2_matched <-
+  data2_freefly %>% 
+  filter(HBWv8.1_Binomial != "Aphrodroma brevirostris")
+```
+
+
+### Exclude study with no plastic info
+
+Check this with the new data!
+
+```{r}
+#data2_matched$UniqueID_Plastic.study[which(is.na(data2_matched$Plastic))]
+
+data2_complete <- data2_matched |> 
+  filter(UniqueID_Plastic.study != 551)
+```
+
+## Aggregating within marine basins
+
+Some studies separate birds into small groups (i.e. within-study sampling locations).
+However, for the purposes of meta-analyses, we are treating all observations as exchangeable (i.e. as replicates) if they:
+
+-   are collected by the same authors
+-   in the same Marine Region
+-   in the same year
+
+This aggregates the dataset considerably.
+
+```{r}
+data2_aggregated <- data2_complete |> 
+  group_by(HBWv8.1_Binomial, tips,
+           # study level traits
+           is_freeflying,
+           Source, 
+           Date_median, 
+           MarineRegion, 
+           # species level traits
+           body_mass_2sd, 
+           Carrion.NonFishVertebrates, 
+           Fish,
+           Cephalopods,
+           Crustaceans,
+           Other.Inverts,
+           AS.Refuse,
+           pelagic_specialist_CR,
+           Feeding.Method.Simple,
+           DMS.responsive_Dell.Ariccia
+           ) |> 
+  summarize(n_plastic = sum(n_plastic, na.rm = TRUE),
+            n_total = sum(n, na.rm = TRUE),
+            n_na_plastic = sum(is.na(n_plastic)), .groups = "drop")
+```
+
+### A few quick checks
+
+```{r}
+# Check for missing data
+# This produces a plot showing missing data
+# Note that some plastic studies have FO but not n or n_plastics, 
+# and a few have Plastic (Yes/No) but no FO, n or n_plastic
+# If they have none of these they should be excluded.
+naniar::vis_miss(data2_aggregated)
+```
+
+### Remove missing species from the phylogeny
+
+Drop species from the tree that are not in the dataset
+```{r}
+# Check for missing taxa
+check <- name.check(tree.seabird, data2_aggregated, data.names = data2_aggregated$tips)
+
+check$data_not_tree # should be 0
+length(check$tree_not_data) # all the seabirds we don't have plastic records for 
+
+# Drop tips
+tree_plastic <- drop.tip(tree.seabird, check$tree_not_data)
+str(tree_plastic)
+```
+
+## Write out data and tree
+
+```{r}
+readr::write_csv(data2_aggregated, 
+                 file = here::here("data/plastic-data-aggregated.csv"))
+
+write.nexus(tree_plastic, file = here::here("data/plastic-tree.nex"))
+```
+
+### Without NAs
+
+Also write a version without a small number of annoying NAs which we aren't able to work with:
+
+```{r}
+## Remove entries with missing years and missing diet data
+data2_noNAs <- data2_aggregated |> 
+  filter(!is.na(Date_median)) |> 
+  filter(!is.na(Fish))
+
+readr::write_csv(data2_noNAs, file = here::here("data/plastic-data-aggregated-noNA.csv"))
+
+## what is lost in this filtering?
+data2_aggregated |> 
+  anti_join(data2_noNAs, by = join_by(HBWv8.1_Binomial, Source)) |> 
+  count(Source)
+```
+
+We lose a few studies, which include few species each. We also drop one bird species for which very little diet information is available. 
+
+Also make a tree without these species with NAs...
+```{r}
+# Check for missing taxa
+check <- name.check(tree_plastic, data2_noNAs, data.names = data2_noNAs$tips)
+
+check$data_not_tree # should be zero
+check$tree_not_data # species with NAs that have been excluded
+
+# Drop tips
+tree_plastic_noNA <- drop.tip(tree_plastic, check$tree_not_data)
+str(tree_plastic_noNA)
+
+# Write to file
+write.nexus(tree_plastic_noNA, file = here::here("data/plastic-tree-noNA.nex"))
+```
+
+## Add back in species that are seabirds but we don't have plastic data for
+
+This is so we can make phylogeny plots showing all the species in the tree, even ones
+without existing data
+
+*** Currently this doesn't work as I want it to. ***
+
+```{r, eval=FALSE}
+fulldata <- 
+  data2_aggregated %>%
+  # full join to the trait data
+  full_join(data0.1, by = "HBWv8.1_Binomial") %>%
+  # ensure tips column is complete and matches tree with _ not " "
+  mutate(tips = gsub(" ", "_", .$HBWv8.1_Binomial))
+  
+  
+  
+
+# Check for missing taxa in tree/data
+check <- name.check(tree.seabird, fulldata, data.names = fulldata$tips)
+check$data_not_tree # should be zero
+check$tree_not_data # species with NAs that have been excluded
+
+# Drop tips
+tree_plastic_full <- drop.tip(tree.seabird, check$tree_not_data)
+str(tree_plastic_full) # should have 380 tips
+
+# Write to file
+write.nexus(tree_plastic_full, file = here::here("data/plastic-tree-full.nex"))
+
+# What species need to be removed from data that are not in the tree?
+check$data_not_tree
+
+# Remove missing species from dataset
+fulldata_match <-
+  fulldata %>%
+  filter(tips != "Aphrodroma_brevirostris" &
+        tips != "Bulweria_bifax"  &        
+        tips != "Fregetta_lineata" &        
+        tips != "Oceanites_pincoyae" &    
+        tips != "Pinguinus_impennis" &    
+        tips != "Pterodroma_rupinarum" &
+        tips != "Puffinus_bryani" & 
+        tips != "Urile_perspicillatus")
+
+# Write to file
+readr::write_csv(fulldata_match, file = here::here("data/plastic-data-full.csv"))
+```
