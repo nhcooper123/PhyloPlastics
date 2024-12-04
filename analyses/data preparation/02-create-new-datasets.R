@@ -85,7 +85,8 @@ old_traits <-
 #--------------------------------------------
 # Combine old data with new taxonomy
 # Join is based on tree as old data does not have species names
-both_traits <- full_join(old_traits, birds, by = join_by(Scientific.name_HBWBLv6 == HBWv8.1_Binomial))
+# Only keeps species that match new taxonomy - excludes extinct species
+both_traits <- right_join(old_traits, birds, by = join_by(Scientific.name_HBWBLv6 == HBWv8.1_Binomial))
 
 #--------------------------------------------
 # Remove un-necessary columns and reorganise
