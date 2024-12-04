@@ -169,7 +169,7 @@ Can I add points to this?
 
 ```{r}
 obs_fo <- data_noNA_trait |> 
-  group_by(Date_median,TipLabel_HBWBLv6) |> 
+  group_by(Date_median, HBWv8.1_Binomial) |> 
   summarise(fo_sp_year = mean(n_plastic/n_total)) |> 
   ungroup() |> 
   mutate(Date_median = round(Date_median)) |> 
@@ -192,8 +192,8 @@ time_trend +
 
 ```{r}
 foo <- data_noNA_trait |> 
-  modelr::data_grid(ROTL.tip.label = "Raphus cucullatus", 
-                    TipLabel_HBWBLv6 = "Raphus cucullatus",
+  modelr::data_grid(tips = "Raphus_cucullatus", 
+                    HBWv8.1_Binomial = "Raphus cucullatus",
                     body_mass_2sd = 0,#c(-.5, 0, .5),
                     Date_median = 0, 
                     Source = "MacDonald 2024",
