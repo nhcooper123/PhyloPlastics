@@ -1,0 +1,428 @@
+---
+title: "Conclusions from a full model"
+subtitle: "treating diet type as a random effect"
+author: Andrew MacDonald with updates from Natalie Cooper
+format: html
+editor: source
+---
+
+We can learn a lot about this question just from looking carefully at one large model. 
+In this model, diet is treated as a random effect.
+
+```{r setup}
+# Load libraries
+library(brms)
+library(tidyverse)
+library(tidybayes)
+library(ape)
+library(here)
+
+# Need to install CmdStan. Unpack and place folder into Phyloplastics folder
+# https://github.com/stan-dev/cmdstan/releases/tag/v2.35.0
+# For cmdstanr
+# install.packages("cmdstanr", repos = c('https://stan-dev.r-universe.dev', getOption("repos")))
+library(cmdstanr)
+# Provide path to where your CmdStan folder is
+set_cmdstan_path(path = here("cmdstan-2.35.0"))
+
+# Add custom functions written by AM
+source(here::here("analyses/functions.R"))
+```
+
+Read in data and tree, without NAs
+```{r}
+# Read in data
+data_noNA <- readr::read_csv(file = here::here("data/plastic-data-aggregated-noNA.csv"))
+
+# Add tips column
+data_noNA <- data_noNA %>% mutate(tips = gsub(" ", "_", data_noNA$HBWv8.1_Binomial))
+
+# Read in tree
+tree <- read.nexus(here::here("data/plastic-tree-noNA.nex"))
+
+# Make this into a variance covariance matrix for the models
+A.matrix <- ape::vcv.phylo(tree)
+
+# Unite the diet categories
+data_noNA_trait <- data_noNA |> 
+  unite(col = "diet_type", Carrion.NonFishVertebrates:AS.Refuse)
+```
+
+Fit a full model
+```{r model-fit, eval=TRUE}
+
+model1_full_model_bf <- bf(
+  n_plastic | trials(n_total) ~ 1 + 
+    mi(is_freeflying) + 
+    Date_median + 
+    (1 | Source) + 
+    (1 | MarineRegion) + 
+    (1 + Date_median| tips) + 
+    (1               | gr(tips, cov = A)) + 
+    (0 + Date_median | gr(tips, cov = A)) + 
+    (1|diet_type)  + 
+    (1 | Feeding.Method.Simple) +
+    body_mass_2sd + 
+    pelagic_specialist_CR,
+  family = "binomial") + 
+  bf(is_freeflying | mi() ~ 1 + (1|Source)) + 
+  set_rescor(FALSE)
+
+model1_full_model_priors <- c(
+  prior(normal(.5, .5), class = "Intercept", resp = "isfreeflying"),
+  prior(exponential(3), class = "sd",        resp = "isfreeflying"),
+  prior(exponential(1), class = "sd",        resp = "nplastic"),
+  prior(normal(0, .2),  class = "Intercept", resp = "nplastic"),
+  prior(normal(0, .2),  class = "b", coef = "Date_median", resp = "nplastic"),
+  prior(normal(1, .5),  class = "b", coef = "miis_freeflying", resp = "nplastic"),
+  prior(lkj(2),         class = "cor", group = "tips"),
+  prior(normal(0, .2), class = "b", resp = "nplastic")
+)
+
+# job::job({
+model1_full_model <- brm(model1_full_model_bf, 
+                          data = data_noNA_trait, 
+                          data2 = list(A = A.matrix),
+                          prior = model1_full_model_priors, 
+                          backend = "cmdstanr", chains= 4, cores = 4,
+                          file = here::here("output/model1_full_model.rds"),
+                          file_refit = "never")
+# })
+```
+
+```{r}
+summary(model1_full_model)
+```
+
+
+## Exploratory figures
+
+### Freeflying
+
+```{r}
+# full_two_phylo_params <- get_variables(full_two_phylo_brm)
+
+# tail(full_two_phylo_param, 600)
+
+freefly <- model1_full_model |> 
+  spread_draws(b_isfreeflying_Intercept, r_Source__isfreeflying[Source,p])
+
+freefly |> 
+  mutate(fly = b_isfreeflying_Intercept  + r_Source__isfreeflying) |> 
+  ungroup() |> 
+  ggplot(aes(y = Source, x = fly)) + stat_pointinterval() + 
+  geom_point(aes(y = Source, x = is_freeflying), 
+             inherit.aes = FALSE,
+             data = data_noNA_trait |> 
+               select(Source, is_freeflying) |>
+               distinct(), col = "red")
+
+```
+
+
+### Does plastic consumption change over time?
+
+```{r}
+conditional_effects(model1_full_model, "Date_median", resp = "nplastic")
+```
+
+
+
+Just the average effect of time:
+
+```{r}
+
+time_avg_bird <- tidyr::expand_grid(ROTL.tip.label = "Raphus cucullatus", 
+                   TipLabel_HBWBLv6 = "Raphus cucullatus",
+                   body_mass_2sd = 0,#c(-.5, 0, .5),
+                   Date_median = seq(from = -40, to = 25, by = 5), 
+                   source = "MacDonald 2024",
+                   MarineRegion = "Atlantis", 
+                   is_freeflying = 1,
+                   n_total = 50,
+                   pelagic_specialist_CR = 0) |> 
+  tidybayes::add_epred_rvars(model1_full_model, 
+                             resp = "nplastic", re_formula = NA,
+                             allow_new_levels = FALSE
+                             ) |> 
+  mutate(FO = .epred / 50)
+
+time_trend <- time_avg_bird |> 
+  ggplot(aes(x = Date_median + 2000, ydist = FO)) + 
+  stat_lineribbon() +
+  scale_fill_brewer(palette = "Greens", direction = -1)  + 
+  theme_bw() + 
+  coord_cartesian(ylim = c(0, 1)) + 
+  labs(y = "Frequency of occurrance of plastic (FO)",
+       x = "Year")
+
+time_trend
+```
+
+Can I add points to this?
+
+```{r}
+obs_fo <- data_noNA_trait |> 
+  group_by(Date_median,TipLabel_HBWBLv6) |> 
+  summarise(fo_sp_year = mean(n_plastic/n_total)) |> 
+  ungroup() |> 
+  mutate(Date_median = round(Date_median)) |> 
+  group_by(Date_median) |> 
+  summarize(avg = mean(fo_sp_year, na.rm = TRUE),
+            sampsize = sum(!is.na(fo_sp_year)))
+
+time_trend + 
+  geom_point(aes(x = Date_median, y = avg, size = sampsize),
+             inherit.aes = FALSE, data = obs_fo) #+ 
+
+```
+
+### Individual species curves
+
+
+
+
+## Marine Region
+
+```{r}
+foo <- data_noNA_trait |> 
+  modelr::data_grid(ROTL.tip.label = "Raphus cucullatus", 
+                    TipLabel_HBWBLv6 = "Raphus cucullatus",
+                    body_mass_2sd = 0,#c(-.5, 0, .5),
+                    Date_median = 0, 
+                    Source = "MacDonald 2024",
+                    diet_type = "999",
+                    MarineRegion = MarineRegion, 
+                    is_freeflying = 1,
+                    n_total = 50,
+                    pelagic_specialist_CR = 0) |> 
+  add_predicted_rvars(model1_full_model, 
+                      re_formula = NULL, 
+                      allow_new_levels = TRUE, 
+                      sample_new_levels = "gaussian",
+                      resp = "nplastic") 
+
+foo |> 
+  mutate(MarineRegion = forcats::fct_reorder(MarineRegion, .prediction)) |> 
+  ggplot(aes(x = MarineRegion, ydist = .prediction/50)) + 
+  stat_histinterval() + 
+  theme_bw() + 
+  labs(y = "Frequency of occurrance of plastic (FO)",
+       x = "Marine region")
+
+# ggsave("statistics_review/marine_region2.png")
+  
+```
+
+
+```{r}
+model1_full_model |> 
+  tidybayes::spread_draws(r_MarineRegion__nplastic[region]) |> 
+  tidybayes::compare_levels(r_MarineRegion__nplastic, by = region) |> 
+  ungroup() |> 
+  mutate(region = reorder(region, r_MarineRegion__nplastic)) |> 
+  ggplot(aes(y = region, x = r_MarineRegion__nplastic)) + 
+  ggdist::stat_halfeye()
+
+ggsave(here::here("output/marine_region_compare.png"))
+```
+
+
+Southern Ocean and the North Pacific are two regions with more plastic consumption.
+
+
+## Variance components
+
+```{r}
+brms::mcmc_plot(model1_full_model, variable = "^sd_*", regex = TRUE)
+```
+
+We have various random effects in this model.  We can calculate their relative contributions to unexplained variance. To do this, we have to square the standard deviations to get the variance of each random effect. Then we add all these variances together and divide by the sum. 
+
+```{r}
+
+relative_variance_table <- calculate_variance_comp(model1_full_model)
+
+variance_component_fig <- relative_variance_table |> 
+  ggplot(aes(y = varcomp, x = relvar)) + 
+  stat_halfeye() + 
+  labs(x = "Proportion of variance",
+       y = "Variance component") + 
+  theme_bw()
+
+ggsave(filename = here::here("output/variance_components.png"),
+       plot = variance_component_fig)
+
+```
+
+Here are the proportions as a table:
+
+```{r}
+relative_variance_table |> 
+  group_by(varcomp) |> 
+  summarize(mean = mean(relvar),
+            sd = sd(relvar)) |> 
+  arrange(desc(mean)) |> 
+  knitr::kable()
+```
+
+
+## Time effect
+
+Time curves across all species for the different regions
+
+```{r}
+
+# make a vector of all species traits, crossed with time
+
+median_time_predictions <- data_noNA_trait |> 
+  modelr::data_grid(nesting(TipLabel_HBWBLv6, 
+                            ROTL.tip.label,
+                            MarineRegion,
+                            diet_type, 
+                            Feeding.Method.Simple,
+                            body_mass_2sd,
+                            pelagic_specialist_CR),
+                    is_freeflying = 1,
+                    Source = "MacDonald2024",
+                    Date_median = seq(from = -20, to = 20, length.out = 15),
+                    n_total = 50
+                    ) |> 
+  add_epred_rvars(model1_full_model,
+                  re_formula = ~ #(1 | Source) + 
+                    (1 | MarineRegion) + 
+                    (1 + Date_median | TipLabel_HBWBLv6) + 
+                    (1 | gr(ROTL.tip.label, cov = A)) + 
+                    (0 + Date_median | gr(ROTL.tip.label, cov = A)) + 
+                    (1 | diet_type) + 
+                    (1 | Feeding.Method.Simple), resp  = "nplastic") |> 
+  mutate(med = median(.epred/50))
+
+glimpse(median_time_predictions)
+
+fo_time_predictions <- median_time_predictions |> 
+  mutate(
+    Feeding.Method.Simple = forcats::fct_recode(
+      Feeding.Method.Simple,
+      "Aerial pursuit" = "Aerial.Pursuit",
+      "Bottom feeding" = "Bottom.Feeding",
+      "Surface seizing" = "Surface.Seizing"),
+    MarineRegion = str_replace(MarineRegion, " Ocean", "")) |> 
+  ggplot(aes(x = Date_median + 2000, y = med, group = TipLabel_HBWBLv6)) + 
+  geom_line(alpha = 0.7) + 
+  facet_grid(MarineRegion ~ Feeding.Method.Simple) + 
+  theme_bw() + 
+  labs(x = "Year", y = "Predicted FO")
+
+ggsave(filename = here::here("output/FO_time_predictions.png"), 
+       plot = fo_time_predictions)
+```
+
+
+
+```{r}
+
+## extract the slopes for both species names, merge
+
+
+model1_full_model_param <- get_variables(model1_full_model)
+
+# model1_full_model_param
+
+average_slope <- tidybayes::spread_rvars(model1_full_model, b_nplastic_Date_median)
+
+hbwb_effects <- model1_full_model |> 
+  as_draws_rvars(variable = "^r_TipLabel_HBWBLv6__nplastic", regex = TRUE)
+
+hbwb_rvars <- hbwb_effects |> 
+  as.data.frame() |> 
+  tibble::rownames_to_column(var = "TipLabel_HBWBLv6") |> 
+  tibble::as_tibble()
+
+rotl_rvars <-  model1_full_model |> 
+  as_draws_rvars(variable = "^r_ROTL.tip.label__nplastic", regex = TRUE) |> 
+  as.data.frame() |> 
+  tibble::rownames_to_column(var = "ROTL.tip.label") |> 
+  tibble::as_tibble()
+
+# average slope
+
+  
+time_effect_sum <- data_noNA_trait |> 
+  select(TipLabel_HBWBLv6, ROTL.tip.label) |> 
+  distinct() |> 
+  left_join(hbwb_rvars) |> 
+  left_join(rotl_rvars) |> 
+  mutate(sum_slope = r_TipLabel_HBWBLv6__nplastic.Date_median + r_ROTL.tip.label__nplastic.Date_median, 
+         sum_inter =  r_TipLabel_HBWBLv6__nplastic.Intercept + r_ROTL.tip.label__nplastic.Intercept) |> 
+  mutate(sum_slope = sum_slope + average_slope$b_nplastic_Date_median)
+
+time_effect_sum |>
+  ## add in the average
+  mutate(TipLabel_HBWBLv6 = forcats::fct_reorder(TipLabel_HBWBLv6, sum_slope)) |> 
+  ggplot(aes(xdist = sum_slope, y = TipLabel_HBWBLv6)) + 
+  stat_pointinterval() + 
+  geom_vline(xintercept = 0, col = "lightblue", size = 2) + 
+  labs(y = "Species", x = "Effect of time (change in log odds per year)")
+```
+
+What proportion of species show evidence of an increase over time? 
+
+```{r}
+time_effect_sum |> 
+  mutate(n_over_0 = sum(sum_slope > 0)/4000,
+         mostly_direction = cut(n_over_0, breaks = c(0, 0.025, 0.975, 1),
+                                labels = c("decline", "ns", "increase"))) |> 
+  count(mostly_direction)
+```
+
+
+```{r}
+
+## who are the most and least fastest changing
+changing_sp <- time_effect_sum |> 
+  select(TipLabel_HBWBLv6, sum_slope) |> 
+  mutate(med = median(sum_slope)) |> 
+  filter(med < -.05 | med > .05)
+
+# pick these out of full dataset
+
+obs_changing_sp <- data_noNA_trait |> 
+  semi_join(changing_sp)
+
+pred_changing_sp <- obs_changing_sp |> 
+  modelr::data_grid(nesting(TipLabel_HBWBLv6, ROTL.tip.label, body_mass_2sd, pelagic_specialist_CR), 
+                    Date_median = seq(from = -30, to = 25, length.out = 20), 
+                    source = "MacDonald 2024",
+                    MarineRegion = "Atlantis", 
+                    is_freeflying = 1,
+                    n_total = 50
+                    ) |> 
+  tidybayes::add_epred_rvars(model1_full_model, 
+                             resp = "nplastic", 
+                             re_formula = ~
+                               (1 + Date_median| TipLabel_HBWBLv6) + 
+                               (1               | gr(ROTL.tip.label, cov = A)) + 
+                               (0 + Date_median | gr(ROTL.tip.label, cov = A)),
+                             allow_new_levels = FALSE) |>
+  mutate(FO = .epred/50)
+
+
+pred_changing_sp |> 
+  ggplot(aes(x = Date_median, ydist = FO)) + 
+  stat_lineribbon() + 
+  facet_wrap(~TipLabel_HBWBLv6) + 
+  scale_fill_brewer(palette = "Greens") + 
+  geom_point(aes(x = Date_median, y = n_plastic/n_total, size = n_total), 
+             inherit.aes = FALSE, data = obs_changing_sp)
+
+```
+
+## fixed effects
+
+```{r}
+model1_full_model |> 
+  fixef() |> 
+  knitr::kable()
+```
+
