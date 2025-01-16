@@ -228,11 +228,13 @@ Fit patchwork grids for plots
 Species-level variables, i.e. feeding, body size etc.
 ```{r}
 (f + cp + cr) / (c + oi + ar) / (dms + ps) / (fm + bm)
+ggsave(file = here("output/species-level-variables.png"), height = 8)
 ```
 
 Study level variables
 ```{r}
  (fo + dd) / (ff + mr)
+ggsave(file = here("output/study-level-variables.png"), height = 6)
 ```
 
 ```{r}
