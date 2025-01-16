@@ -2,6 +2,7 @@
 *.pdf
 analyses/AM-analyses/*
 cmdstan-2.35.0
+cmdstan
 
 # History files
 .Rhistory
