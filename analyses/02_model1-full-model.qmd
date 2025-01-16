@@ -18,13 +18,15 @@ library(ape)
 library(here)
 
 # Need to install CmdStan. Unpack and place folder into Phyloplastics folder
-# https://github.com/stan-dev/cmdstan/releases/tag/v2.35.0
+# https://github.com/stan-dev/cmdstan
 # Then in Terminal navigate to this folder and run "make build"
 # For cmdstanr
 # install.packages("cmdstanr", repos = c('https://stan-dev.r-universe.dev', getOption("repos")))
 library(cmdstanr)
 # Provide path to where your CmdStan folder is
 set_cmdstan_path(path = here("cmdstan-2.35.0/"))
+# or on laptop
+#set_cmdstan_path(path = here("cmdstan/"))
 
 # Add custom functions written by AM
 source(here::here("analyses/functions.R"))
