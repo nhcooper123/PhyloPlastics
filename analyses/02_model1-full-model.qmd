@@ -50,11 +50,16 @@ data_noNA_trait <- data_noNA |>
 
 Fit a full model
 
-Note that we need to specify to use brms for bf as it is an internal function in geiger and can cause issues if this package is already loaded.
+Note that we need to specify to use brms for bf (`brms::bf`) as it is an internal function in geiger and can cause issues if this package is already loaded.
+
+1. We are modelling this as a binomial response, with number of individuals with plastics and total number of individuals jointly modelled.
+2. is_freeflying has a lot of missing data where it was not specified whether birds were freeflying or nestbound. We don't want to lose all this data so we're going to fit 
+
+
 ```{r model-fit, eval=TRUE}
 model1_full_model_bf <- brms::bf(
   n_plastic | trials(n_total) ~ 1 + 
-    mi(is_freeflying) + 
+    mi(is_freeflying) + # mi tells brms that is_freeflying contains missing data that should be modelled, not excluded from the model
     Date_median + 
     (1 | Source) + 
     (1 | MarineRegion) + 
@@ -215,7 +220,7 @@ foo |>
   ggplot(aes(x = MarineRegion, ydist = .prediction/50)) + 
   stat_histinterval() + 
   theme_bw() + 
-  labs(y = "Frequency of occurrance of plastic (FO)",
+  labs(y = "Frequency of occurrence of plastic (FO)",
        x = "Marine region")
 
 # ggsave("statistics_review/marine_region2.png")
@@ -232,7 +237,7 @@ model1_full_model |>
   ggplot(aes(y = region, x = r_MarineRegion__nplastic)) + 
   ggdist::stat_halfeye()
 
-ggsave(here::here("output/marine_region_compare.png"))
+#ggsave(here::here("output/marine_region_compare.png"))
 ```
 
 
@@ -258,8 +263,8 @@ variance_component_fig <- relative_variance_table |>
        y = "Variance component") + 
   theme_bw()
 
-ggsave(filename = here::here("output/variance_components.png"),
-       plot = variance_component_fig)
+#ggsave(filename = here::here("output/variance_components.png"),
+       #plot = variance_component_fig)
 
 ```
 
