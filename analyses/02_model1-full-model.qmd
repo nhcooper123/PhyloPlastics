@@ -59,7 +59,8 @@ Note that we need to specify to use brms for bf (`brms::bf`) as it is an interna
 ```{r model-fit, eval=TRUE}
 model1_full_model_bf <- brms::bf(
   n_plastic | trials(n_total) ~ 1 + 
-    mi(is_freeflying) + # mi tells brms that is_freeflying contains missing data that should be modelled, not excluded from the model
+    mi(is_freeflying) + 
+# mi tells brms that is_freeflying contains missing data that should be modelled, not excluded from the model. This parameter is shit - really low ESS. Do we need to include it?
     Date_median + 
     (1 | Source) + 
     (1 | MarineRegion) + 
