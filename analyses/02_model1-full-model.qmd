@@ -24,9 +24,9 @@ library(here)
 # install.packages("cmdstanr", repos = c('https://stan-dev.r-universe.dev', getOption("repos")))
 library(cmdstanr)
 # Provide path to where your CmdStan folder is
-set_cmdstan_path(path = here("cmdstan-2.35.0/"))
+set_cmdstan_path(path = "~/cmdstan")
 # or on laptop
-#set_cmdstan_path(path = here("cmdstan/"))
+#set_cmdstan_path(path = here("cmdstan"))
 
 # Add custom functions written by AM
 source(here::here("analyses/functions.R"))
