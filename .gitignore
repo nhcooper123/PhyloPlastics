@@ -3,6 +3,8 @@
 analyses/AM-analyses/*
 cmdstan-2.35.0
 cmdstan
+data-raw/Old-data/*
+data-raw/Clements_Taxonomy_2024.csv
 
 # History files
 .Rhistory
