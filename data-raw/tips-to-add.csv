@@ -1,8 +1,40 @@
-Species,Tip,Branch,Justification
-Calonectris_borealis,Calonectris_diomedea,0.1,Considered conspecific with C.diomedea
-Gygis_candida,Gygis_alba,0.1,Previously considered Gygis alba
-Gygis_microrhyncha,Gygis_alba,0.1,Previously considered Gygis alba
-Larus_smithsonianus,Larus_argentatus,0.1,Considered a subspecies of Larus_argentatus
-Pelecanoides_whenuahouensis,Pelecanoides_georgicus,0.1,Considered a subspecies of Pelecanoides georgicus
-Pterodroma_deserta,Pterodroma_mollis,0.1,Previously a subspecies of Pterodroma mollis
-Thalassarche_impavida,Thalassarche_melanophris,0.1,Subspecies of Thalassarche melanophris
+Species,Simple,Tip,Branch,Justification,Source
+Ardenna_carneipes          ,YES,Ardenna_creatopus,1.011305699,Sometimes considered conspecific with creatopus. Date from old tree.,HBW
+Bulweria_fallax            ,YES,Bulweria_bulwerii,14.83069408,Has been considered conspecific with bulwerii. Date from old tree.,HBW
+Diomedea_sanfordi          ,NO,Other Diomedea,0.5439679464,"Closely related to epomophora, outside rest of genus. Date from old tree",HBW
+Diomedea_epomophora        ,YES,Diomedea_sanfordi          ,0.268217343,Closely related to sandfordi. Date from old tree.,HBW
+Eudyptes_chrysocome        ,YES,Eudyptes_moseleyi,0.8638603769,Until recently considered conspecific with moseleyi. Date from old tree.,HBW
+Fregetta_lineata           ,NO,All Fregetta,4.859042173,"New species, uncertain relationship to rest of genus. Used most inclusive group containing genus and made into a polytomy using date from new tree",HBW
+Gelochelidon_macrotarsa    ,YES,Gelochelidon_nilotica,0.1,Lumped with nilotica til recently. Arbitrary date,HBW
+Larus_mongolicus           ,YES,Larus_argentatus,0.1,Until recently considered conspecific with argentatus. Arbitrary date,HBW
+Larus_vegae                ,YES,Larus_argentatus,0.1,Until recently considered conspecific with argentatus. Arbitrary date,HBW
+Megadyptes_antipodes       ,NO,All Eudyptes,4.05234108,Previously sister to all Eudyptes. Date from old tree.,HBW
+Melanitta_deglandi         ,YES,Melanitta_fusca,0.1,"Conspecific with fusca, or subspecies of stejnegeri. Arbitrary date",HBW
+Melanitta_stejnegeri       ,YES,Melanitta_deglandi         ,0.1,Conspecific with fusca. Arbitrary date,HBW
+Mergus_octosetaceus        ,NO,NA,NA,Not seabird,HBW
+Microcarbo_africanus       ,NO,All other Microcarbo,10.54225343,"Close relatives with coronatus, uncertain placement in genus but likely outside of the other three species",HBW
+Microcarbo_coronatus       ,YES,Microcarbo_africanus ,1,Close relatives with africanus. Arbitrary date,HBW
+Oceanites_pincoyae         ,NO,All Oceanites,13.00895487,"New species, uncertain relationship to rest of genus. Used most inclusive group containing genus and made into a polytomy using date from new tree.",HBW
+Phaethon_aethereus         ,YES,Phaethon_lepturus,10.79419885,Sister to lepturus + rubricauda. Date from old tree.,HBW
+Phaethon_rubricauda        ,YES,Phaethon_lepturus,3.441796846,Sister species to lepturus. Date from old tree.,HBW
+Pterodroma_atrata          ,NO,All Pterodroma,14.74645025,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
+Pterodroma_caribbaea       ,NO,NA,NA,Missing from tree possibly extinct      ,HBW
+Pterodroma_defilippiana    ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
+Pterodroma_gouldi          ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
+Pterodroma_macroptera      ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
+Pterodroma_mollis          ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
+Pterodroma_occulta         ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
+Puffinus_auricularis       ,NO,All Puffinus,3.264401817,Puffinus hybridise so taxonomy/phylogeny is a mess. All missing Puffinus added as a polytomy,HBW
+Puffinus_heinrothi         ,YES,Puffinus_auricularis       ,13.88614918,Puffinus hybridise so taxonomy/phylogeny is a mess. All missing Puffinus added as a polytomy,HBW
+Puffinus_lherminieri       ,YES,Puffinus_auricularis       ,13.88614918,Puffinus hybridise so taxonomy/phylogeny is a mess. All missing Puffinus added as a polytomy,HBW
+Puffinus_puffinus          ,YES,Puffinus_auricularis       ,13.88614918,Puffinus hybridise so taxonomy/phylogeny is a mess. All missing Puffinus added as a polytomy,HBW
+Rynchops_albicollis        ,YES,Rynchops_niger,6.191030578,Closely related to niger. Date from old tree.,HBW
+Rynchops_flavirostris      ,YES,Rynchops_niger,0.5181313015,Closely related to niger. Date from old tree.,HBW
+Sterna_acuticauda          ,NO,NA,NA,Uncertain phylogenetic placement,HBW
+Sterna_aurantia            ,NO,NA,NA,Uncertain phylogenetic placement,HBW
+Sterna_repressa            ,NO,NA,NA,Uncertain phylogenetic placement,HBW
+Sterna_virgata             ,NO,NA,NA,Uncertain phylogenetic placement,HBW
+Sternula_balaenarum        ,YES,Sternula_superciliaris,0.1,Previously conspecific with supercilious. Arbitrary date.,HBW
+Sternula_lorata            ,YES,Hydroprogne_caspia,2.096229362,Previously sister to Hydroprogne_caspia. Date from old tree.,HBW
+Sula_brewsteri             ,YES,Sula_leucogaster,1,Sister to Sula_leucogaster. Arbitrary date,HBW
+Synthliboramphus_hypoleucus,YES,Synthliboramphus_scrippsi,0.1,Conspecific til recently. ,HBW
