@@ -29,10 +29,10 @@ This is the Hackett backbone version of the Jetz tree for now, with taxonomy upd
 
 ```{r}
 # Read in tree
-tree.seabird <- read.nexus(here::here("data/seabird-tree-HBW-2024-10-11.nex"))
+tree.seabird <- read.nexus(here::here("data/seabird-tree-Claramont2025_2025-09-11.nex"))
 
 # Look at it
-str(tree.seabird) # should have 380 tips
+str(tree.seabird) # should have 385 tips
 plot(tree.seabird, no.margin = TRUE, cex = 0.5, type = "fan")
 ```
 
@@ -41,8 +41,8 @@ Read in data
 These are datasets from Oct 2024. Update to most recent.
 ```{r}
 # Read in trait data and plastic data
-data0.1 <- read_csv(here::here("data-raw/trait-data-2024-10-02.csv"))
-data0.2 <- read_csv(here::here("data-raw/plastic-ingestion-data-2024-10-02.csv"))
+data0.1 <- read_csv(here::here("data-raw/trait-data-2025-09-12.csv"))
+data0.2 <- read_csv(here::here("data-raw/plastic-ingestion-data-2025-09-12.csv"))
 
 # Look at the data
 glimpse(data0.1) # 388 species of seabird
@@ -78,7 +78,7 @@ data0.2 <- data0.2 |>
 ```{r data-merge}
 # Join the two data files
 data2_joined <- data0.2 |> 
-  left_join(data0.1, by = "HBWv8.1_Binomial")
+  left_join(data0.1, by = "Clements2024_Binomial")
 ```
 
 ### Convert factors to binary
@@ -88,9 +88,9 @@ Make the "Yes/No" variables into 0 or 1 (helps to clarify how they work in the m
 ## Factors that are "YES" vs "No" can just be binary.-------------
 # Set factors
 data2_binary <- data2_joined |> 
-  mutate(across(c(Carrion.NonFishVertebrates, Cephalopods, Crustaceans, Fish,
+  mutate(across(c(Carrion, Cephalopods, Crustaceans, Fish,
                   Other.Inverts, Anthropogenic.Subsidy,
-                  pelagic_specialist_CR,DMS.responsive_Dell.Ariccia,
+                  Pelagic.Specialist,
                   AS.Fishery, AS.Refuse, AS.Agriculture),
                 ~ if_else(.x == "Yes", true = 1, false = 0)))
 ```
@@ -100,7 +100,7 @@ data2_binary <- data2_joined |>
 ```{r}
 data2_tips <-
   data2_binary %>%
-  mutate(tips = gsub(" ", "_", data2_binary$HBWv8.1_Binomial))
+  mutate(tips = gsub(" ", "_", data2_binary$Clements2024_Binomial))
 ```
 
 ## Select columns for the models
@@ -109,8 +109,8 @@ data2_tips <-
 # n  = sample size
 # F0 = frequency of occurrence
 data2 <- data2_tips |> 
-  select(HBWv8.1_Binomial,
-    HBWv8.1_Order, tips,
+  select(Clements2024_Binomial,
+    Order, tips,
     # main response variable and sample sizes
     n, n_plastic, FO, Plastic,
     ## species level stuff
@@ -118,16 +118,14 @@ data2 <- data2_tips |>
     # diet as a factor
     Diet, 
     ## diet breakdown
-    Carrion.NonFishVertebrates, Cephalopods, Crustaceans, Fish,
+    Carrion, Cephalopods, Crustaceans, Fish,
     Other.Inverts, Anthropogenic.Subsidy,
-    pelagic_specialist_CR,
+    Pelagic.Specialist,
     AS.Fishery, AS.Refuse, AS.Agriculture,
-    # olfactory trap
-    DMS.responsive_Dell.Ariccia,
     ## Study-level predictors
     Source,
     Date_median,
-    Feeding.Method.Simple,
+    Feeding.method,
     MarineRegion,
     # Site,
     Age.Class, UniqueID_Plastic.study
