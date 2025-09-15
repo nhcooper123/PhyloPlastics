@@ -8,73 +8,67 @@ editor: visual
 
 # Explore the data that have been collected
 
+## Load libraries
+
 ```{r}
 # Load libraries
 library(tidyverse) # for plots and data wrangling
 library(patchwork) # for panel plots
+library(here)
 ```
 
-Read in the data and combine diet categories
+## Read in the data and tree
+
 ```{r, message = FALSE}
-data_noNA <- readr::read_csv(file = here::here("data/plastic-data-aggregated-noNA.csv"))
-
+# Read in the data
+seabird_data <- read_csv(file = here::here("data/plastic-data-aggregated_2025_09-15.csv"))
 # Read in tree
-tree <- read.nexus(here::here("data/plastic-tree-noNA.nex"))
+tree <- read.nexus(here::here("data/seabird_tree_plastic_2025_09-15.nex"))
+```
 
+## Unite the diet categories
+
+```{r}
 # Unite the diet categories
-data_noNA_trait <- data_noNA |> 
-  unite(col = "diet_type", Carrion.NonFishVertebrates:AS.Refuse)
+seabird_data <- seabird_data %>%
+  unite(col = "diet_type", Carrion:AS.Refuse, remove = FALSE)
 ```
 
 ## Some summary stats
 
 ```{r}
 # How many species?
-length(unique(data_noNA$HBWv8.1_Binomial))
+length(unique(seabird_data$Clements2024_Binomial))
 ```
 
 ```{r}
 # How many sources?
-length(unique(data_noNA$Source)) 
+length(unique(seabird_data$Source)) 
 ```
 
-For each species, we calculated the mean FO, weighted by the sample size (i.e., weighted mean FO). 
-
-```{r}
-susceptible <-
-data_noNA %>%
-  mutate(FO = (n_plastic/n_total) * 100) %>%
-  group_by(HBWv8.1_Binomial) %>%
-   summarise(FO_weighted_mean = weighted.mean(FO))
-
-ggplot(susceptible, aes(x = FO_weighted_mean)) +
-  geom_density() +
-  xlab("FO weighted mean") +
-  theme_bw()
-```
-
-1. How many species are "well-studied"?
+1.  How many species are "well-studied"?
 
 We classify ‘well-studied’ species as those with ≥ 100 sampled birds across ≥ 3 records (i.e., multiple studies, years, locations and/or age classes).
+
 ```{r}
 well_studied <- 
-data_noNA %>%
-  group_by(HBWv8.1_Binomial) %>%
+seabird_data %>%
+  group_by(Clements2024_Binomial) %>%
   summarise(records = n(), sampled = sum(n_total)) %>%
   filter(records >=3 & sampled >= 100)
 
 well_studied %>% summarise(n())
 ```
 
-2. How many well studied species are susceptible to plastic ingestion?
+2.  How many well studied species are susceptible to plastic ingestion?
 
 We classify well-studied species as susceptible to plastic ingestion if weighted mean FO ≥ 50%.
 
 ```{r}
 susceptible_well_studied <-
-data_noNA %>%
+seabird_data %>%
   mutate(FO = (n_plastic/n_total) * 100) %>%
-  group_by(HBWv8.1_Binomial) %>%
+  group_by(Clements2024_Binomial) %>%
    summarise(FO_weighted_mean = weighted.mean(FO, n_total),
              records = n(), sampled = sum(n_total)) %>%
   filter(records >=3 & sampled >= 100 & FO_weighted_mean >= 50)
@@ -82,27 +76,26 @@ data_noNA %>%
 susceptible_well_studied %>% summarise(n())
 ```
 
-
 ## Make distributional plots of each variable
 
 ```{r}
 # Frequency of occurrence
 fo <- 
-  ggplot(data_noNA, aes(x = n_plastic/n_total)) +
+  ggplot(seabird_data, aes(x = FO)) +
   geom_density() +
   xlab("Frequency of occurrence of plastic") +
   theme_bw()
 
 # Body mass
 bm <-
-  ggplot(data_noNA, aes(x = body_mass_2sd)) +
+  ggplot(seabird_data, aes(x = log(Body.Mass.g))) +
   geom_density() +
-  xlab("Scaled body mass") +
+  xlab("ln body mass (g)") +
   theme_bw()
 
 # Free flying or not
 ff <- 
-  ggplot(data_noNA_trait, aes(x = as.factor(is_freeflying), fill = as.factor(is_freeflying))) +
+  ggplot(seabird_data, aes(x = as.factor(freeflying), fill = as.factor(freeflying))) +
   geom_bar() +
   xlab("") +
   scale_x_discrete(labels = c("Nest-bound", 
@@ -114,14 +107,14 @@ ff <-
 
 # Median date
 dd <- 
-  ggplot(data_noNA_trait, aes(x = Date_median)) +
+  ggplot(seabird_data, aes(x = Date_median)) +
   geom_density() +
   xlab("Median date") +
   theme_bw()
 
 # Marine region
 mr <- 
-ggplot(data_noNA_trait, aes(x = as.factor(MarineRegion), fill = as.factor(MarineRegion))) +
+ggplot(seabird_data, aes(x = as.factor(MarineRegion), fill = as.factor(MarineRegion))) +
   geom_bar() +
   xlab("Marine region") +
   theme_bw() +
@@ -131,9 +124,10 @@ ggplot(data_noNA_trait, aes(x = as.factor(MarineRegion), fill = as.factor(Marine
  
 # Fish
 f <-
-ggplot(data_noNA, aes(x = as.factor(Fish), fill = as.factor(Fish))) +
+ggplot(seabird_data, aes(x = as.factor(Fish), fill = as.factor(Fish))) +
   geom_bar() +
   xlab("Fish") +
+  ylim(0, 1650) +
   scale_x_discrete(labels = c("No", "Yes")) +
   theme_bw() +
   theme(legend.position = "none") +
@@ -141,9 +135,10 @@ ggplot(data_noNA, aes(x = as.factor(Fish), fill = as.factor(Fish))) +
  
  # Carrion.NonFishVertebrates
 c <-
-ggplot(data_noNA, aes(x = as.factor(Carrion.NonFishVertebrates), fill = as.factor(Carrion.NonFishVertebrates))) +
+ggplot(seabird_data, aes(x = as.factor(Carrion), fill = as.factor(Carrion))) +
   geom_bar() +
   xlab("Carrion (non fish)") +
+  ylim(0, 1650) +
   scale_x_discrete(labels = c("No", "Yes")) +
   theme_bw() +
   theme(legend.position = "none") +
@@ -151,10 +146,11 @@ ggplot(data_noNA, aes(x = as.factor(Carrion.NonFishVertebrates), fill = as.facto
  
 # Cephalopods
 cp <-
-  ggplot(data_noNA, aes(x = as.factor(Cephalopods), 
+  ggplot(seabird_data, aes(x = as.factor(Cephalopods), 
                        fill = as.factor(Cephalopods))) +
   geom_bar() +
   xlab("Cephalopods") +
+  ylim(0, 1650) +
   scale_x_discrete(labels = c("No", "Yes")) +
   theme_bw() +
   theme(legend.position = "none") +
@@ -162,9 +158,10 @@ cp <-
  
 # Crustaceans
 cr <-
-ggplot(data_noNA, aes(x = as.factor(Crustaceans), fill = as.factor(Crustaceans))) +
+ggplot(seabird_data, aes(x = as.factor(Crustaceans), fill = as.factor(Crustaceans))) +
   geom_bar() +
   xlab("Crustaceans") +
+  ylim(0, 1650) +
   scale_x_discrete(labels = c("No", "Yes")) +
   theme_bw() +
   theme(legend.position = "none") +
@@ -172,9 +169,10 @@ ggplot(data_noNA, aes(x = as.factor(Crustaceans), fill = as.factor(Crustaceans))
  
  # Other inverts
 oi<- 
-ggplot(data_noNA, aes(x = as.factor(Other.Inverts), fill = as.factor(Other.Inverts))) +
+ggplot(seabird_data, aes(x = as.factor(Other.Inverts), fill = as.factor(Other.Inverts))) +
   geom_bar() +
   xlab("Other invertebrates") +
+  ylim(0, 1650) +
   scale_x_discrete(labels = c("No", "Yes")) +
   theme_bw() +
   theme(legend.position = "none") +
@@ -182,17 +180,18 @@ ggplot(data_noNA, aes(x = as.factor(Other.Inverts), fill = as.factor(Other.Inver
  
  # AS.Refuse
 ar <-
-ggplot(data_noNA, aes(x = as.factor(AS.Refuse), fill = as.factor(AS.Refuse))) +
+ggplot(seabird_data, aes(x = as.factor(AS.Refuse), fill = as.factor(AS.Refuse))) +
   geom_bar() +
   xlab("Refuse") +
+  ylim(0, 1650) +
   scale_x_discrete(labels = c("No", "Yes")) +
   theme_bw() +
   theme(legend.position = "none") +
   scale_fill_manual(values = c("#74B3CE","#09BC8A"))
 
-# Feeding method simple
+# Feeding method
 fm <-
-ggplot(data_noNA, aes(x = as.factor(Feeding.Method.Simple), fill = as.factor(Feeding.Method.Simple))) +
+ggplot(seabird_data, aes(x = as.factor(Feeding.method), fill = as.factor(Feeding.method))) +
   geom_bar() +
   xlab("Feeding method") +
   theme_bw() +
@@ -202,43 +201,40 @@ ggplot(data_noNA, aes(x = as.factor(Feeding.Method.Simple), fill = as.factor(Fee
                                "#577590")) +
   theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5)) 
  
-# pelagic_specialist_CR
+# Pelagic Specialist
 ps <- 
-ggplot(data_noNA, aes(x = as.factor(pelagic_specialist_CR), fill = as.factor(pelagic_specialist_CR))) +
+ggplot(seabird_data, aes(x = as.factor(Pelagic.Specialist), fill = as.factor(Pelagic.Specialist))) +
   geom_bar() +
   xlab("Pelagic specialist") +
+  ylim(0, 1650) +
   scale_x_discrete(labels = c("No", "Yes")) +
   theme_bw() +
   theme(legend.position = "none") +
   scale_fill_manual(values = c("#74B3CE","#09BC8A"))
 
 # DMS.responsive
-dms <-
-ggplot(data_noNA, aes(x = as.factor(DMS.responsive_Dell.Ariccia), fill = as.factor(DMS.responsive_Dell.Ariccia))) +
-  geom_bar() +
-  xlab("DMS responsive") +
-  scale_x_discrete(labels = c("No", "Yes")) +
-  theme_bw() +
-  theme(legend.position = "none") +
-  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+#dms <-
+#ggplot(data_noNA, aes(x = as.factor(DMS.responsive_Dell.Ariccia), fill = #as.factor(DMS.responsive_Dell.Ariccia))) +
+  #geom_bar() +
+ # xlab("DMS responsive") +
+  #scale_x_discrete(labels = c("No", "Yes")) +
+  #theme_bw() +
+  #theme(legend.position = "none") +
+  #scale_fill_manual(values = c("#74B3CE","#09BC8A"))
 ```
 
 Fit patchwork grids for plots
 
 Species-level variables, i.e. feeding, body size etc.
+
 ```{r}
-(f + cp + cr) / (c + oi + ar) / (dms + ps) / (fm + bm)
-ggsave(file = here("output/species-level-variables.png"), height = 8)
+z <- (f + cp + cr) / (c + oi + ps) / (fm + bm)
+ggsave(z, file = here("output/species-level-variables.png"), height = 8)
 ```
 
 Study level variables
+
 ```{r}
  (fo + dd) / (ff + mr)
 ggsave(file = here("output/study-level-variables.png"), height = 6)
 ```
-
-```{r}
-ggplot(data_noNA, aes(x = as.factor(is_freeflying), y = n_plastic/n_total)) +
-  geom_boxplot()
-```
-
