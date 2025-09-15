@@ -661,7 +661,6 @@ Hydrobates furcatus,Hydrobates_furcatus,Procellariiformes,1,Blight and Burger 19
 Hydrobates furcatus,Hydrobates_furcatus,Procellariiformes,1,Robards 1993,1990.5,North Pacific Ocean,54.4,-0.28364832760912106,Fish,1,1,0,1,0,1,0,0,1,1,Surface.Seizing,12,12,1
 Hydrobates furcatus,Hydrobates_furcatus,Procellariiformes,1,Robards et al. 1995,1989,North Pacific Ocean,54.4,-0.28364832760912106,Fish,1,1,0,1,0,1,0,0,1,1,Surface.Seizing,18,21,0.8571428571428571
 Hydrobates furcatus,Hydrobates_furcatus,Procellariiformes,NA,Day et al. 1984/Day 1980,1973,North Pacific Ocean,54.4,-0.28364832760912106,Fish,1,1,0,1,0,1,0,0,1,1,Surface.Seizing,8,8,1
-Hydrobates hornbyi,Hydrobates_hornbyi,Procellariiformes,1,Ainley et al. 1990b,1986,Southern Ocean,40.6,-0.28685857454231306,Fish,NA,1,NA,NA,NA,0,0,0,0,1,Surface.Seizing,0,1,0
 Hydrobates leucorhous,Hydrobates_leucorhous,Procellariiformes,0,Day 1980,1973,North Pacific Ocean,34.8,-0.2882078087606111,Cephalopods,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,1,10,0.1
 Hydrobates leucorhous,Hydrobates_leucorhous,Procellariiformes,0,Day et al. 1984/Rothstein 1973,1964,North Pacific Ocean,34.8,-0.2882078087606111,Cephalopods,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,2,8,0.25
 Hydrobates leucorhous,Hydrobates_leucorhous,Procellariiformes,1,Ainley et al. 1990b,1986,Southern Ocean,34.8,-0.2882078087606111,Cephalopods,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,17,151,0.11258278145695365
@@ -815,9 +814,6 @@ Larus smithsonianus,Larus_smithsonianus,Charadriiformes,1,"Schutten et al., 2024
 Leucocarbo atriceps,Leucocarbo_atriceps,Suliformes,1,Ainley et al. 1990a,1986.5,Southern Ocean,2491,0.2831696200296827,Fish,0,1,1,1,1,0,0,0,0,1,Diving,0,75,0
 Leucocarbo atriceps,Leucocarbo_atriceps,Suliformes,NA,Ryan 1987,1982,Indian Ocean,2491,0.2831696200296827,Fish,0,1,1,1,1,0,0,0,0,1,Diving,0,12,0
 Leucocarbo atriceps,Leucocarbo_atriceps,Suliformes,NA,"Slip et al., 1990",1988.5,South Pacific Ocean,2491,0.2831696200296827,Fish,0,1,1,1,1,0,0,0,0,1,Diving,5,64,0.078125
-Leucocarbo bougainvilliorum,Leucocarbo_bougainvilliorum,Suliformes,NA,"Diaz-Santibañez et al., 2023",2018,South Pacific Ocean,NA,NA,Fish,0,1,0,0,0,0,0,0,0,0,Diving,51,961,0.053069719042663895
-Leucocarbo bougainvilliorum,Leucocarbo_bougainvilliorum,Suliformes,NA,"Diaz-Santibañez et al., 2023",2018.5,South Pacific Ocean,NA,NA,Fish,0,1,0,0,0,0,0,0,0,0,Diving,111,1191,0.09319899244332494
-Leucocarbo bougainvilliorum,Leucocarbo_bougainvilliorum,Suliformes,NA,"Diaz-Santibañez et al., 2023",2019,South Pacific Ocean,NA,NA,Fish,0,1,0,0,0,0,0,0,0,0,Diving,0,134,0
 Leucophaeus atricilla,Leucophaeus_atricilla,Charadriiformes,NA,"Clark, 2021",2020,North Atlantic Ocean,308,-0.22465422454698505,Other.Inverts,1,1,0,1,1,1,0,1,1,1,Surface.Seizing,13,13,1
 Macronectes giganteus,Macronectes_giganteus,Procellariiformes,0,Copello & Quintana 2003,2002,South Pacific Ocean,3697.5,0.5638336000946161,Carrion.NonFishVertebrates,1,1,1,1,0,1,0,0,1,1,Scavenging,48,73,0.6575342465753424
 Macronectes giganteus,Macronectes_giganteus,Procellariiformes,1,Ainley et al. 1990a,1978,Southern Ocean,3697.5,0.5638336000946161,Carrion.NonFishVertebrates,1,1,1,1,0,1,0,0,1,1,Scavenging,0,2,0
@@ -862,10 +858,6 @@ Melanitta perspicillata,Melanitta_perspicillata,Anseriformes,1,Avery-Gomm et al.
 Melanitta perspicillata,Melanitta_perspicillata,Anseriformes,1,Provencher et al. 2014,2006,North Atlantic Ocean,1097.5,-0.04099553224589516,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,38,0
 Melanitta perspicillata,Melanitta_perspicillata,Anseriformes,NA,Day et al. 1984,1977.5,North Pacific Ocean,1097.5,-0.04099553224589516,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,11,0
 Melanitta perspicillata,Melanitta_perspicillata,Anseriformes,NA,"Schutten et al., 2024",2021,North Atlantic Ocean,1097.5,-0.04099553224589516,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,1,0
-Mergus merganser,Mergus_merganser,Anseriformes,NA,"Schutten et al., 2024",2021,North Atlantic Ocean,NA,NA,Fish,0,1,0,1,1,1,0,0,1,0,Diving,0,2,0
-Mergus serrator,Mergus_serrator,Anseriformes,1,"Haave et al., 2021",2019,North Atlantic Ocean,NA,NA,Fish,0,1,0,1,1,0,0,0,0,0,Diving,2,2,1
-Mergus serrator,Mergus_serrator,Anseriformes,NA,"Nam et al., 2021",2012.5,North Pacific Ocean,NA,NA,Fish,0,1,0,1,1,0,0,0,0,0,Diving,2,6,0.3333333333333333
-Mergus serrator,Mergus_serrator,Anseriformes,NA,"Schutten et al., 2024",2021,North Atlantic Ocean,NA,NA,Fish,0,1,0,1,1,0,0,0,0,0,Diving,0,2,0
 Microcarbo coronatus,Microcarbo_coronatus,Suliformes,NA,Ryan 1987,1982,Indian Ocean,763,-0.11880912638739556,Fish,0,1,1,1,1,0,0,0,0,0,Diving,0,24,0
 Morus bassanus,Morus_bassanus,Suliformes,1,Codina-Garcia et al. 2013,2006.5,North Atlantic Ocean,2999.5,0.40146024072012504,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,1,8,0.125
 Morus bassanus,Morus_bassanus,Suliformes,1,"Garcês et al., 2024",2016,North Atlantic Ocean,2999.5,0.40146024072012504,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,1,1,1
@@ -1199,7 +1191,6 @@ Procellaria westlandica,Procellaria_westlandica,Procellariiformes,NA,Roman et al
 Procellaria westlandica,Procellaria_westlandica,Procellariiformes,NA,Roman et al. 2019,2015,South Pacific Ocean,1000,-0.06367662470866434,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,1,0
 Procellaria westlandica,Procellaria_westlandica,Procellariiformes,NA,Roman et al. 2019,2016,South Pacific Ocean,1000,-0.06367662470866434,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,1,0
 Procellaria westlandica,Procellaria_westlandica,Procellariiformes,NA,"Roman et al., 2019a",2015,Southern Ocean,1000,-0.06367662470866434,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,2,16,0.125
-Pseudobulweria aterrima,Pseudobulweria_aterrima,Procellariiformes,NA,"Cartraud et al., 2019",2009,Indian Ocean,222,-0.24466011123209427,Carrion.NonFishVertebrates,1,0,0,0,0,1,0,0,0,1,Surface.Seizing,1,1,1
 Pseudobulweria rostrata,Pseudobulweria_rostrata,Procellariiformes,1,Ainley et al. 1990b,1986,Southern Ocean,409,-0.2011589390214498,Cephalopods,1,0,1,1,1,0,0,0,0,1,Surface.Seizing,1,67,0.014925373134328358
 Pseudobulweria rostrata,Pseudobulweria_rostrata,Procellariiformes,1,Roman et al. 2016,2013,South Pacific Ocean,409,-0.2011589390214498,Cephalopods,1,0,1,1,1,0,0,0,0,1,Surface.Seizing,0,1,0
 Pseudobulweria rostrata,Pseudobulweria_rostrata,Procellariiformes,1,Spear et al. 1995,1987.5,South Pacific Ocean,409,-0.2011589390214498,Cephalopods,1,0,1,1,1,0,0,0,0,1,Surface.Seizing,1,121,0.008264462809917356
@@ -1231,7 +1222,7 @@ Pterodroma cookii,Pterodroma_cookii,Procellariiformes,NA,Roman et al. 2019,2015,
 Pterodroma cookii,Pterodroma_cookii,Procellariiformes,NA,"Roman et al., 2019a",2015,Southern Ocean,178.5,-0.25477936786932975,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,1,7,0.14285714285714285
 Pterodroma externa,Pterodroma_externa,Procellariiformes,1,Ainley et al. 1990b,1986,Southern Ocean,428,-0.19673903382357683,Cephalopods,0,1,1,0,0,0,0,0,0,1,Surface.Seizing,1,104,0.009615384615384616
 Pterodroma externa,Pterodroma_externa,Procellariiformes,1,Spear et al. 1995,1987.5,South Pacific Ocean,428,-0.19673903382357683,Cephalopods,0,1,1,0,0,0,0,0,0,1,Surface.Seizing,1,183,0.00546448087431694
-Pterodroma gouldi,Pterodroma_gouldi,Procellariiformes,NA,"Roman et al., 2019a",2015,Southern Ocean,672.5,-0.1398618327246326,Cephalopods,0,1,1,1,0,1,0,0,1,1,NA,0,4,0
+Pterodroma gouldi,Pterodroma_gouldi,Procellariiformes,NA,"Roman et al., 2019a",2015,Southern Ocean,672.5,-0.1398618327246326,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,4,0
 Pterodroma hypoleuca,Pterodroma_hypoleuca,Procellariiformes,0,Lavers and Bond 2016b,2012,North Pacific Ocean,176,-0.2553609343427341,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,6,8,0.75
 Pterodroma hypoleuca,Pterodroma_hypoleuca,Procellariiformes,0,Rapp et al. 2017,2009.5,North Pacific Ocean,176,-0.2553609343427341,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,5,5,1
 Pterodroma hypoleuca,Pterodroma_hypoleuca,Procellariiformes,NA,Rapp et al. 2017,2009.5,North Pacific Ocean,176,-0.2553609343427341,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,1,1,1
