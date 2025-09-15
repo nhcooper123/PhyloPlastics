@@ -82,7 +82,7 @@ susceptible_well_studied %>% summarise(n())
 # Frequency of occurrence
 fo <- 
   ggplot(seabird_data, aes(x = FO)) +
-  geom_density() +
+  geom_histogram(fill = "lightblue") +
   xlab("Frequency of occurrence of plastic") +
   theme_bw()
 
@@ -97,7 +97,7 @@ bm <-
 ff <- 
   ggplot(seabird_data, aes(x = as.factor(freeflying), fill = as.factor(freeflying))) +
   geom_bar() +
-  xlab("") +
+  xlab("Age class") +
   scale_x_discrete(labels = c("Nest-bound", 
                               "Free flying", "Mixed")) +
   theme_bw() +
@@ -108,7 +108,7 @@ ff <-
 # Median date
 dd <- 
   ggplot(seabird_data, aes(x = Date_median)) +
-  geom_density() +
+  geom_histogram(fill = "sienna1") +
   xlab("Median date") +
   theme_bw()
 
@@ -119,7 +119,7 @@ ggplot(seabird_data, aes(x = as.factor(MarineRegion), fill = as.factor(MarineReg
   xlab("Marine region") +
   theme_bw() +
   theme(legend.position = "none") +
-  scale_fill_manual(values = c("#E5E1EE","#DFFDFF","#90BEDE","#68EDC6","#90F3FF","#3D3B8E")) +
+  scale_fill_manual(values = c("#E5E1EE","#DFFDFF","#DFFD44","#90BEDE","#68EDC6","#90F3FF","#3D3B8E")) +
   theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))  
  
 # Fish
