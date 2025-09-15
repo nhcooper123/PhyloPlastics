@@ -235,7 +235,7 @@ data_agg_noNAs <- data_agg %>%
 ## Write out full dataset
 
 ```{r}
-write_csv(data_agg, file = here::here("data/plastic-data-aggregated_2025_09-15.csv"))
+write_csv(data_agg_noNAs, file = here::here("data/plastic-data-aggregated_2025_09-15.csv"))
 ```
 
 ## Write out a phylogeny which only includes species in the dataset for the analyses
