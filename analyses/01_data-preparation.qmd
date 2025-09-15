@@ -224,12 +224,13 @@ naniar::vis_miss(data_agg)
 
 ### Without NAs
 
-Remove a small number of annoying NAs which we aren't able to work with. We lose a few studies, which include few species each. 
+Remove a small number of annoying NAs which we aren't able to work with. We lose a few studies, which include few species each, and one species with no diet info. 
 
 ```{r}
-## Remove entries with missing years
+## Remove entries with missing years and diet info
 data_agg_noNAs <- data_agg %>%
-  filter(!is.na(Date_median)) 
+  filter(!is.na(Date_median)) %>%
+  filter(!is.na(Fish))
 ```
 
 ## Write out full dataset
