@@ -691,9 +691,6 @@ Hydrobates markhami,Hydrobates_markhami,Procellariiformes,1,Ainley et al. 1990b,
 Hydrobates markhami,Hydrobates_markhami,Procellariiformes,1,Garcia-Godos et al. 2002,1998,South Pacific Ocean,53.1,-0.28395074217529137,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,3,95,0.031578947368421054
 Hydrobates markhami,Hydrobates_markhami,Procellariiformes,1,"Medrano et al., 2023",2019.5,South Pacific Ocean,53.1,-0.28395074217529137,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,20,29,0.6896551724137931
 Hydrobates melania,Hydrobates_melania,Procellariiformes,1,Ainley et al. 1990b,1986,Southern Ocean,61.5,-0.28199667882465274,Crustaceans,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,2,0
-Hydrobates monorhis,Hydrobates_monorhis,Procellariiformes,1,"Kim et al., 2023a",2013.5,North Pacific Ocean,39.8,-0.28704467581380244,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,Surface.Seizing,118,119,0.9915966386554622
-Hydrobates monorhis,Hydrobates_monorhis,Procellariiformes,NA,"Kim et al., 2023a",2013.5,North Pacific Ocean,39.8,-0.28704467581380244,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,Surface.Seizing,27,27,1
-Hydrobates monorhis,Hydrobates_monorhis,Procellariiformes,NA,"Nam et al., 2021",2012.5,North Pacific Ocean,39.8,-0.28704467581380244,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,Surface.Seizing,149,159,0.9371069182389937
 Hydrobates pelagicus,Hydrobates_pelagicus,Procellariiformes,1,"De Pascalis et al., 2022",2019,North Atlantic Ocean,25.2,-0.2904410240184837,Fish,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,14,30,0.4666666666666667
 Hydrobates pelagicus,Hydrobates_pelagicus,Procellariiformes,1,Furness 1985b,1983,North Atlantic Ocean,25.2,-0.2904410240184837,Fish,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,21,0
 Hydrobates pelagicus,Hydrobates_pelagicus,Procellariiformes,NA,Ryan 1987,1982,Indian Ocean,25.2,-0.2904410240184837,Fish,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,1,0
@@ -1202,7 +1199,7 @@ Procellaria westlandica,Procellaria_westlandica,Procellariiformes,NA,Roman et al
 Procellaria westlandica,Procellaria_westlandica,Procellariiformes,NA,Roman et al. 2019,2015,South Pacific Ocean,1000,-0.06367662470866434,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,1,0
 Procellaria westlandica,Procellaria_westlandica,Procellariiformes,NA,Roman et al. 2019,2016,South Pacific Ocean,1000,-0.06367662470866434,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,1,0
 Procellaria westlandica,Procellaria_westlandica,Procellariiformes,NA,"Roman et al., 2019a",2015,Southern Ocean,1000,-0.06367662470866434,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,2,16,0.125
-Pseudobulweria aterrima,Pseudobulweria_aterrima,Procellariiformes,NA,"Cartraud et al., 2019",2009,Indian Ocean,222,-0.24466011123209427,NA,NA,NA,NA,NA,NA,1,0,0,1,1,Surface.Seizing,1,1,1
+Pseudobulweria aterrima,Pseudobulweria_aterrima,Procellariiformes,NA,"Cartraud et al., 2019",2009,Indian Ocean,222,-0.24466011123209427,Carrion.NonFishVertebrates,1,0,0,0,0,1,0,0,0,1,Surface.Seizing,1,1,1
 Pseudobulweria rostrata,Pseudobulweria_rostrata,Procellariiformes,1,Ainley et al. 1990b,1986,Southern Ocean,409,-0.2011589390214498,Cephalopods,1,0,1,1,1,0,0,0,0,1,Surface.Seizing,1,67,0.014925373134328358
 Pseudobulweria rostrata,Pseudobulweria_rostrata,Procellariiformes,1,Roman et al. 2016,2013,South Pacific Ocean,409,-0.2011589390214498,Cephalopods,1,0,1,1,1,0,0,0,0,1,Surface.Seizing,0,1,0
 Pseudobulweria rostrata,Pseudobulweria_rostrata,Procellariiformes,1,Spear et al. 1995,1987.5,South Pacific Ocean,409,-0.2011589390214498,Cephalopods,1,0,1,1,1,0,0,0,0,1,Surface.Seizing,1,121,0.008264462809917356
