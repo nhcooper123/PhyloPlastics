@@ -250,8 +250,8 @@ check$tree_not_data # species with no plastic data
 
 # Drop tips
 seabird_tree_plastic <- drop.tip(seabird_tree, check$tree_not_data)
-str(seabird_tree_plastic) # Should have 237 tips
-length(unique(data_agg_noNAs$tips)) # Should be 237
+str(seabird_tree_plastic) # Should have 236 tips
+length(unique(data_agg_noNAs$tips)) # Should be 236
 
 # Write to file
 write.nexus(seabird_tree_plastic, file = here::here("data/seabird_tree_plastic_2025_09-15.nex"))
