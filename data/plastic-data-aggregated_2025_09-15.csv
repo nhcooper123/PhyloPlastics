@@ -69,7 +69,6 @@ Alle alle,Alle_alle,Charadriiformes,1,Avery-Gomm et al. 2016,2013,North Atlantic
 Alle alle,Alle_alle,Charadriiformes,1,Fife et al. 2015,2013,North Atlantic Ocean,181.3,-0.2541280134191169,Crustaceans,0,1,0,1,1,0,0,0,0,1,Diving,9,65,0.13846153846153847
 Alle alle,Alle_alle,Charadriiformes,1,Lydersen et al. 1989,1984,Arctic Ocean,181.3,-0.2541280134191169,Crustaceans,0,1,0,1,1,0,0,0,0,1,Diving,5,11,0.45454545454545453
 Alle alle,Alle_alle,Charadriiformes,1,"Otsuki et al., 2024",2022,Arctic Ocean,181.3,-0.2541280134191169,Crustaceans,0,1,0,1,1,0,0,0,0,1,Diving,2,13,0.15384615384615385
-Alle alle,Alle_alle,Charadriiformes,NA,Day et al. 1984/Van Franeker 1983,NA,South Pacific Ocean,181.3,-0.2541280134191169,Crustaceans,0,1,0,1,1,0,0,0,0,1,Diving,0,0,0
 Alle alle,Alle_alle,Charadriiformes,NA,Provencher et al. 2014,1988.5,Arctic Ocean,181.3,-0.2541280134191169,Crustaceans,0,1,0,1,1,0,0,0,0,1,Diving,0,19,0
 Anous ceruleus,Anous_ceruleus,Charadriiformes,1,Spear et al. 1995,1987.5,South Pacific Ocean,53,-0.2839740048342275,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,0,3,0
 Anous ceruleus,Anous_ceruleus,Charadriiformes,NA,Harrison et al. 1983,1980.5,North Pacific Ocean,53,-0.2839740048342275,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,0,111,0
@@ -133,7 +132,6 @@ Ardenna carneipes,Ardenna_carneipes,Procellariiformes,1,Paterson and Dunlop 2018
 Ardenna carneipes,Ardenna_carneipes,Procellariiformes,1,"Puskic et al., 2024",2019.5,South Pacific Ocean,609,-0.15463362114910278,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,67,70,0.9571428571428572
 Ardenna carneipes,Ardenna_carneipes,Procellariiformes,1,"Puskic, 2024",2021,South Pacific Ocean,609,-0.15463362114910278,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,19,21,0.9047619047619048
 Ardenna carneipes,Ardenna_carneipes,Procellariiformes,1,"Puskic, 2024",2022,South Pacific Ocean,609,-0.15463362114910278,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,20,21,0.9523809523809523
-Ardenna carneipes,Ardenna_carneipes,Procellariiformes,1,"Rivers-Auty, 2023",NA,South Pacific Ocean,609,-0.15463362114910278,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,31,39,0.7948717948717948
 Ardenna carneipes,Ardenna_carneipes,Procellariiformes,1,Robards 1993,1990.5,North Pacific Ocean,609,-0.15463362114910278,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,79,83,0.9518072289156626
 Ardenna carneipes,Ardenna_carneipes,Procellariiformes,1,Robertson et al. 2004,1998,South Pacific Ocean,609,-0.15463362114910278,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,2,6,0.3333333333333333
 Ardenna carneipes,Ardenna_carneipes,Procellariiformes,1,Robertson et al. 2004,1999,South Pacific Ocean,609,-0.15463362114910278,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,1,2,0.5
@@ -418,7 +416,6 @@ Chroicocephalus ridibundus,Chroicocephalus_ridibundus,Charadriiformes,NA,"Basto 
 Chroicocephalus ridibundus,Chroicocephalus_ridibundus,Charadriiformes,NA,"Franco et al., 2019",2017,North Atlantic Ocean,260,-0.23582030083634833,Crustaceans,1,1,0,1,1,0,0,1,1,0,Surface.Seizing,1,3,0.3333333333333333
 Chroicocephalus ridibundus,Chroicocephalus_ridibundus,Charadriiformes,NA,"Navarro et al., 2023",2020.5,North Atlantic Ocean,260,-0.23582030083634833,Crustaceans,1,1,0,1,1,0,0,1,1,0,Surface.Seizing,1,2,0.5
 Chroicocephalus ridibundus,Chroicocephalus_ridibundus,Charadriiformes,NA,"Toda et al., 1994",1991.5,North Pacific Ocean,260,-0.23582030083634833,Crustaceans,1,1,0,1,1,0,0,1,1,0,Surface.Seizing,0,6,0
-Clangula hyemalis,Clangula_hyemalis,Anseriformes,1,Holland et al. 2016,NA,North Atlantic Ocean,873,-0.0932202015576047,Crustaceans,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,4,0
 Clangula hyemalis,Clangula_hyemalis,Anseriformes,1,"Morkūnas et al., 2021",2017,North Atlantic Ocean,873,-0.0932202015576047,Crustaceans,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,9,180,0.05
 Clangula hyemalis,Clangula_hyemalis,Anseriformes,NA,Day et al. 1984,1977.5,North Pacific Ocean,873,-0.0932202015576047,Crustaceans,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,11,0
 Clangula hyemalis,Clangula_hyemalis,Anseriformes,NA,Provencher et al. 2014,1998.5,Arctic Ocean,873,-0.0932202015576047,Crustaceans,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,27,0
@@ -596,10 +593,8 @@ Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,"Kühn et al., 2022",
 Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,"Kühn et al., 2023",2016,North Atlantic Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,361,393,0.9185750636132316
 Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,"Padula et al., 2020",2012,North Pacific Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,4,4,1
 Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,Provencher et al. 2014,1997,North Atlantic Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,18,35,0.5142857142857142
-Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,"Schuur et al., 2019",NA,North Pacific Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,27,43,0.627906976744186
 Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,"Strand & Linnebjerg, 2023",2020,Arctic Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,40,40,1
 Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,"Strand & Linnebjerg, 2023",2022,Arctic Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,37,40,0.925
-Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,Zonfrillo 1985,NA,Indian Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,0,0
 Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,van Franeker 1983,1981.5,North Atlantic Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,70,88,0.7954545454545454
 Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,van Franeker and Camphuysen 1984,1983,Arctic Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,22,29,0.7586206896551724
 Fulmarus glacialis,Fulmarus_glacialis,Procellariiformes,NA,"van Franeker et al., 2022",2015,North Atlantic Ocean,613,-0.15370311479165583,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,106,125,0.848
@@ -624,15 +619,12 @@ Fulmarus glacialoides,Fulmarus_glacialoides,Procellariiformes,NA,"do Nascimiento
 Garrodia nereis,Garrodia_nereis,Procellariiformes,NA,Day et al. 1984,1973,South Pacific Ocean,38.2,-0.28741687835678115,Crustaceans,0,0,1,1,1,1,0,0,1,1,Surface.Seizing,0,0,0
 Garrodia nereis,Garrodia_nereis,Procellariiformes,NA,Furness 1985a,1983,South Pacific Ocean,38.2,-0.28741687835678115,Crustaceans,0,0,1,1,1,1,0,0,1,1,Surface.Seizing,3,11,0.2727272727272727
 Garrodia nereis,Garrodia_nereis,Procellariiformes,NA,Ryan 1987,1982,Indian Ocean,38.2,-0.28741687835678115,Crustaceans,0,0,1,1,1,1,0,0,1,1,Surface.Seizing,4,12,0.3333333333333333
-Gavia adamsii,Gavia_adamsii,Gaviiformes,1,Holland et al. 2016,NA,North Atlantic Ocean,5056.25,0.8799149783898738,Fish,0,1,0,1,1,0,0,0,0,0,Diving,1,3,0.3333333333333333
 Gavia arctica,Gavia_arctica,Gaviiformes,NA,"Nam et al., 2021",2012.5,North Pacific Ocean,3079.5,0.4200703678690639,Fish,0,1,0,1,1,0,0,0,0,0,Diving,0,6,0
 Gavia immer,Gavia_immer,Gaviiformes,1,Avery-Gomm et al. 2013,2010,North Pacific Ocean,4980,0.8621772009510414,Fish,1,1,0,1,1,0,0,0,0,0,Diving,0,2,0
-Gavia immer,Gavia_immer,Gaviiformes,1,Holland et al. 2016,NA,North Atlantic Ocean,4980,0.8621772009510414,Fish,1,1,0,1,1,0,0,0,0,0,Diving,0,1,0
 Gavia immer,Gavia_immer,Gaviiformes,NA,"Schutten et al., 2024",2021,North Atlantic Ocean,4980,0.8621772009510414,Fish,1,1,0,1,1,0,0,0,0,0,Diving,1,10,0.1
 Gavia pacifica,Gavia_pacifica,Gaviiformes,1,Avery-Gomm et al. 2013,2010,North Pacific Ocean,1668.5,0.0918342502796556,Fish,1,1,0,1,1,0,0,0,0,0,Diving,0,2,0
 Gavia pacifica,Gavia_pacifica,Gaviiformes,NA,"Nam et al., 2021",2012.5,North Pacific Ocean,1668.5,0.0918342502796556,Fish,1,1,0,1,1,0,0,0,0,0,Diving,2,20,0.1
 Gavia stellata,Gavia_stellata,Gaviiformes,1,Avery-Gomm et al. 2013,2008,North Pacific Ocean,1486,0.04937989772113893,Fish,1,1,0,1,1,0,0,0,0,0,Diving,0,2,0
-Gavia stellata,Gavia_stellata,Gaviiformes,1,Holland et al. 2016,NA,North Atlantic Ocean,1486,0.04937989772113893,Fish,1,1,0,1,1,0,0,0,0,0,Diving,0,7,0
 Gavia stellata,Gavia_stellata,Gaviiformes,1,"Morkūnas et al., 2021",2017,North Atlantic Ocean,1486,0.04937989772113893,Fish,1,1,0,1,1,0,0,0,0,0,Diving,1,22,0.045454545454545456
 Gavia stellata,Gavia_stellata,Gaviiformes,NA,"Basto et al., 2019",2012,North Atlantic Ocean,1486,0.04937989772113893,Fish,1,1,0,1,1,0,0,0,0,0,Diving,0,1,0
 Gavia stellata,Gavia_stellata,Gaviiformes,NA,"Nam et al., 2021",2012.5,North Pacific Ocean,1486,0.04937989772113893,Fish,1,1,0,1,1,0,0,0,0,0,Diving,0,5,0
@@ -643,7 +635,6 @@ Gulosus aristotelis,Gulosus_aristotelis,Suliformes,1,"Benjaminsen et al., 2024",
 Gulosus aristotelis,Gulosus_aristotelis,Suliformes,1,"Benjaminsen, 2021",2012,Arctic Ocean,1773,0.11614372886795692,Fish,0,1,0,0,0,0,0,0,0,1,Diving,0,8,0
 Gulosus aristotelis,Gulosus_aristotelis,Suliformes,NA,"Benjaminsen et al., 2024",2012,Arctic Ocean,1773,0.11614372886795692,Fish,0,1,0,0,0,0,0,0,0,1,Diving,0,1,0
 Gulosus aristotelis,Gulosus_aristotelis,Suliformes,NA,"Buchholz, 2023",2022,North Atlantic Ocean,1773,0.11614372886795692,Fish,0,1,0,0,0,0,0,0,0,1,Diving,4,10,0.4
-Gulosus aristotelis,Gulosus_aristotelis,Suliformes,NA,Day et al. 1984/Bourne 1976,NA,North Atlantic Ocean,1773,0.11614372886795692,Fish,0,1,0,0,0,0,0,0,0,1,Diving,0,0,0
 Gulosus aristotelis,Gulosus_aristotelis,Suliformes,NA,"Franco et al., 2019",2017,North Atlantic Ocean,1773,0.11614372886795692,Fish,0,1,0,0,0,0,0,0,0,1,Diving,0,1,0
 Gulosus aristotelis,Gulosus_aristotelis,Suliformes,NA,Álvarez et al. 2018,2017,North Atlantic Ocean,1773,0.11614372886795692,Fish,0,1,0,0,0,0,0,0,0,1,Diving,26,41,0.6341463414634146
 Gygis alba,Gygis_alba,Charadriiformes,0,Rapp et al. 2017,2009.5,North Pacific Ocean,111,-0.27048166265124685,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,0,3,0
@@ -658,7 +649,6 @@ Halobaena caerulea,Halobaena_caerulea,Procellariiformes,1,Ainley et al. 1990a,19
 Halobaena caerulea,Halobaena_caerulea,Procellariiformes,1,Ainley et al. 1990a,1986,Southern Ocean,202,-0.24931264301932896,Crustaceans,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,15,17,0.8823529411764706
 Halobaena caerulea,Halobaena_caerulea,Procellariiformes,1,Reed 1981,1981,South Pacific Ocean,202,-0.24931264301932896,Crustaceans,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,27,27,1
 Halobaena caerulea,Halobaena_caerulea,Procellariiformes,NA,Brown et al. 1986,1984,Indian Ocean,202,-0.24931264301932896,Crustaceans,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,0,0,0
-Halobaena caerulea,Halobaena_caerulea,Procellariiformes,NA,Day et al. 1984 (Imber pers comm),NA,South Pacific Ocean,202,-0.24931264301932896,Crustaceans,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,0,0,0
 Halobaena caerulea,Halobaena_caerulea,Procellariiformes,NA,Roman et al. 2019,2016,South Pacific Ocean,202,-0.24931264301932896,Crustaceans,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,1,1,1
 Halobaena caerulea,Halobaena_caerulea,Procellariiformes,NA,"Roman et al., 2019a",2015,Southern Ocean,202,-0.24931264301932896,Crustaceans,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,1,2,0.5
 Halobaena caerulea,Halobaena_caerulea,Procellariiformes,NA,Ryan 1987,1982,Indian Ocean,202,-0.24931264301932896,Crustaceans,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,68,74,0.918918918918919
@@ -707,7 +697,6 @@ Hydrobates monorhis,Hydrobates_monorhis,Procellariiformes,NA,"Nam et al., 2021",
 Hydrobates pelagicus,Hydrobates_pelagicus,Procellariiformes,1,"De Pascalis et al., 2022",2019,North Atlantic Ocean,25.2,-0.2904410240184837,Fish,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,14,30,0.4666666666666667
 Hydrobates pelagicus,Hydrobates_pelagicus,Procellariiformes,1,Furness 1985b,1983,North Atlantic Ocean,25.2,-0.2904410240184837,Fish,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,21,0
 Hydrobates pelagicus,Hydrobates_pelagicus,Procellariiformes,NA,Ryan 1987,1982,Indian Ocean,25.2,-0.2904410240184837,Fish,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,1,0
-Hydrobates pelagicus,Hydrobates_pelagicus,Procellariiformes,NA,Zonfrillo 1985,NA,Indian Ocean,25.2,-0.2904410240184837,Fish,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,0,0
 Hydrobates tethys,Hydrobates_tethys,Procellariiformes,1,Ainley et al. 1990b,1986,Southern Ocean,22.6,-0.29104585315082426,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,2,176,0.011363636363636364
 Hydrobates tethys,Hydrobates_tethys,Procellariiformes,1,Spear et al. 1995,1987.5,South Pacific Ocean,22.6,-0.29104585315082426,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,1,296,0.0033783783783783786
 Hydrobates tristrami,Hydrobates_tristrami,Procellariiformes,0,Rapp et al. 2017,2009.5,North Pacific Ocean,92,-0.27490156784911984,Fish,0,1,1,1,1,0,0,0,0,1,Surface.Seizing,57,57,1
@@ -865,7 +854,6 @@ Macronectes halli,Macronectes_halli,Procellariiformes,NA,"Roman et al., 2019a",2
 Macronectes halli,Macronectes_halli,Procellariiformes,NA,Ryan 1987,1982,Indian Ocean,4249,0.692127164127613,Carrion.NonFishVertebrates,1,0,1,1,0,0,0,0,0,1,Scavenging,3,42,0.07142857142857142
 Macronectes halli,Macronectes_halli,Procellariiformes,NA,"Valls et al., 2015",2011,South Atlantic Ocean,4249,0.692127164127613,Carrion.NonFishVertebrates,1,0,1,1,0,0,0,0,0,1,Scavenging,1,1,1
 Megadyptes antipodes,Megadyptes_antipodes,Sphenisciformes,NA,Hocken 2005,2001.5,South Pacific Ocean,5330,0.9435965072276487,Fish,0,1,1,1,0,0,0,0,0,1,Diving,0,124,0
-Melanitta deglandi,Melanitta_deglandi,Anseriformes,1,Holland et al. 2016,NA,North Atlantic Ocean,1757,0.11242170343816915,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,1,16,0.0625
 Melanitta deglandi,Melanitta_deglandi,Anseriformes,NA,Day et al. 1984,1977.5,North Pacific Ocean,1757,0.11242170343816915,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,5,0
 Melanitta deglandi,Melanitta_deglandi,Anseriformes,NA,"Schutten et al., 2024",2021,North Atlantic Ocean,1757,0.11242170343816915,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,1,0
 Melanitta fusca,Melanitta_fusca,Anseriformes,NA,"Morkūnas et al., 2021",2017,North Atlantic Ocean,1578,0.07078154394241856,Crustaceans,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,246,0
@@ -888,7 +876,6 @@ Morus bassanus,Morus_bassanus,Suliformes,1,Nicastro et al. 2018,2015,North Atlan
 Morus bassanus,Morus_bassanus,Suliformes,1,Nicastro et al. 2018,2016,North Atlantic Ocean,2999.5,0.40146024072012504,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,0,1,0
 Morus bassanus,Morus_bassanus,Suliformes,1,Pierce et al. 2004,2004,North Atlantic Ocean,2999.5,0.40146024072012504,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,1,1,1
 Morus bassanus,Morus_bassanus,Suliformes,NA,"Basto et al., 2019",2012,North Atlantic Ocean,2999.5,0.40146024072012504,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,1,21,0.047619047619047616
-Morus bassanus,Morus_bassanus,Suliformes,NA,Day et al. 1984/Bourne 1976,NA,North Atlantic Ocean,2999.5,0.40146024072012504,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,0,0,0
 Morus bassanus,Morus_bassanus,Suliformes,NA,"Franco et al., 2019",2017,North Atlantic Ocean,2999.5,0.40146024072012504,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,8,44,0.18181818181818182
 Morus bassanus,Morus_bassanus,Suliformes,NA,Nicastro et al. 2018,2015,North Atlantic Ocean,2999.5,0.40146024072012504,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,0,8,0
 Morus capensis,Morus_capensis,Suliformes,NA,"Cartraud et al., 2019",2009,Indian Ocean,2643.5,0.31864517490734734,Fish,0,1,0,0,0,1,0,0,1,1,Plunging,1,2,0.5
@@ -900,7 +887,6 @@ Nannopterum auritum,Nannopterum_auritum,Suliformes,1,Avery-Gomm et al. 2013,2009
 Nannopterum auritum,Nannopterum_auritum,Suliformes,1,Avery-Gomm et al. 2013,2010,North Pacific Ocean,1674,0.09311369652114514,Fish,0,1,0,1,1,0,0,0,0,0,Diving,0,1,0
 Nannopterum auritum,Nannopterum_auritum,Suliformes,NA,"Clark, 2021",2020,North Atlantic Ocean,1674,0.09311369652114514,Fish,0,1,0,1,1,0,0,0,0,0,Diving,9,10,0.9
 Nannopterum auritum,Nannopterum_auritum,Suliformes,NA,Day et al. 1984/Day 1980,1973,North Pacific Ocean,1674,0.09311369652114514,Fish,0,1,0,1,1,0,0,0,0,0,Diving,0,4,0
-Nannopterum auritum,Nannopterum_auritum,Suliformes,NA,"Prieto, 2024",NA,North Atlantic Ocean,1674,0.09311369652114514,Fish,0,1,0,1,1,0,0,0,0,0,Diving,9,9,1
 Nannopterum auritum,Nannopterum_auritum,Suliformes,NA,"Schutten et al., 2024",2021,North Atlantic Ocean,1674,0.09311369652114514,Fish,0,1,0,1,1,0,0,0,0,0,Diving,1,19,0.05263157894736842
 Nannopterum brasilianum,Nannopterum_brasilianum,Suliformes,NA,"Klopertanz et al., 2022",2021,South Atlantic Ocean,1210,-0.014825040942699961,Fish,1,1,0,1,1,0,0,0,0,0,Diving,0,1,0
 Nannopterum brasilianum,Nannopterum_brasilianum,Suliformes,NA,"Porras-Parra et al., 2024",2019,South Pacific Ocean,1210,-0.014825040942699961,Fish,1,1,0,1,1,0,0,0,0,0,Diving,57,800,0.07125
@@ -1042,7 +1028,6 @@ Pelagodroma marina,Pelagodroma_marina,Procellariiformes,1,Ainley et al. 1990b,19
 Pelagodroma marina,Pelagodroma_marina,Procellariiformes,1,"Karmalkar et al., 2023",2021,South Pacific Ocean,47.2,-0.28532323905252555,Crustaceans,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,3,74,0.04054054054054054
 Pelagodroma marina,Pelagodroma_marina,Procellariiformes,1,Roman et al. 2019,2016,South Pacific Ocean,47.2,-0.28532323905252555,Crustaceans,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,2,2,1
 Pelagodroma marina,Pelagodroma_marina,Procellariiformes,1,Spear et al. 1995,1987.5,South Pacific Ocean,47.2,-0.28532323905252555,Crustaceans,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,11,15,0.7333333333333333
-Pelagodroma marina,Pelagodroma_marina,Procellariiformes,NA,Day et al. 1984 (Imber pers comm),NA,South Pacific Ocean,47.2,-0.28532323905252555,Crustaceans,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,0,0
 Pelagodroma marina,Pelagodroma_marina,Procellariiformes,NA,Furness 1985a,1983,South Pacific Ocean,47.2,-0.28532323905252555,Crustaceans,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,16,19,0.8421052631578947
 Pelagodroma marina,Pelagodroma_marina,Procellariiformes,NA,Furtado et al. 2016,2014,North Atlantic Ocean,47.2,-0.28532323905252555,Crustaceans,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,208,263,0.7908745247148289
 Pelagodroma marina,Pelagodroma_marina,Procellariiformes,NA,"Perold et al., 2024",1988,South Atlantic Ocean,47.2,-0.28532323905252555,Crustaceans,0,1,1,1,1,1,0,0,1,1,Surface.Seizing,206,307,0.6710097719869706
@@ -1071,7 +1056,6 @@ Pelecanoides urinatrix,Pelecanoides_urinatrix,Procellariiformes,NA,"Roman et al.
 Pelecanus conspicillatus,Pelecanus_conspicillatus,Pelecaniformes,1,Roman et al. 2016,2013,South Pacific Ocean,5400,0.9598803684829702,Fish,1,1,0,1,1,0,0,0,0,0,Plunging,4,17,0.23529411764705882
 Pelecanus erythrorhynchos,Pelecanus_erythrorhynchos,Pelecaniformes,NA,"Schutten et al., 2024",2021,North Atlantic Ocean,5649.5,1.0179207025287231,Fish,1,1,0,0,1,0,0,0,0,0,Surface.Seizing,0,2,0
 Pelecanus occidentalis,Pelecanus_occidentalis,Pelecaniformes,NA,"Clark, 2021",2020,North Atlantic Ocean,3438,0.5034670001552458,Fish,0,1,0,0,0,0,0,0,0,0,Plunging,12,12,1
-Pelecanus occidentalis,Pelecanus_occidentalis,Pelecaniformes,NA,"Prieto, 2024",NA,North Atlantic Ocean,3438,0.5034670001552458,Fish,0,1,0,0,0,0,0,0,0,0,Plunging,14,14,1
 Phaethon aethereus,Phaethon_aethereus,Phaethontiformes,0,"Madden and Eggermont., 2020",2019,North Atlantic Ocean,750,-0.12183327204909812,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,1,1,1
 Phaethon aethereus,Phaethon_aethereus,Phaethontiformes,NA,"Matos et al., 2024b",2021.5,North Atlantic Ocean,750,-0.12183327204909812,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,31,61,0.5081967213114754
 Phaethon aethereus,Phaethon_aethereus,Phaethontiformes,NA,"Silva, 2022",2021,North Atlantic Ocean,750,-0.12183327204909812,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,22,34,0.6470588235294118
@@ -1102,7 +1086,6 @@ Phalacrocorax carbo,Phalacrocorax_carbo,Suliformes,NA,"Nam et al., 2021",2012.5,
 Phalacrocorax carbo,Phalacrocorax_carbo,Suliformes,NA,Nicastro et al. 2018,2015,North Atlantic Ocean,2302.414185,0.2392995450842296,Fish,1,1,1,1,0,0,0,0,0,0,Diving,0,1,0
 Phalacrocorax carbo,Phalacrocorax_carbo,Suliformes,NA,"Toda et al., 1994",1991.5,North Pacific Ocean,2302.414185,0.2392995450842296,Fish,1,1,1,1,0,0,0,0,0,0,Diving,0,5,0
 Phalacrocorax neglectus,Phalacrocorax_neglectus,Suliformes,NA,Ryan 1987,1982,Indian Ocean,1950.5,0.1574349484796649,Fish,0,1,1,1,0,0,0,0,0,1,Diving,1,167,0.005988023952095809
-Phalacrocorax sulcirostris,Phalacrocorax_sulcirostris,Suliformes,NA,"Susanti et al., 2022",NA,Indian Ocean,1000,-0.06367662470866434,Fish,0,1,0,1,1,0,0,0,0,0,Diving,1,1,1
 Phalacrocorax varius,Phalacrocorax_varius,Suliformes,NA,"Gilbert et al., 2016",2011.5,South Pacific Ocean,1955.5,0.15859808142647358,Fish,0,1,1,1,0,0,0,0,0,0,Diving,1,7,0.14285714285714285
 Phalaropus fulicarius,Phalaropus_fulicarius,Charadriiformes,1,Drever et al 2018,2016,North Pacific ocean,55.95,-0.2832877563956104,Other.Inverts,0,0,0,1,1,0,0,0,0,1,Surface.Seizing,9,9,1
 Phalaropus fulicarius,Phalaropus_fulicarius,Charadriiformes,1,Robards 1993,1990.5,North Pacific Ocean,55.95,-0.2832877563956104,Other.Inverts,0,0,0,1,1,0,0,0,0,1,Surface.Seizing,1,1,1
@@ -1114,8 +1097,6 @@ Phalaropus fulicarius,Phalaropus_fulicarius,Charadriiformes,NA,Ryan 1987,1982,In
 Phalaropus lobatus,Phalaropus_lobatus,Charadriiformes,NA,Day et al. 1984/Connors and Smith 82,1981,North Pacific Ocean,36.75,-0.2877541869113557,Other.Inverts,0,0,0,1,1,0,0,0,0,0,Surface.Seizing,0,2,0
 Phalaropus lobatus,Phalaropus_lobatus,Charadriiformes,NA,Day et al. 1984/Day 1980,1973,North Pacific Ocean,36.75,-0.2877541869113557,Other.Inverts,0,0,0,1,1,0,0,0,0,0,Surface.Seizing,2,3,0.6666666666666666
 Phoebastria albatrus,Phoebastria_albatrus,Procellariiformes,NA,Donnelly-Greenan et al. 2018,2004.5,North Pacific Ocean,4411,0.7298126716042141,Cephalopods,0,1,1,0,0,1,0,0,1,1,Surface.Seizing,4,6,0.6666666666666666
-Phoebastria albatrus,Phoebastria_albatrus,Procellariiformes,NA,McDermond & Morgan 1993,NA,North Pacific Ocean,4411,0.7298126716042141,Cephalopods,0,1,1,0,0,1,0,0,1,1,Surface.Seizing,7,11,0.6363636363636364
-Phoebastria albatrus,Phoebastria_albatrus,Procellariiformes,NA,Rappoport 2000,NA,North Pacific Ocean,4411,0.7298126716042141,Cephalopods,0,1,1,0,0,1,0,0,1,1,Surface.Seizing,0,0,0
 Phoebastria immutabilis,Phoebastria_immutabilis,Procellariiformes,0,Auman et al. 1997,1994,North Pacific Ocean,3150,0.4364705424190662,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,131,134,0.9776119402985075
 Phoebastria immutabilis,Phoebastria_immutabilis,Procellariiformes,0,Auman et al. 1997,1995,North Pacific Ocean,3150,0.4364705424190662,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,114,117,0.9743589743589743
 Phoebastria immutabilis,Phoebastria_immutabilis,Procellariiformes,0,Day et al. 1984 (Fefer pers comm),1982.5,North Pacific Ocean,3150,0.4364705424190662,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,45,50,0.9
@@ -1214,7 +1195,6 @@ Procellaria conspicillata,Procellaria_conspicillata,Procellariiformes,NA,"Muñoz
 Procellaria parkinsoni,Procellaria_parkinsoni,Procellariiformes,1,Robertson et al. 2004,2000,South Pacific Ocean,702.5,-0.13288303504378055,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,1,1,1
 Procellaria parkinsoni,Procellaria_parkinsoni,Procellariiformes,1,Roman et al. 2019,2015,South Pacific Ocean,702.5,-0.13288303504378055,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,4,0
 Procellaria parkinsoni,Procellaria_parkinsoni,Procellariiformes,1,Roman et al. 2019,2016,South Pacific Ocean,702.5,-0.13288303504378055,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,3,0
-Procellaria parkinsoni,Procellaria_parkinsoni,Procellariiformes,NA,Day et al. 1984 (Imber pers comm),NA,South Pacific Ocean,702.5,-0.13288303504378055,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,0,0
 Procellaria parkinsoni,Procellaria_parkinsoni,Procellariiformes,NA,"Roman et al., 2019a",2015,Southern Ocean,702.5,-0.13288303504378055,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,7,0
 Procellaria westlandica,Procellaria_westlandica,Procellariiformes,1,Roman et al. 2019,2015,South Pacific Ocean,1000,-0.06367662470866434,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,0,4,0
 Procellaria westlandica,Procellaria_westlandica,Procellariiformes,1,Roman et al. 2019,2016,South Pacific Ocean,1000,-0.06367662470866434,Cephalopods,0,1,1,1,0,1,0,0,1,1,Surface.Seizing,1,8,0.125
@@ -1248,7 +1228,6 @@ Pterodroma cookii,Pterodroma_cookii,Procellariiformes,1,Roman et al. 2019,2008,S
 Pterodroma cookii,Pterodroma_cookii,Procellariiformes,1,Roman et al. 2019,2010,South Pacific Ocean,178.5,-0.25477936786932975,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,1,0
 Pterodroma cookii,Pterodroma_cookii,Procellariiformes,1,Roman et al. 2019,2013,South Pacific Ocean,178.5,-0.25477936786932975,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,1,0
 Pterodroma cookii,Pterodroma_cookii,Procellariiformes,1,Roman et al. 2019,2015,South Pacific Ocean,178.5,-0.25477936786932975,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,1,0
-Pterodroma cookii,Pterodroma_cookii,Procellariiformes,NA,Day et al. 1984 (Imber pers comm),NA,South Pacific Ocean,178.5,-0.25477936786932975,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,0,0
 Pterodroma cookii,Pterodroma_cookii,Procellariiformes,NA,Imber 1996,1974.5,South Pacific Ocean,178.5,-0.25477936786932975,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,21,55,0.38181818181818183
 Pterodroma cookii,Pterodroma_cookii,Procellariiformes,NA,Roman et al. 2019,2010,South Pacific Ocean,178.5,-0.25477936786932975,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,1,0
 Pterodroma cookii,Pterodroma_cookii,Procellariiformes,NA,Roman et al. 2019,2015,South Pacific Ocean,178.5,-0.25477936786932975,Cephalopods,1,1,1,1,0,0,0,0,0,1,Surface.Seizing,1,2,0.5
@@ -1300,7 +1279,6 @@ Pterodroma macroptera,Pterodroma_macroptera,Procellariiformes,1,Roman et al. 201
 Pterodroma macroptera,Pterodroma_macroptera,Procellariiformes,1,Roman et al. 2019,2011,Indian Ocean,532.5,-0.1724295552352755,Cephalopods,0,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,1,0
 Pterodroma macroptera,Pterodroma_macroptera,Procellariiformes,1,Roman et al. 2019,2015,South Pacific Ocean,532.5,-0.1724295552352755,Cephalopods,0,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,1,0
 Pterodroma macroptera,Pterodroma_macroptera,Procellariiformes,1,Spear et al. 1995,1987.5,South Pacific Ocean,532.5,-0.1724295552352755,Cephalopods,0,1,1,1,0,0,0,0,0,1,Surface.Seizing,13,110,0.11818181818181818
-Pterodroma macroptera,Pterodroma_macroptera,Procellariiformes,NA,Day et al. 1984 (Imber pers comm),NA,South Pacific Ocean,532.5,-0.1724295552352755,Cephalopods,0,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,0,0
 Pterodroma macroptera,Pterodroma_macroptera,Procellariiformes,NA,"Roman et al., 2019a",2015,Southern Ocean,532.5,-0.1724295552352755,Cephalopods,0,1,1,1,0,0,0,0,0,1,Surface.Seizing,0,4,0
 Pterodroma macroptera,Pterodroma_macroptera,Procellariiformes,NA,Ryan 1987,1982,Indian Ocean,532.5,-0.1724295552352755,Cephalopods,0,1,1,1,0,0,0,0,0,1,Surface.Seizing,1,13,0.07692307692307693
 Pterodroma mollis,Pterodroma_mollis,Procellariiformes,1,Petry et al. 2002,1997.5,South Pacific Ocean,312,-0.2237237181895381,Cephalopods,0,1,1,1,0,0,0,0,0,1,Surface.Seizing,1,1,1
@@ -1400,7 +1378,6 @@ Puffinus puffinus,Puffinus_puffinus,Procellariiformes,NA,"Gallo et al., 2024",20
 Puffinus puffinus,Puffinus_puffinus,Procellariiformes,NA,Tavares et al. 2017,2011,South Pacific Ocean,453.5,-0.19080705579485258,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,1,1,1
 Puffinus puffinus,Puffinus_puffinus,Procellariiformes,NA,Tavares et al. 2017,2012,South Pacific Ocean,453.5,-0.19080705579485258,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,2,5,0.4
 Puffinus puffinus,Puffinus_puffinus,Procellariiformes,NA,"Vanstreels et al., 2021",2020,South Atlantic Ocean,453.5,-0.19080705579485258,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,7,20,0.35
-Puffinus puffinus,Puffinus_puffinus,Procellariiformes,NA,Zonfrillo 1985,NA,Indian Ocean,453.5,-0.19080705579485258,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,0,0,0
 Puffinus puffinus,Puffinus_puffinus,Procellariiformes,NA,"do Nascimiento et al., 2023",2013.5,South Atlantic Ocean,453.5,-0.19080705579485258,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,3,331,0.00906344410876133
 Puffinus puffinus,Puffinus_puffinus,Procellariiformes,NA,"do Nascimiento, 2022",2018,South Atlantic Ocean,453.5,-0.19080705579485258,Fish,0,1,1,1,0,0,0,0,0,1,Plunging,2,14,0.14285714285714285
 Puffinus yelkouan,Puffinus_yelkouan,Procellariiformes,1,Codina-Garcia et al. 2013,2006.5,North Atlantic Ocean,382.5,-0.20732354363953578,Fish,0,1,1,1,0,1,0,0,1,1,Plunging,22,31,0.7096774193548387
@@ -1443,14 +1420,12 @@ Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,"Baak et al., 2020b",2018,N
 Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,Baltz and Morejohn 1976,1974.5,North Pacific Ocean,416.3,-0.19946076491910913,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,8,0
 Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,"Basto et al., 2019",2012,North Atlantic Ocean,416.3,-0.19946076491910913,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,1,1,1
 Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,Day et al. 1984,1978.5,Arctic Ocean,416.3,-0.19946076491910913,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,6,50,0.12
-Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,Day et al. 1984/Bourne 1976,NA,North Atlantic Ocean,416.3,-0.19946076491910913,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,0,0,0
 Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,Day et al. 1984/Day 1980,1973,North Pacific Ocean,416.3,-0.19946076491910913,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,9,188,0.047872340425531915
 Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,"Franco et al., 2019",2016,North Atlantic Ocean,416.3,-0.19946076491910913,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,2,9,0.2222222222222222
 Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,"Padula et al., 2020",2012,North Pacific Ocean,416.3,-0.19946076491910913,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,1,5,0.2
 Rissa tridactyla,Rissa_tridactyla,Charadriiformes,NA,"van Franeker et al., 2024",2019,North Atlantic Ocean,416.3,-0.19946076491910913,Fish,1,1,1,1,1,1,0,0,1,1,Surface.Seizing,3,4,0.75
 Rynchops niger,Rynchops_niger,Charadriiformes,1,"Donnelly-Greenan et al., 2023",2010,North Atlantic Ocean,301.5,-0.22616629737783633,Fish,0,1,0,1,0,0,0,0,0,0,Skimming,0,49,0
 Somateria mollissima,Somateria_mollissima,Anseriformes,1,English et al. 2015,2013.5,North Atlantic Ocean,2066.5,0.18441963284562618,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,1,36,0.027777777777777776
-Somateria mollissima,Somateria_mollissima,Anseriformes,1,Holland et al. 2016,NA,North Atlantic Ocean,2066.5,0.18441963284562618,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,1,40,0.025
 Somateria mollissima,Somateria_mollissima,Anseriformes,1,Lydersen et al. 1989,1984,Arctic Ocean,2066.5,0.18441963284562618,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,20,0
 Somateria mollissima,Somateria_mollissima,Anseriformes,1,Provencher et al. 2014,2001,Arctic Ocean,2066.5,0.18441963284562618,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,0,108,0
 Somateria mollissima,Somateria_mollissima,Anseriformes,1,Provencher et al. 2014,2011,Arctic Ocean,2066.5,0.18441963284562618,Other.Inverts,0,1,0,1,1,0,0,0,0,0,Bottom.Feeding,1,100,0.01
@@ -1484,7 +1459,6 @@ Spheniscus magellanicus,Spheniscus_magellanicus,Sphenisciformes,NA,"Vanstreels e
 Spheniscus magellanicus,Spheniscus_magellanicus,Sphenisciformes,NA,"do Nascimiento et al., 2023",2013.5,South Atlantic Ocean,4120,0.6621183340999492,Fish,0,1,1,1,0,0,0,0,0,1,Diving,33,609,0.054187192118226604
 Spheniscus mendiculus,Spheniscus_mendiculus,Sphenisciformes,NA,"McMullen, 2023",2021,South Pacific Ocean,1932.5,0.15324766987115368,Fish,0,1,1,1,0,0,0,0,0,1,Diving,0,2,0
 Stercorarius antarcticus,Stercorarius_antarcticus,Charadriiformes,1,Auman et al. 2004,2000.5,Indian Ocean,1650,0.0875306583764635,Carrion.NonFishVertebrates,1,1,1,1,0,1,0,0,1,1,Aerial.Pursuit,0,4,0
-Stercorarius antarcticus,Stercorarius_antarcticus,Charadriiformes,NA,Bourne and Imber 1982,NA,North Atlantic Ocean,1650,0.0875306583764635,Carrion.NonFishVertebrates,1,1,1,1,0,1,0,0,1,1,Aerial.Pursuit,0,3,0
 Stercorarius antarcticus,Stercorarius_antarcticus,Charadriiformes,NA,Furness 1985a,1983,South Pacific Ocean,1650,0.0875306583764635,Carrion.NonFishVertebrates,1,1,1,1,0,1,0,0,1,1,Aerial.Pursuit,1,11,0.09090909090909091
 Stercorarius antarcticus,Stercorarius_antarcticus,Charadriiformes,NA,"Ibañez et al., 2020",2015,South Atlantic Ocean,1650,0.0875306583764635,Carrion.NonFishVertebrates,1,1,1,1,0,1,0,0,1,1,Aerial.Pursuit,90,1001,0.0899100899100899
 Stercorarius antarcticus,Stercorarius_antarcticus,Charadriiformes,NA,"Lenzi et al., 2022",2020,Southern Ocean,1650,0.0875306583764635,Carrion.NonFishVertebrates,1,1,1,1,0,1,0,0,1,1,Aerial.Pursuit,7,64,0.109375
@@ -1562,7 +1536,6 @@ Sula leucogaster,Sula_leucogaster,Suliformes,1,Spear et al. 1995,1987.5,South Pa
 Sula leucogaster,Sula_leucogaster,Suliformes,1,Tavares et al. 2017,2011,South Pacific Ocean,1219,-0.012731401638444346,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,0,4,0
 Sula leucogaster,Sula_leucogaster,Suliformes,1,Tavares et al. 2017,2012,South Pacific Ocean,1219,-0.012731401638444346,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,5,15,0.3333333333333333
 Sula leucogaster,Sula_leucogaster,Suliformes,1,Tavares et al. 2017,2013,South Pacific Ocean,1219,-0.012731401638444346,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,3,23,0.13043478260869565
-Sula leucogaster,Sula_leucogaster,Suliformes,NA,"Claro et al., 2019",NA,North Pacific Ocean,1219,-0.012731401638444346,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,1,33,0.030303030303030304
 Sula leucogaster,Sula_leucogaster,Suliformes,NA,Harrison et al. 1983,1979.5,North Pacific Ocean,1219,-0.012731401638444346,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,0,244,0
 Sula leucogaster,Sula_leucogaster,Suliformes,NA,"Matos et al., 2024b",2021.5,North Atlantic Ocean,1219,-0.012731401638444346,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,39,82,0.47560975609756095
 Sula leucogaster,Sula_leucogaster,Suliformes,NA,Rapp et al. 2017,2009.5,North Pacific Ocean,1219,-0.012731401638444346,Fish,0,1,1,0,0,0,0,0,0,1,Plunging,0,1,0
