@@ -21,9 +21,9 @@ library(here)
 
 ```{r, message = FALSE}
 # Read in the data
-seabird_data <- read_csv(file = here::here("data/plastic-data-aggregated_2025_09-15.csv"))
+seabird_data <- read_csv(file = here::here("data/plastic-data-aggregated_2025-09-15.csv"))
 # Read in tree
-tree <- read.nexus(here::here("data/seabird_tree_plastic_2025_09-15.nex"))
+tree <- read.nexus(here::here("data/seabird_tree_plastic_2025-09-15.nex"))
 ```
 
 ## Unite the diet categories
