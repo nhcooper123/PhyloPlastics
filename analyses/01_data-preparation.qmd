@@ -222,6 +222,34 @@ data_agg <-
 naniar::vis_miss(data_agg)
 ```
 
+## Write out full list of species with plastic studies of some kind
+
+Get species totals for numbers of studies, how many with plastic etc.
+```{r}
+species_list <- 
+  data_agg %>%
+  group_by(tips) %>%
+  summarise(total_plastic = sum(n_plastic), 
+            total_n = sum(n_total),
+            species_FO = total_plastic / total_n,
+            n_studies = n()) %>%
+  mutate(plastic = case_when(species_FO > 0 ~ "yes", species_FO == 0 ~ "no"))
+
+# Add back in the species without any studies
+
+no_studies <- data.frame(tips = check$tree_not_data, 
+                         total_plastic = rep(NA, length(check$tree_not_data)),
+                         total_n = rep(NA, length(check$tree_not_data)),
+                         species_FO = rep(NA, length(check$tree_not_data)),
+                         n_studies = rep(0, length(check$tree_not_data)),
+                         plastic = rep(NA, length(check$tree_not_data)))
+
+# combine
+full_species_list <- rbind(species_list, no_studies)
+
+write_csv(full_species_list, file = here::here("data/full_species_list_2025-09-16.csv"))
+```
+
 ### Without NAs
 
 Remove a small number of annoying NAs which we aren't able to work with. We lose a few studies, which include few species each, and one species with no diet info. 
@@ -237,7 +265,7 @@ data_agg_noNAs <- data_agg %>%
 ## Write out full dataset
 
 ```{r}
-write_csv(data_agg_noNAs, file = here::here("data/plastic-data-aggregated_2025_09-15.csv"))
+write_csv(data_agg_noNAs, file = here::here("data/plastic-data-aggregated_2025-09-15.csv"))
 ```
 
 ## Write out a phylogeny which only includes species in the dataset for the analyses
@@ -255,5 +283,5 @@ str(seabird_tree_plastic) # Should have 231 tips
 length(unique(data_agg_noNAs$tips)) # Should be 231
 
 # Write to file
-write.nexus(seabird_tree_plastic, file = here::here("data/seabird_tree_plastic_2025_09-15.nex"))
+write.nexus(seabird_tree_plastic, file = here::here("data/seabird_tree_plastic_2025-09-15.nex"))
 ```
