@@ -21,6 +21,7 @@ library(tidyverse) # for data import and manipulation
 library(here) # to ensure paths work
 library(naniar) # to look for NAs
 library(geiger) # to check tips and species match in tree and data
+library(janitor) # clean dataset
 ```
 
 #### Import tree
@@ -120,6 +121,19 @@ data_all <- data_all %>%
   ))
 ```
 
+# Simplify sampling method by choosing primary method where two are listed
+
+```{r}
+data_all <- data_all %>%
+  mutate(Sampling_method = str_replace(Sampling_method, "Bolus necropsy", "Bolus")) %>%
+  mutate(Sampling_method = str_replace(Sampling_method, "Bolus/Necropsy", "Bolus")) %>%
+  mutate(Sampling_method = str_replace(Sampling_method, "Bolus/lavage", "Bolus")) %>%
+  mutate(Sampling_method = str_replace(Sampling_method, "Lavage/Necropsy", "Lavage")) %>%
+  mutate(Sampling_method = str_replace(Sampling_method, "Regurgitation/Necropsy", "Regurgitation")) %>%
+  mutate(Sampling_method = str_replace(Sampling_method, "Regurgitation/Lavage", "Regurgitation")) %>%
+  mutate(Sampling_method = str_replace(Sampling_method, "Scat/Necropsy", "Scat"))
+```
+
 ### Select columns for the models
 
 ```{r}
@@ -141,9 +155,16 @@ data_full <- data_all %>%
     AS.Fishery, AS.Refuse, AS.Agriculture,
     ## Study-level predictors
     Source, Date_median, Feeding.method,
-    MarineRegion, freeflying, UniqueID_Plastic.study)
+    MarineRegion, freeflying, UniqueID_Plastic.study, Sampling_method)
 
 ```
+
+## Clean up the names using janitor
+
+```{r}
+data_full <- data_full %>% clean_names()
+```
+
 
 ### Drop species that are not in the phylogeny
 
@@ -172,27 +193,28 @@ Note that we have to include all other variables so they aren't lost in the aggr
 ```{r}
 # Group by all variables except unique study ID
 data_agg <- data_full |> 
-  group_by(Clements2024_Binomial, tips, Order,
+  group_by(clements2024_binomial, tips, order,
            # study level traits
            freeflying,
-           Source, 
-           Date_median, 
-           MarineRegion, 
+           source, 
+           date_median, 
+           marine_region, 
+           sampling_method,
            # species level traits
-           Body.Mass.g,
+           body_mass_g,
            body_mass_2sd, 
-           Diet,
-           Carrion, 
-           Fish,
-           Cephalopods,
-           Crustaceans,
-           Other.Inverts,
-           AS.Fishery,
-           AS.Agriculture,
-           AS.Refuse,
-           Anthropogenic.Subsidy,
-           Pelagic.Specialist,
-           Feeding.method) %>%
+           main_diet = diet,
+           carrion, 
+           fish,
+           cephalopods,
+           crustaceans,
+           other_inverts,
+           as_fishery,
+           as_agriculture,
+           as_refuse,
+           anthropogenic_subsidy,
+           pelagic_specialist,
+           feeding_method) %>%
 # Summarise the n_plastic etc for each
 summarise(n_plastic = sum(n_plastic, na.rm = TRUE),
           n_total = sum(n, na.rm = TRUE),
@@ -255,11 +277,15 @@ write_csv(full_species_list, file = here::here("data/full_species_list_2025-09-1
 Remove a small number of annoying NAs which we aren't able to work with. We lose a few studies, which include few species each, and one species with no diet info. 
 
 ```{r}
-## Remove entries with missing years and diet info
+## Remove entries with missing years and diet and sampling method info
+# Also remove the nestbound individuals
 data_agg_noNAs <- data_agg %>%
-  filter(!is.na(Date_median)) %>%
-  filter(!is.na(Carrion)) %>%
-  filter(!is.na(Body.Mass.g))
+  filter(!is.na(date_median)) %>%
+  filter(!is.na(main_diet)) %>%
+  filter(!is.na(carrion)) %>%
+  filter(!is.na(body_mass_g)) %>%
+  filter(!is.na(sampling_method)) %>%
+  filter(freeflying == 1 | is.na(freeflying))
 ```
 
 ## Write out full dataset
@@ -279,8 +305,8 @@ check$tree_not_data # species with no plastic data
 
 # Drop tips
 seabird_tree_plastic <- drop.tip(seabird_tree, check$tree_not_data)
-str(seabird_tree_plastic) # Should have 231 tips
-length(unique(data_agg_noNAs$tips)) # Should be 231
+str(seabird_tree_plastic) # Should have 230 tips
+length(unique(data_agg_noNAs$tips)) # Should be 230
 
 # Write to file
 write.nexus(seabird_tree_plastic, file = here::here("data/seabird_tree_plastic_2025-09-15.nex"))
