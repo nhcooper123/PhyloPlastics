@@ -1,0 +1,352 @@
+---
+title: "Exploring the data: distribution across taxonomy/phylogeny"
+format: html
+editor: visual
+---
+
+Load libraries
+```{r}
+library(ape)
+library(tidyverse)
+library(geiger)
+library(tidytree)
+library(treeio)
+library(ggtree)
+library(knitr)
+library(ggstance)
+library(patchwork)
+library(here)
+
+# Helper functions for plotting
+remove_y <- 
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+
+remove_x <- 
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+# Colour palette
+order_colours <- c("#ffd92f","#fc8d62","#8da0cb","#b3b3b3",
+                "#a6d854","#66c2a5","#e5c494","#e78ac3")
+```
+
+Read in the tree and the data, including the full list of seabirds and whether they have been studied and if they have plastic if they have been studied.
+
+```{r}
+tree <- read.nexus(here("data/family-tree.nex"))
+full <- read_csv(here("data/full_species_list_2025-09-16.csv"))
+taxa <- read_csv(here("data-raw/seabird-list-Clements2024_2025-09-10.csv"))
+```
+Combine full data with taxonomic info and simplify the family names
+```{r}
+# Create a tips column in the taxa dataset
+taxa <- taxa %>% mutate(tips = str_replace(Clements2024_Binomial, " ", "_"))
+# join to plastic data
+all <- left_join(full, taxa)
+
+# Simplify family names
+all <-
+  all %>%
+  mutate(Family = case_when(Clements2024_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
+                            Clements2024_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
+                            Clements2024_Family == "Stercorariidae (Skuas and Jaegers)" ~ "Stercorariidae",      
+                            Clements2024_Family == "Alcidae (Auks, Murres, and Puffins)" ~ "Alcidae",     
+                            Clements2024_Family == "Laridae (Gulls, Terns, and Skimmers)" ~ "Laridae",    
+                            Clements2024_Family == "Phaethontidae (Tropicbirds)" ~ "Phaethontidae",            
+                            Clements2024_Family == "Gaviidae (Loons)" ~ "Gaviidae",                        
+                            Clements2024_Family == "Spheniscidae (Penguins)" ~ "Spheniscidae",                
+                            Clements2024_Family == "Diomedeidae (Albatrosses)" ~ "Diomedeidae",               
+                            Clements2024_Family == "Oceanitidae (Southern Storm-Petrels)" ~ "Oceanitidae",    
+                            Clements2024_Family == "Hydrobatidae (Northern Storm-Petrels)" ~ "Hydrobatidae",   
+                            Clements2024_Family == "Procellariidae (Shearwaters and Petrels)"~ "Procellariidae",
+                            Clements2024_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
+                            Clements2024_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
+                            Clements2024_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
+                            Clements2024_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae"))      
+
+```
+
+Now let's look at the numbers per family, and how the % coverage looks for each family relative to the studies and to the taxonomic distributions...
+
+```{r}
+# Get summary numbers per family
+family_ds <-
+  all %>%
+  group_by(Clements2024_Order, Family) %>%
+  # total studies per family
+  summarise(total_studies = sum(n_studies),
+           # total species per family
+            total_taxa = n(),
+  # total species with plastic per family
+  total_plastic = length(which(plastic == "yes")),
+  # total species studied per family
+  total_species_studied = length(which(!is.na(plastic)))) %>%
+  # percentage of taxa that have been studied
+  mutate(percent_taxa = (total_species_studied/total_taxa) * 100) %>%
+  mutate(percent_plastic = (total_plastic/total_species_studied) * 100) %>%
+  rename(Order = Clements2024_Order)
+
+# look at it 
+family_ds
+
+# Save results
+#write_csv(family_ds, here("output/family-coverage.csv"))
+```
+
+
+Next let's do the same for the order, and how the % coverage looks for each family relative to the studies and to the taxonomic distributions...
+
+```{r}
+# Get summary numbers
+order_ds <-
+  all %>%
+  group_by(Clements2024_Order) %>%
+  # total studies per order
+  summarise(total_studies = sum(n_studies),
+           # total species per order
+            total_taxa = n(),
+  # total species with plastic per order
+  total_plastic = length(which(plastic == "yes")),
+  # total species studied per order
+  total_species_studied = length(which(!is.na(plastic)))) %>%
+  # percentage of taxa that have been studied
+  mutate(percent_taxa = (total_species_studied/total_taxa) * 100) %>%
+  mutate(percent_plastic = (total_plastic/total_species_studied) * 100) %>%
+  rename(Order = Clements2024_Order)
+
+# look at it 
+order_ds
+
+# Save results
+#write_csv(order_ds, here("output/order-coverage.csv"))
+```
+
+### Plots of distributions
+
+Family level plots
+```{r}
+# Number of studies
+p1 <- 
+  ggplot(family_ds, aes(y = total_studies, x = Family, fill = Order)) + 
+  geom_bar(position = position_stack(reverse = TRUE), stat = "identity") +
+  scale_fill_manual(values = order_colours) +
+  coord_flip() +
+  theme_bw(base_size = 14) +
+  #scale_y_continuous(breaks=seq(0,45,5)) +
+  xlab("Family") +
+  ylab("studies (n)") +
+  theme(legend.position = "none")
+
+# Number of species studied
+p2 <-
+  ggplot(family_ds, aes(y = total_taxa, x = Family, fill = Order)) + 
+  geom_bar(position = position_stack(reverse = TRUE), stat = "identity") +
+  scale_fill_manual(values = order_colours) +
+  coord_flip() +
+  theme_bw(base_size = 14) +
+  #scale_y_continuous(breaks=seq(0,45,5)) +
+  xlab("Family") +
+  ylab("species (n)") +
+  theme(legend.position = "none")
+
+# % coverage
+p3 <- 
+  ggplot(family_ds, aes(y = percent_taxa, x = Family, fill = Order)) + 
+  geom_bar(position = position_stack(reverse = TRUE), stat = "identity") +
+  scale_fill_manual(values = order_colours) +
+  coord_flip() +
+  theme_bw(base_size = 14) +
+  #scale_y_continuous(breaks=seq(0,45,5)) +
+  xlab("Family") +
+  ylab("% coverage") +
+  theme(legend.position = "none") +
+  remove_y
+
+# % plastic
+p4 <- 
+  ggplot(family_ds, aes(y = percent_plastic, x = Family, fill = Order)) + 
+  geom_bar(position = position_stack(reverse = TRUE), stat = "identity") +
+  scale_fill_manual(values = order_colours) +
+  coord_flip() +
+  theme_bw(base_size = 14) +
+  #scale_y_continuous(breaks=seq(0,45,5)) +
+  xlab("Family") +
+  ylab("% with plastic") +
+  theme(legend.position = "right") +
+  remove_y
+
+#p1 + p4
+# Save plot
+#ggsave(here("figures/family-level-plastic-coverage.png"), width = 10)
+
+p2 + p3 + p4
+# Save plot
+#ggsave(here("figures/family-level-species-coverage.png"), width = 8)
+
+```
+
+Order level plots
+```{r}
+# Number of studies
+p1 <- 
+  ggplot(order_ds, aes(y = total_studies, x = Order, fill = Order)) + 
+  geom_bar(position = position_stack(reverse = TRUE), stat = "identity") +
+  scale_fill_manual(values = order_colours) +
+  coord_flip() +
+  theme_bw(base_size = 14) +
+  #scale_y_continuous(breaks=seq(0,45,5)) +
+  xlab("Order") +
+  ylab("studies (n)") +
+  theme(legend.position = "none")
+
+# Number of species studied
+p2 <-
+  ggplot(order_ds, aes(y = total_taxa, x = Order, fill = Order)) + 
+  geom_bar(position = position_stack(reverse = TRUE), stat = "identity") +
+  scale_fill_manual(values = order_colours) +
+  coord_flip() +
+  theme_bw(base_size = 14) +
+  #scale_y_continuous(breaks=seq(0,45,5)) +
+  xlab("Order") +
+  ylab("species (n)") +
+  theme(legend.position = "none")
+
+# % coverage
+p3 <- 
+  ggplot(order_ds, aes(y = percent_taxa, x = Order, fill = Order)) + 
+  geom_bar(position = position_stack(reverse = TRUE), stat = "identity") +
+  scale_fill_manual(values = order_colours) +
+  coord_flip() +
+  theme_bw(base_size = 14) +
+  #scale_y_continuous(breaks=seq(0,45,5)) +
+  xlab("Order") +
+  ylab("% coverage") +
+  theme(legend.position = "none") +
+  remove_y
+
+# % plastic
+p4 <- 
+  ggplot(order_ds, aes(y = percent_plastic, x = Order, fill = Order)) + 
+  geom_bar(position = position_stack(reverse = TRUE), stat = "identity") +
+  scale_fill_manual(values = order_colours) +
+  coord_flip() +
+  theme_bw(base_size = 14) +
+  #scale_y_continuous(breaks=seq(0,45,5)) +
+  xlab("Order") +
+  ylab("% with plastic") +
+  theme(legend.position = "none") +
+  remove_y
+
+#p1 + p4
+# Save plot
+#ggsave(here("figures/order-level-plastic-coverage.png"), width = 10)
+
+p2 + p3 + p4
+# Save plot
+#ggsave(here("figures/order-level-species-coverage.png"), height = 5)
+```
+
+### Plotting on the phylogeny
+
+Ensure the data is in the same order as the tree and make it into a dataframe
+```{r}
+# Reorder to match tree
+family_ds <- family_ds[match(tree$tip.label, family_ds$Family),]
+
+# Reorder the columns so Family is first
+family_ds <-
+  family_ds %>%
+  select(Family, everything())
+
+# Add rownames as family names
+rownames(family_ds) <- family_ds$Family
+
+# Make sure family_ds is a dataframe
+family_ds <- as.data.frame(family_ds)
+```
+
+Make trees using ggtree.
+
+Note that this code will throw lots of warnings about scales which can be ignored
+```{r}
+# Add colours for orders in the same order as the tree
+tree_colours <- c("#ffd92f", rep("#fc8d62", 4), 
+                  "#8da0cb","#b3b3b3", rep("#e78ac3",3),
+                 "#e5c494", rep("#66c2a5", 4),"#a6d854")
+
+# Make the tree base
+base <- 
+  ggtree(tree) +
+  #geom_tiplab(geom = "text", offset = 5, colour = tree_colours)
+  geom_tiplab(geom = "text", offset = 5)
+
+# Plot species numbers as facet
+p1 <- facet_plot(base, panel = 'Species (n)', 
+                data = family_ds, 
+                geom = geom_barh, 
+                mapping = aes(x = total_taxa,
+                              fill = Order), 
+                stat = 'identity') +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = order_colours)
+
+# Plot % coverage as facet on top of old facet
+p2 <- 
+  facet_plot(p1, panel = 'Coverage (%)', 
+                data = family_ds, 
+                geom = geom_barh, 
+                mapping = aes(x = percent_taxa,
+                              fill = Order), 
+                stat = 'identity') +
+  theme_bw(base_size = 14) + 
+  theme(legend.position = "right", legend.title = element_blank(),
+        strip.background = element_rect(fill="white")) +
+  #xlim_tree(200) + 
+  #xlim_expand(c(0, 5), 'Coverage (%)') +
+  remove_y +
+  scale_fill_manual(values = order_colours)
+
+# Plot % coverage as facet on top of old facet
+p3 <- 
+  facet_plot(p2, panel = 'Plastic (%)', 
+                data = family_ds, 
+                geom = geom_barh, 
+                mapping = aes(x = percent_plastic,
+                              fill = Order), 
+                stat = 'identity') +
+  theme_bw(base_size = 14) + 
+  theme(legend.position = "right", legend.title = element_blank(),
+        strip.background = element_rect(fill="white")) +
+  xlim_tree(300) + 
+  xlim_expand(c(0, 5), 'Plastic (%)') +
+  remove_y +
+  scale_fill_manual(values = order_colours)
+
+
+p3
+
+# Save the plot
+#ggsave(here("figures/phylogeny-data-coverage.png"), height = 7, width = 10)
+
+
+#### NOT INCLUDED BUT LEFT HERE FOR REFERENCE
+
+# Creat new mini dataset to add the x labels
+#d <- data.frame(.panel = c('Tree', 'Species in dataset (n)', 'Taxonomic coverage (%)'), 
+#                lab = c("time (MYA)", "number", "%"), 
+#                x = c(250, 20, 50), y = -2)
+
+# Add x labels
+#p2 + scale_y_continuous(limits = c(0, 45), 
+                        #expand = c(0,0), 
+                        #oob = function(x, ...) x) +
+    #geom_text(aes(label = lab), data=d) + 
+    #coord_cartesian(clip = 'off')  + 
+    #theme(plot.margin = margin(6, 6, 40, 6))
+```
+
+
+
