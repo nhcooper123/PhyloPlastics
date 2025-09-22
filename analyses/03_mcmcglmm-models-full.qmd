@@ -183,10 +183,13 @@ mcmc_areas(posterior_samples, prob = 0.8, prob_outer = 0.95) + labs(title = "Pos
 
 # Prior testing
 
-# Set up new priors for MCMCglmm
+Set up new priors for MCMCglmm to ensure that the results are not due to prior specifications.
 
-# Inverse Wishart with V = 1 and nu = 1
-
-prior \<- list( G = list( G1 = list(V = 1, nu = 1), \# for HBWv8.1_Binomial (phylogeny) G2 = list(V = 1, nu = 1) \# for Source (study) ), R = list(V = 1, nu = 1) \# residual variance )
+```{r}
+priors_new <- list(G = list(G1 = list(V = 1, nu = 1), # for HBWv8.1_Binomial (phylogeny) 
+                            G2 = list(V = 1, nu = 1), # for Source (study), 
+                            G3 = list(V = 1, nu = 1), # marine region
+                            G4 = list(V = 1, nu = 1)), # date
+                            R = list(V = 1, nu = 1)) # residual variance
                           
 ```
