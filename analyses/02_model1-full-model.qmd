@@ -35,44 +35,44 @@ source(here::here("analyses/functions.R"))
 Read in data and tree, without NAs
 ```{r}
 # Read in data
-data_noNA <- readr::read_csv(file = here::here("data/plastic-data-aggregated-noNA.csv"))
+data_noNA <- read_csv(file = here::here("data/plastic-data-aggregated_2025-09-15.csv"))
 
 # Read in tree
-tree <- read.nexus(here::here("data/plastic-tree-noNA.nex"))
+tree <- read.nexus(here::here("data/seabird_tree_plastic_2025-09-15.nex"))
 
 # Make this into a variance covariance matrix for the models
 A.matrix <- ape::vcv.phylo(tree)
 
 # Unite the diet categories
 data_noNA_trait <- data_noNA |> 
-  unite(col = "diet_type", Carrion.NonFishVertebrates:AS.Refuse)
+  unite(col = "diet_type", Carrion:AS.Refuse)
 ```
 
-Fit a full model
+### Fit a full model
 
 Note that we need to specify to use brms for bf (`brms::bf`) as it is an internal function in geiger and can cause issues if this package is already loaded.
 
 1. We are modelling this as a binomial response, with number of individuals with plastics and total number of individuals jointly modelled.
-2. is_freeflying has a lot of missing data where it was not specified whether birds were freeflying or nestbound. We don't want to lose all this data so we're going to fit 
+2. freeflying has a lot of missing data where it was not specified whether birds were freeflying or nestbound. We don't want to lose all this data so we're going to fit 
 
 
 ```{r model-fit, eval=TRUE}
 model1_full_model_bf <- brms::bf(
   n_plastic | trials(n_total) ~ 1 + 
-    mi(is_freeflying) + 
+    mi(freeflying) + 
 # mi tells brms that is_freeflying contains missing data that should be modelled, not excluded from the model. This parameter is shit - really low ESS. Do we need to include it?
     Date_median + 
     (1 | Source) + 
     (1 | MarineRegion) + 
-    (1 + Date_median| HBWv8.1_Binomial) + 
+    (1 + Date_median| Clements2024_Binomial) + 
     (1               | gr(tips, cov = A)) + 
     (0 + Date_median | gr(tips, cov = A)) + 
     (1|diet_type)  + 
-    (1 | Feeding.Method.Simple) +
+    (1 | Feeding.method) +
     body_mass_2sd + 
-    pelagic_specialist_CR,
+    Pelagic.Specialist,
   family = "binomial") + 
-  brms::bf(is_freeflying | mi() ~ 1 + (1|Source)) + 
+  brms::bf(freeflying | mi() ~ 1 + (1|Source)) + 
   set_rescor(FALSE)
 ```
 
@@ -80,14 +80,14 @@ Set priors
 
 ```{r}
 model1_full_model_priors <- c(
-  prior(normal(.5, .5), class = "Intercept", resp = "isfreeflying"),
-  prior(exponential(3), class = "sd",        resp = "isfreeflying"),
-  prior(exponential(1), class = "sd",        resp = "nplastic"),
-  prior(normal(0, .2),  class = "Intercept", resp = "nplastic"),
-  prior(normal(0, .2),  class = "b", coef = "Date_median", resp = "nplastic"),
-  prior(normal(1, .5),  class = "b", coef = "miis_freeflying", resp = "nplastic"),
-  prior(lkj(2),         class = "cor", group = "HBWv8.1_Binomial"),
-  prior(normal(0, .2), class = "b", resp = "nplastic")
+  prior(normal(.5, .5), class = "Intercept", resp = "freeflying"),
+  prior(exponential(3), class = "sd",        resp = "freeflying"),
+  prior(exponential(1), class = "sd",        resp = "n_plastic"),
+  prior(normal(0, .2),  class = "Intercept", resp = "n_plastic"),
+  prior(normal(0, .2),  class = "b", coef = "Date_median", resp = "n_plastic"),
+  prior(normal(1, .5),  class = "b", coef = "mifreeflying", resp = "n_plastic"),
+  prior(lkj(2),         class = "cor", group = "Clements2024_Binomial"),
+  prior(normal(0, .2), class = "b", resp = "n_plastic")
 )
 ```
 
