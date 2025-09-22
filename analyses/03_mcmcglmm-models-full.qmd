@@ -1,0 +1,192 @@
+---
+title: "MCMC glmm models"
+format: html
+editor: visual
+---
+
+```{r setup}
+# Load libraries
+library(MCMCglmm)
+library(tidyverse)
+library(tidybayes)
+library(ape)
+library(here)
+library(coda)
+```
+
+Read in data and tree
+
+```{r}
+# Read in data
+# Use read.csv because read_csv creates tibbles which MCMCglmm hates
+plastic_data <- read.csv(file = here::here("data/plastic-data-aggregated_2025-09-15.csv"))
+
+# Read in tree
+plastic_tree <- read.nexus(here::here("data/seabird_tree_plastic_2025-09-15.nex"))
+# Replace plotomies with 0 length branches
+plastic_tree<- di2multi(plastic_tree)
+# Make this into an inverse variance covariance matrix for the models
+inv.phylo <- inverseA(plastic_tree, nodes = "TIPS", scale = TRUE)$Ainv
+
+# Unite the diet categories
+plastic_data <- plastic_data %>%
+  unite(col = "diet_type", carrion:as_refuse, remove = FALSE)
+```
+
+mydata \<- mydata %\>% mutate(variable1_Z = scale(log(mydata(variable1))) %\>% mutate(variable2_Z = scale(abs(mydata)variable2)))
+
+### Fit a full model
+
+We are modelling this as a binomial response, with number of individuals with plastics and total number of individuals jointly modelled. Need priors for each random effect.
+
+```{r}
+# Set up priors for MCMCglmm
+# Inverse Wishart with V = 1 and nu = 0.02
+# i.e. fairly uninformative priors
+# G is the random effects
+prior <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
+                       G2 = list(V = 1, nu = 0.02), # source
+                       G3 = list(V = 1, nu = 0.02), # marine region
+                       G4 = list(V = 1, nu = 0.02)), # date
+              R = list(V = 1, nu = 0.02))
+
+```
+
+Set values for iterations, burnin and thinning interval
+```{r}
+nitt <- 10000000
+thin <- 10000
+burnin <- 100000
+```
+
+Fit the model
+
+```{r}
+model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         fish + carrion + cephalopods + other_inverts + crustaceans +
+                         as.factor(feeding_method) + 
+                         pelagic_specialist + 
+                         body_mass_2sd, 
+                   data = plastic_data, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            date_median,
+                   ginverse = list(tips = inv.phylo), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+```
+
+
+Suggested priors?
+#model1_full_model_priors <- c(
+ # prior(normal(.5, .5), class = "Intercept", resp = "freeflying"),
+ # prior(exponential(3), class = "sd",        resp = "freeflying"),
+ # prior(exponential(1), class = "sd",        resp = "n_plastic"),
+ # prior(normal(0, .2),  class = "Intercept", resp = "n_plastic"),
+ # prior(normal(0, .2),  class = "b", coef = "Date_median", resp = "n_plastic"),
+ # prior(normal(1, .5),  class = "b", coef = "mifreeflying", resp = "n_plastic"),
+ # prior(lkj(2),         class = "cor", group = "Clements2024_Binomial"),
+ # prior(normal(0, .2), class = "b", resp = "n_plastic")
+)
+
+Did the model converge? 
+
+## Plot model diagnostics for MCMCglmm
+
+For fixed effects
+
+```{r}
+plot(model_full$Sol)
+```
+
+For random effects
+
+```{r}
+plot(model_full$VCV)
+```
+
+```{r}
+summary(model_full)
+```
+
+Calculate ESS
+
+```{r}
+effectiveSize(model_full$Sol[, 1:model_full$Fixed$nfl, drop = FALSE])[[1]] 
+```
+
+If this is above 200 so model has converged
+
+Look for autocorrelation
+
+```{r}
+autocorr(model_full$VCV) # Autocorrelation close to 0
+```
+
+Look at summary of fixed effect results
+```{r}
+summary(model_full)$solutions
+```
+
+Look at G-structure and R-structure posterior modes
+
+```{r}
+posterior.mode(model_full$VCV)
+```
+
+Look at G-structure and R-structure 95% credible intervals
+
+```{r}
+HPDinterval(model_full$VCV)
+```
+
+DIC
+
+```{r}
+model_full$DIC 
+```
+
+How much variance is explained by phylogeny?
+
+```{r}
+summary(model_full)$Gcovariances # Look at phylogenetic variance component
+```
+```{r}
+# Get lambda
+lambda <- model_full$VCV[,'tips']/
+  (model_full$VCV[,'tips'] + model_full$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda)
+# Posterior mode of lambda
+posterior.mode(lambda) 
+# HPD interval 
+HPDinterval(lambda)
+```
+
+# visualise
+```{r}
+library(bayesplot)
+
+# Extract posterior samples if available
+
+posterior_samples <- model_full$Sol
+
+# Create a posterior plot
+
+mcmc_areas(posterior_samples, prob = 0.8, prob_outer = 0.95) + labs(title = "Posterior Distributions", x = "Parameter Value")
+
+```
+
+# Prior testing
+
+# Set up new priors for MCMCglmm
+
+# Inverse Wishart with V = 1 and nu = 1
+
+prior \<- list( G = list( G1 = list(V = 1, nu = 1), \# for HBWv8.1_Binomial (phylogeny) G2 = list(V = 1, nu = 1) \# for Source (study) ), R = list(V = 1, nu = 1) \# residual variance )
+                          
+```
