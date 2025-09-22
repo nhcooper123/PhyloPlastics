@@ -164,3 +164,65 @@ length(x2$data_not_tree) # Should be 6
 
 # Write out
 write.nexus(seabird_tree, file = "data/seabird-tree-Claramont2025_2025-09-11.nex")
+
+# ---------------------------------------------------------------------------
+# Create a family level tree
+# ---------------------------------------------------------------------------
+
+# Select one species per family
+ds1 <- 
+  seabirds %>%
+  select(Clements2024_Binomial, Clements2024_Family) %>%
+  mutate(dup = duplicated(seabirds$Clements2024_Family)) %>%
+  filter(dup != TRUE) %>%
+  select(Clements2024_Binomial, Clements2024_Family)
+
+# Simplify family names
+ds1 <-
+  ds1 %>%
+  mutate(Family = case_when(Clements2024_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
+                            Clements2024_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
+                            Clements2024_Family == "Stercorariidae (Skuas and Jaegers)" ~ "Stercorariidae",      
+                            Clements2024_Family == "Alcidae (Auks, Murres, and Puffins)" ~ "Alcidae",     
+                            Clements2024_Family == "Laridae (Gulls, Terns, and Skimmers)" ~ "Laridae",    
+                            Clements2024_Family == "Phaethontidae (Tropicbirds)" ~ "Phaethontidae",            
+                            Clements2024_Family == "Gaviidae (Loons)" ~ "Gaviidae",                        
+                            Clements2024_Family == "Spheniscidae (Penguins)" ~ "Spheniscidae",                
+                            Clements2024_Family == "Diomedeidae (Albatrosses)" ~ "Diomedeidae",               
+                            Clements2024_Family == "Oceanitidae (Southern Storm-Petrels)" ~ "Oceanitidae",    
+                            Clements2024_Family == "Hydrobatidae (Northern Storm-Petrels)" ~ "Hydrobatidae",   
+                            Clements2024_Family == "Procellariidae (Shearwaters and Petrels)"~ "Procellariidae",
+                            Clements2024_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
+                            Clements2024_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
+                            Clements2024_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
+                            Clements2024_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae"))      
+
+# Identify missing species
+check <- name.check(phy = seabird_tree, 
+                    data = ds1, data.names = ds1$Clements2024_Binomial)
+
+# This should be 0
+check$data_not_tree
+
+# Drop species missing from the trees which are not in our data using drop.tip
+familytree <- drop.tip(seabird_tree, check$tree_not_data)
+
+# Look at it
+# Should have 16 tips
+familytree
+
+# Replace tip labels with Family names
+
+# Sort data by tree tip labels
+ds1 <- ds1[match(familytree$tip.label, ds1$Clements2024_Binomial), ]
+
+# Replace species tips with family names
+for(x in 1:length(ds1$Clements2024_Binomial)){
+  family <- ds1$Family[x]
+  tip <- familytree$tip.label[x]
+  familytree$tip.label <- gsub(tip, family, familytree$tip.label)
+}
+
+#Save tree for future use
+write.nexus(familytree, file = here("data/family-tree.nex"))
+
