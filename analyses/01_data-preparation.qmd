@@ -42,7 +42,7 @@ plot(seabird_tree, no.margin = TRUE, cex = 0.5, type = "fan")
 These are datasets from Sept 2025. ***Update to most recent***.
 ```{r}
 # Read in trait data and plastic data
-data_traits <- read_csv(here::here("data-raw/trait-data-2025-09-12.csv"))
+data_traits <- read_csv(here::here("data-raw/trait-data-2025-09-24.csv"))
 data_plastic <- read_csv(here::here("data-raw/plastic-ingestion-data-2025-09-12.csv"))
 
 # Look at the data
@@ -88,7 +88,9 @@ data_all <- data_all %>%
   mutate(across(c(Carrion, Cephalopods, Crustaceans, Fish,
                   Other.Inverts, Anthropogenic.Subsidy,
                   Pelagic.Specialist,
-                  AS.Fishery, AS.Refuse, AS.Agriculture),
+                  AS.Fishery, AS.Refuse, AS.Agriculture,
+                  aerial_pursuit, bottom_feeding, diving, 
+                  plunging, scavenging, skimming, surface_seizing, terrestrial_feeding),
                 ~ if_else(.x == "Yes", true = 1, false = 0)))
 ```
 
@@ -153,6 +155,8 @@ data_full <- data_all %>%
     Other.Inverts, Anthropogenic.Subsidy,
     Pelagic.Specialist,
     AS.Fishery, AS.Refuse, AS.Agriculture,
+    aerial_pursuit, bottom_feeding,
+    diving, plunging, scavenging, skimming, surface_seizing, terrestrial_feeding,
     ## Study-level predictors
     Source, Date_median, Feeding.method,
     MarineRegion, freeflying, UniqueID_Plastic.study, Sampling_method)
@@ -214,7 +218,15 @@ data_agg <- data_full |>
            as_refuse,
            anthropogenic_subsidy,
            pelagic_specialist,
-           feeding_method) %>%
+           feeding_method,
+           aerial_pursuit, 
+           bottom_feeding,
+           diving, 
+           plunging, 
+           scavenging, 
+           skimming, 
+           surface_seizing, 
+           terrestrial_feeding) %>%
 # Summarise the n_plastic etc for each
 summarise(n_plastic = sum(n_plastic, na.rm = TRUE),
           n_total = sum(n, na.rm = TRUE),
