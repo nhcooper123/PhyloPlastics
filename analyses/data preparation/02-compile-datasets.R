@@ -95,7 +95,8 @@ cleaned_traits <-
          Common.Name = Clements2024_Common_name, Feeding.method = Feeding.Method.Simple, Diet,
          Fish, Cephalopods, Crustaceans, Other.Inverts, Carrion = Carrion.NonFishVertebrates, 
          Anthropogenic.Subsidy, Pelagic.Specialist = pelagic_specialist_CR, 
-         Body.Mass.g, AS.Fishery, AS.Refuse, AS.Agriculture)
+         Body.Mass.g, AS.Fishery, AS.Refuse, AS.Agriculture, aerial_pursuit, bottom_feeding,
+         diving, plunging, scavenging, skimming, surface_seizing, terrestrial_feeding)
 
 # Save file
-write_csv(cleaned_traits, "data-raw/trait-data-2025-09-12.csv")
+write_csv(cleaned_traits, "data-raw/trait-data-2025-09-24.csv")
