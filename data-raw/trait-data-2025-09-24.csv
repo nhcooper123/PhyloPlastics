@@ -253,7 +253,7 @@ Pseudobulweria macgillivrayi,Procellariiformes,Procellariidae,Pseudobulweria,Fij
 Pseudobulweria rostrata,Procellariiformes,Procellariidae,Pseudobulweria,Tahiti Petrel,Surface.Seizing,Cephalopods,No,Yes,Yes,Yes,Yes,No,Yes,409,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma alba,Procellariiformes,Procellariidae,Pterodroma,Phoenix Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,259,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma arminjoniana,Procellariiformes,Procellariidae,Pterodroma,Trindade Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,Yes,No,No,Yes,394,No,No,No,Yes,No,No,Yes,No,No,Yes,No
-Pterodroma atrata,Procellariiformes,Procellariidae,Pterodroma,Henderson Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,300,No,No,No,No,No,No,No,No,No,No,No
+Pterodroma atrata,Procellariiformes,Procellariidae,Pterodroma,Henderson Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,300,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma axillaris,Procellariiformes,Procellariidae,Pterodroma,Chatham Islands Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,No,No,No,Yes,165,No,No,No,No,No,No,No,No,No,No,No
 Pterodroma baraui,Procellariiformes,Procellariidae,Pterodroma,Barau's Petrel,Surface.Seizing,Fish,Yes,Yes,Yes,No,No,No,Yes,400,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma brevipes,Procellariiformes,Procellariidae,Pterodroma,Collared Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,No,No,No,Yes,136,No,No,No,No,No,No,No,No,No,Yes,No
@@ -261,9 +261,9 @@ Pterodroma cahow,Procellariiformes,Procellariidae,Pterodroma,Bermuda Petrel,Surf
 Pterodroma caribbaea,Procellariiformes,Procellariidae,Pterodroma,Jamaican Petrel,Surface.Seizing,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA,NA,NA,No,No,No,No,No,No,No,No
 Pterodroma cervicalis,Procellariiformes,Procellariidae,Pterodroma,White-necked Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,No,No,No,Yes,445,No,No,No,Yes,No,No,No,No,No,Yes,No
 Pterodroma cookii,Procellariiformes,Procellariidae,Pterodroma,Cook's Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,Yes,No,Yes,178.5,No,No,No,No,No,No,No,No,No,Yes,No
-Pterodroma defilippiana,Procellariiformes,Procellariidae,Pterodroma,Masatierra Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,Yes,No,No,Yes,169,No,No,No,No,No,No,No,No,No,No,No
+Pterodroma defilippiana,Procellariiformes,Procellariidae,Pterodroma,Masatierra Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,Yes,No,No,Yes,169,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma externa,Procellariiformes,Procellariidae,Pterodroma,Juan Fernandez Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,No,No,No,Yes,428,No,No,No,Yes,No,No,No,No,No,Yes,No
-Pterodroma feae,Procellariiformes,Procellariidae,Pterodroma,Fea's Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,No,No,No,Yes,311,No,No,No,No,No,No,No,No,No,No,No
+Pterodroma feae,Procellariiformes,Procellariidae,Pterodroma,Fea's Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,No,No,No,Yes,311,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma gouldi,Procellariiformes,Procellariidae,Pterodroma,Gray-faced Petrel,NA,Cephalopods,Yes,Yes,Yes,No,No,Yes,Yes,672.5,Yes,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma hasitata,Procellariiformes,Procellariidae,Pterodroma,Black-capped Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,Yes,No,No,Yes,278,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma heraldica,Procellariiformes,Procellariidae,Pterodroma,Herald Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,Yes,No,No,Yes,266,No,No,No,Yes,No,No,Yes,No,No,Yes,No
@@ -272,18 +272,18 @@ Pterodroma incerta,Procellariiformes,Procellariidae,Pterodroma,Atlantic Petrel,S
 Pterodroma inexpectata,Procellariiformes,Procellariidae,Pterodroma,Mottled Petrel,Plunging,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,316,No,No,No,No,No,No,Yes,No,No,Yes,No
 Pterodroma lessonii,Procellariiformes,Procellariidae,Pterodroma,White-headed Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,695,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma leucoptera,Procellariiformes,Procellariidae,Pterodroma,Gould's Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,Yes,No,No,Yes,185,No,No,No,No,No,No,No,No,No,Yes,No
-Pterodroma longirostris,Procellariiformes,Procellariidae,Pterodroma,Stejneger's Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,Yes,No,No,Yes,143,No,No,No,No,No,No,No,No,No,No,No
+Pterodroma longirostris,Procellariiformes,Procellariidae,Pterodroma,Stejneger's Petrel,Surface.Seizing,Cephalopods,Yes,Yes,No,Yes,No,No,Yes,143,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma macroptera,Procellariiformes,Procellariidae,Pterodroma,Great-winged Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,532.5,No,No,No,No,No,No,No,No,No,Yes,No
-Pterodroma madeira,Procellariiformes,Procellariidae,Pterodroma,Zino's Petrel,Surface.Seizing,Fish,Yes,Yes,Yes,No,No,No,Yes,227.5,No,No,No,No,No,No,No,No,No,No,No
-Pterodroma magentae,Procellariiformes,Procellariidae,Pterodroma,Magenta Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,465,No,No,No,No,No,No,No,No,No,No,No
+Pterodroma madeira,Procellariiformes,Procellariidae,Pterodroma,Zino's Petrel,Surface.Seizing,Fish,Yes,Yes,Yes,No,No,No,Yes,227.5,No,No,No,No,No,No,No,No,No,Yes,No
+Pterodroma magentae,Procellariiformes,Procellariidae,Pterodroma,Magenta Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,465,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma mollis,Procellariiformes,Procellariidae,Pterodroma,Soft-plumaged Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,312,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma neglecta,Procellariiformes,Procellariidae,Pterodroma,Kermadec Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,Yes,Yes,501,Yes,No,No,Yes,No,No,No,No,No,Yes,No
 Pterodroma nigripennis,Procellariiformes,Procellariidae,Pterodroma,Black-winged Petrel,Plunging,Crustaceans,No,Yes,Yes,No,No,No,Yes,163,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma phaeopygia,Procellariiformes,Procellariidae,Pterodroma,Galapagos Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,389,No,No,No,No,No,No,No,No,No,Yes,No
-Pterodroma pycrofti,Procellariiformes,Procellariidae,Pterodroma,Pycroft's Petrel,Surface.Seizing,Cephalopods,No,Yes,No,No,No,No,Yes,159,No,No,No,No,No,No,No,No,No,No,No
+Pterodroma pycrofti,Procellariiformes,Procellariidae,Pterodroma,Pycroft's Petrel,Surface.Seizing,Cephalopods,No,Yes,No,No,No,No,Yes,159,No,No,No,No,No,No,No,No,No,Yes,No
 Pterodroma sandwichensis,Procellariiformes,Procellariidae,Pterodroma,Hawaiian Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,No,Yes,434,No,No,No,No,No,No,No,Yes,No,Yes,No
-Pterodroma solandri,Procellariiformes,Procellariidae,Pterodroma,Providence Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,Yes,Yes,471,Yes,No,No,No,No,No,No,No,No,No,No
-Pterodroma ultima,Procellariiformes,Procellariidae,Pterodroma,Murphy's Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,Yes,No,Yes,Yes,360,Yes,No,No,No,No,No,No,No,No,No,No
+Pterodroma solandri,Procellariiformes,Procellariidae,Pterodroma,Providence Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,No,No,Yes,Yes,471,Yes,No,No,No,No,No,No,No,No,Yes,No
+Pterodroma ultima,Procellariiformes,Procellariidae,Pterodroma,Murphy's Petrel,Surface.Seizing,Cephalopods,Yes,Yes,Yes,Yes,No,Yes,Yes,360,Yes,No,No,No,No,No,No,No,No,Yes,No
 Ptychoramphus aleuticus,Charadriiformes,Alcidae,Ptychoramphus,Cassin's Auklet,Diving,Crustaceans,Yes,No,Yes,Yes,No,No,Yes,184,No,No,No,No,No,Yes,No,No,No,No,No
 Puffinus assimilis,Procellariiformes,Procellariidae,Puffinus,Little Shearwater,Plunging,Fish,Yes,Yes,Yes,No,No,No,Yes,226,No,No,No,No,No,Yes,Yes,No,No,Yes,No
 Puffinus auricularis,Procellariiformes,Procellariidae,Puffinus,Townsend's Shearwater,Plunging,Fish,Yes,Yes,Yes,No,No,No,Yes,324,No,No,No,No,No,Yes,Yes,No,No,No,No
