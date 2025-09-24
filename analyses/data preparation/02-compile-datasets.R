@@ -46,7 +46,7 @@ write_csv(cleaned_data, "data-raw/plastic-ingestion-data-2025-09-12.csv")
 # 2. Trait data
 #------------------------------------------
 # Read in the old data and modify as needed
-traits <- read_csv("data-raw/03_trait-data-2025-09-09.csv")
+traits <- read_csv("data-raw/03_trait-data-2025-09-24.csv")
 
 # Update taxonomy to match Clements 2024
 traits$HBWv8.1_Binomial <- gsub("Catharacta antarctica", "Stercorarius antarcticus", traits$HBWv8.1_Binomial) 
