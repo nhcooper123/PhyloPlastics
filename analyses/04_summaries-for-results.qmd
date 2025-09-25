@@ -1,0 +1,35 @@
+---
+title: "Summaries for results section"
+format: html
+editor: visual
+---
+
+## Summaries for results section
+
+```{r}
+plastic_data <- read_csv("data/plastic-data-aggregated_2025-09-15.csv")
+
+plastic <- left_join(plastic_data, all)
+
+
+plastic %>%
+  group_by(order, Family) %>%
+  # total studies per family
+  summarise(total_studies = n())
+
+plastic %>%
+  group_by(order) %>%
+  # total studies per family
+  summarise(total_studies = n())
+
+plastic %>%
+  group_by(order, Family) %>%
+  # total species per family
+  summarise(total_species = length(unique(clements2024_binomial)))
+
+plastic %>%
+  group_by(order) %>%
+  # total species per order
+  summarise(total_species = length(unique(clements2024_binomial)))
+```
+
