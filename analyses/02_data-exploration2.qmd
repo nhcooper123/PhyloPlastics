@@ -367,7 +367,7 @@ ggplot(seabird_data, aes(x = as.factor(sampling_method), fill = as.factor(sampli
 
 ```{r}
 ( (dd + ff) / (mr + sm)) + plot_annotation(tag_levels = c("a"))
-ggsave(file = here("figures/study-level-variables.png"), height = 6)
+#ggsave(file = here("figures/study-level-variables.png"), height = 6)
 ```
 
 Some simple correlative plots
@@ -382,6 +382,11 @@ sumdatSM <-
 sumdatDate <-
   seabird_data %>%
   group_by(date_median) %>%
+  summarise(meanFO = mean(FO), seFO = sqrt(var(FO)/n()))
+
+sumdatMarine <-
+  seabird_data %>%
+  group_by(marine_region) %>%
   summarise(meanFO = mean(FO), seFO = sqrt(var(FO)/n()))
 
 sumdatDiet <-
@@ -411,7 +416,10 @@ ggplot(seabird_data, aes(x = as.factor(sampling_method), y = FO, colour = sampli
                                "#F9C74F","#90BE6D","grey")) +
    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5))  
 
+ggsave(file = here("figures/fo-sampling-method.png"), height = 6)
+```
 
+```{r}
 # Date
 ggplot(seabird_data, aes(x = as.factor(date_median), y = FO)) +
   geom_point(data = sumdatDate, aes(y = meanFO), size = 2) +
@@ -421,6 +429,27 @@ ggplot(seabird_data, aes(x = as.factor(date_median), y = FO)) +
   theme(legend.position = "none") +
   scale_x_discrete(breaks = c(1960, 1970, 1980, 1990, 2000, 2010, 2020))
 
+ggsave(file = here("figures/fo-date.png"), height = 6)
+```
+
+```{r}
+# Ocean basin
+ggplot(seabird_data, aes(x = as.factor(marine_region), y = FO, colour = marine_region)) +
+  geom_jitter(alpha = 0.1, width = 0.3) +
+  geom_point(data = sumdatMarine, aes(y = meanFO), size = 2) +
+  geom_errorbar(data = sumdatMarine, aes(y = meanFO, ymin = meanFO - seFO, ymax = meanFO + seFO), width = 0.1) +
+  xlab("Ocean basin") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_colour_manual(values = c("#F94144","#F3722C","#F8961E",
+                               "#F9C74F","#90BE6D","#43AA8B",
+                               "#577590")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave(file = here("figures/fo-marine-region.png"), height = 6)
+```
+
+```{r}
 # Diet
 ggplot(seabird_data, aes(x = as.factor(main_diet), y = FO, colour = main_diet)) +
   geom_jitter(alpha = 0.1, width = 0.3) +
@@ -435,6 +464,10 @@ ggplot(seabird_data, aes(x = as.factor(main_diet), y = FO, colour = main_diet)) 
   scale_x_discrete(labels = c("carrion", "cephalopods", "crustaceans", "fish", "other inverts")) +
   theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5))
 
+ggsave(file = here("figures/fo-diet.png"), height = 6)
+```
+
+```{r}
 # Feeding method
 ggplot(seabird_data, aes(x = as.factor(feeding_method), y = FO, colour = feeding_method)) +
   geom_jitter(alpha = 0.1, width = 0.3) +
@@ -450,6 +483,5 @@ ggplot(seabird_data, aes(x = as.factor(feeding_method), y = FO, colour = feeding
                               "plunging", "scavenging", "skimming", "surface seizing")) +
   theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5))
 
-
-
+#ggsave(file = here("figures/fo-feeding-method.png"), height = 6)
 ```
