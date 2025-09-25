@@ -304,13 +304,13 @@ Species-level variables, i.e. feeding, body size etc.
 # (f + c + cp) / (cr + plot_spacer()+ oi) / (aa + af + ar)
 #ggsave(file = here("output/species-level-variables.png"), height = 8)
 
-diet  / (c + cp) / (cr + f) / (oi + aa) / (af + ar)
+(diet  / (c + cp) / (cr + f) / (oi + aa) / (af + ar)) + plot_annotation(tag_levels = 'a')
 #ggsave(file = here("figures/diet-variables.png"), height = 8)
 
-fm / (aerial + bottom) / (dive + plunge) / (terr + scavenge) / (skim + surface)
+(fm / (aerial + bottom) / (dive + plunge) / (terr + scavenge) / (skim + surface)) + plot_annotation(tag_levels = 'a')
 #ggsave(file = here("figures/feeding-variables.png"), height = 8)
 
-bm + ps
+bm + ps + plot_annotation(tag_levels = 'a')
 #ggsave(file = here("figures/other-variables.png"), height = 4)
 ```
 
@@ -366,8 +366,8 @@ ggplot(seabird_data, aes(x = as.factor(sampling_method), fill = as.factor(sampli
 ```
 
 ```{r}
- (dd + ff) / (mr + sm)
-ggsave(file = here("output/study-level-variables.png"), height = 6)
+( (dd + ff) / (mr + sm)) + plot_annotation(tag_levels = c("a"))
+ggsave(file = here("figures/study-level-variables.png"), height = 6)
 ```
 
 Some simple correlative plots
