@@ -33,8 +33,8 @@ plastic_data <- plastic_data %>%
   unite(col = "diet_type", carrion:as_refuse, remove = FALSE)
 
 # Replace NAs for 0 for mixed freeflying
-plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying) ~ 0,
-                                                               freeflying == 1 ~ 1)
+plastic_data <- plastic_data %>% mutate(freeflying2 = case_when(is.na(freeflying) ~ 0,
+                                                               freeflying == 1 ~ 1))
 ```
 
 ### Fit a full model
@@ -49,7 +49,7 @@ We are modelling this as a binomial response, with number of individuals with pl
 prior <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
                        G2 = list(V = 1, nu = 0.02), # source
                        G3 = list(V = 1, nu = 0.02), # marine region
-                       G4 = list(V = 1, nu = 0.02)), # date
+                       G4 = list(V = 1, nu = 0.02), # date
                        G5 = list(V = 1, nu = 0.02)), # freeflying
               R = list(V = 1, nu = 0.02)) # residuals
 
