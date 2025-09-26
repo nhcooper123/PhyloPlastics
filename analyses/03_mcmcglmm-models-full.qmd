@@ -33,7 +33,7 @@ plastic_data <- plastic_data %>%
   unite(col = "diet_type", carrion:as_refuse, remove = FALSE)
 
 # Replace NAs for 0 for mixed freeflying
-plastic_data <- plastic_data %>% mutate(freeflying2 = case_when(is.na(freeflying) ~ 0,
+plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying) ~ 0,
                                                                freeflying == 1 ~ 1))
 ```
 
