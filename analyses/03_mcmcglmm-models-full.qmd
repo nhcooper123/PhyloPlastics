@@ -19,7 +19,7 @@ Read in data and tree
 ```{r}
 # Read in data
 # Use read.csv because read_csv creates tibbles which MCMCglmm hates
-plastic_data <- read.csv(file = here::here("data/plastic-data-aggregated_2025-09-15.csv"))
+plastic_data <- read.csv(file = here::here("data/plastic-data-aggregated_2025-09-24.csv"))
 
 # Read in tree
 plastic_tree <- read.nexus(here::here("data/seabird_tree_plastic_2025-09-15.nex"))
@@ -31,9 +31,11 @@ inv.phylo <- inverseA(plastic_tree, nodes = "TIPS", scale = TRUE)$Ainv
 # Unite the diet categories
 plastic_data <- plastic_data %>%
   unite(col = "diet_type", carrion:as_refuse, remove = FALSE)
-```
 
-mydata \<- mydata %\>% mutate(variable1_Z = scale(log(mydata(variable1))) %\>% mutate(variable2_Z = scale(abs(mydata)variable2)))
+# Replace NAs for 0 for mixed freeflying
+plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying) ~ 0,
+                                                               freeflying == 1 ~ 1)
+```
 
 ### Fit a full model
 
@@ -48,7 +50,8 @@ prior <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
                        G2 = list(V = 1, nu = 0.02), # source
                        G3 = list(V = 1, nu = 0.02), # marine region
                        G4 = list(V = 1, nu = 0.02)), # date
-              R = list(V = 1, nu = 0.02))
+                       G5 = list(V = 1, nu = 0.02)), # freeflying
+              R = list(V = 1, nu = 0.02)) # residuals
 
 ```
 
@@ -64,7 +67,8 @@ Fit the model
 ```{r}
 model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
                          fish + carrion + cephalopods + other_inverts + crustaceans +
-                         as.factor(feeding_method) + 
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
                          body_mass_2sd, 
                    data = plastic_data, 
@@ -72,7 +76,8 @@ model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
                    random = ~ tips + 
                             source + 
                             marine_region + 
-                            date_median,
+                            date_median +
+                            freeflying,
                    ginverse = list(tips = inv.phylo), 
                    prior = prior,
                    nitt = nitt, thin = thin, burnin = burnin,
