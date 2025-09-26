@@ -1,0 +1,455 @@
+---
+title: "Exploring variation in the data"
+format: html
+editor: visual
+---
+
+***not many species are well studied and still fewer are susceptible - check this in the previous ms***
+
+# Explore the data that have been collected
+
+## Load libraries
+
+```{r}
+# Load libraries
+library(tidyverse) # for plots and data wrangling
+library(patchwork) # for panel plots
+library(here)
+```
+
+## Read in the data and tree
+
+```{r, message = FALSE}
+# Read in the data
+seabird_data <- read_csv(file = here::here("data/plastic-data-aggregated_2025-09-24.csv"))
+```
+
+## Unite the diet categories
+
+```{r}
+# Unite the diet categories
+seabird_data <- seabird_data %>%
+  unite(col = "diet_type", carrion:as_refuse, remove = FALSE)
+```
+
+## Some summary stats
+
+```{r}
+# How many species?
+length(unique(seabird_data$clements2024_binomial))
+```
+
+```{r}
+# How many sources?
+length(unique(seabird_data$source)) 
+```
+
+### How many species are "well-studied"?
+
+We classify ‘well-studied’ species as those with ≥ 100 sampled birds across ≥ 3 records (i.e., multiple studies, years, locations and/or age classes).
+
+```{r}
+well_studied <- 
+seabird_data %>%
+  group_by(clements2024_binomial) %>%
+  summarise(records = n(), sampled = sum(n_total)) %>%
+  filter(records >=3 & sampled >= 100)
+
+well_studied %>% summarise(n())
+```
+
+## Make distributional plots of each variable
+
+```{r}
+# Body mass
+bm <-
+  ggplot(seabird_data, aes(x = log(body_mass_g))) +
+  geom_density() +
+  xlab("ln(Body mass) (g)") +
+  theme_bw()
+
+# main diet
+diet <-
+ggplot(seabird_data, aes(x = as.factor(main_diet), fill = as.factor(main_diet))) +
+  geom_bar() +
+  xlab("Main diet") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#F94144","#F3722C",
+                               "#F9C74F","#90BE6D",
+                               "#577590")) +
+  scale_x_discrete(labels = c("carrion", "cephalopods", "crustaceans", "fish", "other inverts")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5)) 
+
+# Fish
+f <-
+ggplot(seabird_data, aes(x = as.factor(fish), fill = as.factor(fish))) +
+  geom_bar() +
+  xlab("Fish") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))  
+ 
+ # Carrion.NonFishVertebrates
+c <-
+ggplot(seabird_data, aes(x = as.factor(carrion), fill = as.factor(carrion))) +
+  geom_bar() +
+  xlab("Carrion (non fish)") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A")) 
+ 
+# Cephalopods
+cp <-
+  ggplot(seabird_data, aes(x = as.factor(cephalopods), 
+                       fill = as.factor(cephalopods))) +
+  geom_bar() +
+  xlab("Cephalopods") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+ 
+# Crustaceans
+cr <-
+ggplot(seabird_data, aes(x = as.factor(crustaceans), fill = as.factor(crustaceans))) +
+  geom_bar() +
+  xlab("Crustaceans") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+ 
+ # Other inverts
+oi<- 
+ggplot(seabird_data, aes(x = as.factor(other_inverts), fill = as.factor(other_inverts))) +
+  geom_bar() +
+  xlab("Other invertebrates") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+ 
+ # Refuse
+ar <-
+ggplot(seabird_data, aes(x = as.factor(as_refuse), fill = as.factor(as_refuse))) +
+  geom_bar() +
+  xlab("Refuse") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# Fisheries discards
+af <-
+ggplot(seabird_data, aes(x = as.factor(as_fishery), fill = as.factor(as_fishery))) +
+  geom_bar() +
+  xlab("Fisheries") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# Agricultural
+aa <-
+ggplot(seabird_data, aes(x = as.factor(as_agriculture), fill = as.factor(as_agriculture))) +
+  geom_bar() +
+  xlab("Agriculture") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# Feeding method
+fm <-
+ggplot(seabird_data, aes(x = as.factor(feeding_method), fill = as.factor(feeding_method))) +
+  geom_bar() +
+  xlab("Feeding method") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#F94144","#F3722C","#F8961E",
+                               "#F9C74F","#90BE6D","#43AA8B",
+                               "#577590")) +
+  scale_x_discrete(labels = c("aerial pursuit", "bottom feeding", "diving", 
+                              "plunging", "scavenging", "skimming", "surface seizing")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5)) +
+  ylim(0,800)
+
+# Aerial pursuit
+aerial <-
+ggplot(seabird_data, aes(x = as.factor(aerial_pursuit), fill = as.factor(aerial_pursuit))) +
+  geom_bar() +
+  xlab("Aerial pursuit") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# bottom feeding
+bottom <-
+ggplot(seabird_data, aes(x = as.factor(bottom_feeding), fill = as.factor(bottom_feeding))) +
+  geom_bar() +
+  xlab("Bottom feeding") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# divers
+dive <-
+ggplot(seabird_data, aes(x = as.factor(diving), fill = as.factor(diving))) +
+  geom_bar() +
+  xlab("Diving") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# plunging
+plunge <-
+ggplot(seabird_data, aes(x = as.factor(plunging), fill = as.factor(plunging))) +
+  geom_bar() +
+  xlab("Plunging") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# terrestrial
+terr <-
+ggplot(seabird_data, aes(x = as.factor(terrestrial_feeding), fill = as.factor(terrestrial_feeding))) +
+  geom_bar() +
+  xlab("Terrestrial feeding") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# scavenging
+scavenge <-
+ggplot(seabird_data, aes(x = as.factor(scavenging), fill = as.factor(scavenging))) +
+  geom_bar() +
+  xlab("Scavenging") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# skimming
+skim <-
+ggplot(seabird_data, aes(x = as.factor(skimming), fill = as.factor(skimming))) +
+  geom_bar() +
+  xlab("Skimming") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# surface seizing
+surface <-
+ggplot(seabird_data, aes(x = as.factor(surface_seizing), fill = as.factor(surface_seizing))) +
+  geom_bar() +
+  xlab("Surface seizing") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+ 
+# Pelagic Specialist
+ps <- 
+ggplot(seabird_data, aes(x = as.factor(pelagic_specialist), fill = as.factor(pelagic_specialist))) +
+  geom_bar() +
+  xlab("Pelagic specialist") +
+  ylim(0, 1650) +
+  scale_x_discrete(labels = c("No", "Yes")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# DMS.responsive
+#dms <-
+#ggplot(data_noNA, aes(x = as.factor(DMS.responsive_Dell.Ariccia), fill = #as.factor(DMS.responsive_Dell.Ariccia))) +
+  #geom_bar() +
+ # xlab("DMS responsive") +
+  #scale_x_discrete(labels = c("No", "Yes")) +
+  #theme_bw() +
+  #theme(legend.position = "none") +
+  #scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+```
+
+Fit patchwork grids for plots
+
+Species-level variables, i.e. feeding, body size etc.
+
+```{r}
+#(fm + bm + diet) / 
+# (f + c + cp) / (cr + plot_spacer()+ oi) / (aa + af + ar)
+#ggsave(file = here("output/species-level-variables.png"), height = 8)
+
+(diet  / (c + cp) / (cr + f) / (oi + aa) / (af + ar)) + plot_annotation(tag_levels = 'a')
+#ggsave(file = here("figures/diet-variables.png"), height = 8)
+
+(fm / (aerial + bottom) / (dive + plunge) / (terr + scavenge) / (skim + surface)) + plot_annotation(tag_levels = 'a')
+#ggsave(file = here("figures/feeding-variables.png"), height = 8)
+
+bm + ps + plot_annotation(tag_levels = 'a')
+#ggsave(file = here("figures/other-variables.png"), height = 4)
+```
+
+Study level variables
+
+```{r}
+# Frequency of occurrence
+fo <- 
+  ggplot(seabird_data, aes(x = FO)) +
+  geom_histogram(fill = "lightblue", bins = 10) +
+  xlab("Frequency of occurrence of plastic") +
+  theme_bw()
+
+# Free flying or not
+ff <- 
+  ggplot(seabird_data, aes(x = as.factor(freeflying), fill = as.factor(freeflying))) +
+  geom_bar() +
+  xlab("Age class") +
+  scale_x_discrete(labels = c("Free flying", "Mixed")) +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
+
+# Median date
+dd <- 
+  ggplot(seabird_data, aes(x = date_median)) +
+  geom_histogram(fill = "sienna1", bins = 100) +
+  xlab("Date of study (median)") +
+  theme_bw()
+
+# Marine region
+mr <- 
+ggplot(seabird_data, aes(x = as.factor(marine_region), fill = as.factor(marine_region))) +
+  geom_bar() +
+  xlab("Marine region") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#F94144","#F3722C","#F8961E",
+                               "#F9C74F","#90BE6D","#43AA8B",
+                               "#577590")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5))  
+
+# Sampling method
+sm <- 
+ggplot(seabird_data, aes(x = as.factor(sampling_method), fill = as.factor(sampling_method))) +
+  geom_bar() +
+  xlab("Sampling method") +
+  theme_bw() +
+  theme(legend.position = "none") +
+    scale_fill_manual(values = c("#F94144","#F3722C","#F8961E",
+                               "#F9C74F","#90BE6D","grey")) +
+   theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5))  
+```
+
+```{r}
+( (dd + ff) / (mr + sm)) + plot_annotation(tag_levels = c("a"))
+ggsave(file = here("figures/study-level-variables.png"), height = 6)
+```
+
+Some simple correlative plots
+
+```{r}
+# Get summary stats for each grouping variable
+sumdatSM <-
+  seabird_data %>%
+  group_by(sampling_method) %>%
+  summarise(meanFO = mean(FO), seFO = sqrt(var(FO)/n()))
+
+sumdatDate <-
+  seabird_data %>%
+  group_by(date_median) %>%
+  summarise(meanFO = mean(FO), seFO = sqrt(var(FO)/n()))
+
+sumdatDiet <-
+  seabird_data %>%
+  group_by(main_diet) %>%
+  summarise(meanFO = mean(FO), seFO = sqrt(var(FO)/n()))
+
+sumdatFM <-
+  seabird_data %>%
+  group_by(feeding_method) %>%
+  summarise(meanFO = mean(FO, na.rm = TRUE), seFO = sqrt(var(FO, na.rm = TRUE)/n()))
+```
+
+Study level variables
+
+```{r}
+# Plots
+# Sampling method
+ggplot(seabird_data, aes(x = as.factor(sampling_method), y = FO, colour = sampling_method)) +
+  geom_jitter(alpha = 0.1, width = 0.3) +
+  geom_point(data = sumdatSM, aes(y = meanFO), size = 2) +
+  geom_errorbar(data = sumdatSM, aes(y = meanFO, ymin = meanFO - seFO, ymax = meanFO + seFO), width = 0.1) +
+  xlab("Sampling method") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_colour_manual(values = c("#F94144","#F3722C","#F8961E",
+                               "#F9C74F","#90BE6D","grey")) +
+   theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5))  
+
+
+# Date
+ggplot(seabird_data, aes(x = as.factor(date_median), y = FO)) +
+  geom_point(data = sumdatDate, aes(y = meanFO), size = 2) +
+  geom_errorbar(data = sumdatDate, aes(y = meanFO, ymin = meanFO - seFO, ymax = meanFO + seFO), width = 0.1) +
+  xlab("Date of study (median)") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_x_discrete(breaks = c(1960, 1970, 1980, 1990, 2000, 2010, 2020))
+
+# Diet
+ggplot(seabird_data, aes(x = as.factor(main_diet), y = FO, colour = main_diet)) +
+  geom_jitter(alpha = 0.1, width = 0.3) +
+  geom_point(data = sumdatDiet, aes(y = meanFO), size = 2) +
+  geom_errorbar(data = sumdatDiet, aes(y = meanFO, ymin = meanFO - seFO, ymax = meanFO + seFO), width = 0.1) +
+  xlab("Main diet") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_colour_manual(values = c("#F94144","#F3722C",
+                               "#F9C74F","#90BE6D",
+                               "#577590")) +
+  scale_x_discrete(labels = c("carrion", "cephalopods", "crustaceans", "fish", "other inverts")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5))
+
+# Feeding method
+ggplot(seabird_data, aes(x = as.factor(feeding_method), y = FO, colour = feeding_method)) +
+  geom_jitter(alpha = 0.1, width = 0.3) +
+  geom_point(data = sumdatFM, aes(y = meanFO), size = 2) +
+  geom_errorbar(data = sumdatFM, aes(y = meanFO, ymin = meanFO - seFO, ymax = meanFO + seFO), width = 0.1) +
+  xlab("Feeding method") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_colour_manual(values = c("#F94144","#F3722C","#F8961E",
+                               "#F9C74F","#90BE6D","#43AA8B",
+                               "#577590")) +
+  scale_x_discrete(labels = c("aerial pursuit", "bottom feeding", "diving", 
+                              "plunging", "scavenging", "skimming", "surface seizing")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5))
+
+
+
+```
