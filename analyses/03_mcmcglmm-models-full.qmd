@@ -67,6 +67,7 @@ Fit the model
 ```{r}
 model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
                          fish + carrion + cephalopods + other_inverts + crustaceans +
+                         as_refuse +
                          + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
