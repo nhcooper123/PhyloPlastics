@@ -71,9 +71,6 @@ base_tree <- ggtree(seabird_tree, layout = "fan", open.angle = 10) %<+% species_
 
 
 base_tree + geom_cladelab(node = 242, label = "hi") 
-
-
-
 # --------------------------------------------------
 # Add diet data
 # --------------------------------------------------
@@ -261,6 +258,7 @@ tree_final <- tree_final + theme(legend.position = "none")
 # 
 # 
 # --------------------------------------------------
+# Figure 2
 # Just add species weighted mean FO
 # --------------------------------------------------               
 # Add FO as bars coloured by order
@@ -319,3 +317,15 @@ p <- ggtree(tree, layout="fan", size=0.15, open.angle=5) +
                 fontsize=1.4,
                 fontface="italic"
   )
+
+#-----------------------------
+# Figure 1
+#----------------------------
+
+# Read in dataset for all species
+results <- read_csv("output/results-for-tree-plotting.csv")
+# Read in tree for all species
+#
+
+
+
