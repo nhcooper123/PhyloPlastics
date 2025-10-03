@@ -13,16 +13,6 @@ library(ggnewscale)
 order_colours <- c("#ffd92f","#fc8d62","#8da0cb","#b3b3b3",
                    "#a6d854","#66c2a5","#e5c494","#e78ac3")
 
-"#d53e4f"
-"#f46d43"
-"#fdae61"
-"#fee08b"
-"#e6f598"
-"#abdda4"
-"#66c2a5"
-"#3288bd"
-
-
 feeding_colours <- c("#F94144","#F3722C","#F8961E",
                              "#F9C74F","#90BE6D","#43AA8B",
                              "#577590")
