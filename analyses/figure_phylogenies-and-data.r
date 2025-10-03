@@ -9,14 +9,11 @@ library(ggtree)
 library(ggtreeExtra) #geom_fruit
 library(tidyverse)
 library(ggnewscale)
+library(phytools)
 
 order_colours <- c("#ffd92f","#fc8d62","#8da0cb","#b3b3b3",
                    "#a6d854","#66c2a5","#e5c494","#e78ac3")
 
-feeding_colours <- c("#F94144","#F3722C","#F8961E",
-                             "#F9C74F","#90BE6D","#43AA8B",
-                             "#577590")
-diet_colours <- c("#F94144","#F3722C","#F9C74F","#90BE6D","#577590")
 # -------------------------
 # Read in the data and tree
 # -------------------------
@@ -68,9 +65,6 @@ species_plastic <- species_plastic[match(seabird_tree$tip.label, species_plastic
 # Create the basic tree 
 base_tree <- ggtree(seabird_tree, layout = "fan", open.angle = 10) %<+% species_plastic +
   theme(legend.position = "right")
-
-
-base_tree + geom_cladelab(node = 242, label = "hi") 
 # --------------------------------------------------
 # Add diet data
 # --------------------------------------------------
@@ -248,6 +242,19 @@ tree_final <-
 # --------------------------------------------------
 tree_final <- tree_final + theme(legend.position = "none")
 
+# --------------------------------------------------  
+# Label families
+# --------------------------------------------------  
+# 
+ducks <- results$Species[which(results$Family == "Anatidae")]
+anatidae <- findMRCA(tree = seabird_tree, tips = c("Somateria fischeri", "Melanitta stejnegeri"))
+
+
+
+
+
+species_plastic$
+
 # Write to file
 # ggsave("figures/tree_diet_feeding_FO.png", width = 8, height = 8)
 
@@ -288,6 +295,7 @@ tree_FO + geom_cladelab(aes(node = 10), label = "hi") #,
 tree_FO + groupOTU(p_iris, grp, 'Species') + aes(color=Species)
 
 
+base_tree + geom_cladelab(node = 242, label = "loooooos", offset.text = 6)
 
 
 
@@ -325,7 +333,12 @@ p <- ggtree(tree, layout="fan", size=0.15, open.angle=5) +
 # Read in dataset for all species
 results <- read_csv("output/results-for-tree-plotting.csv")
 # Read in tree for all species
-#
+species_tree <- read.nexus("data/seabird-tree-Claramont2025_2025-09-11.nex")
+
+# Create the basic tree 
+base_tree <- ggtree(seabird_tree, layout = "fan", open.angle = 10) %<+% species_plastic +
+  theme(legend.position = "right")
 
 
+base_tree + geom_cladelab(node = 242, label = "loooooos", offset.text = 6)
 
