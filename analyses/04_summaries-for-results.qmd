@@ -7,12 +7,14 @@ editor: visual
 ## Summaries for results section
 
 Load libraries
+
 ```{r}
 library(tidyverse)
 library(here)
 ```
 
 Read in datasets
+
 ```{r}
 # taxonomy info
 species <- read_csv(here::here("data-raw/seabird-list-Clements2024_2025-09-10.csv"))
@@ -25,6 +27,7 @@ all <- read_csv(here::here("data/full_species_list_2025-09-16.csv"))
 ```
 
 Manipulate to add taxonomy data
+
 ```{r}
 # make a binomial column
 all$clements2024_binomial <- gsub("_", " ", all$tips)
@@ -34,6 +37,7 @@ all <- left_join(all, species, by = c("clements2024_binomial" = "Clements2024_Bi
 ```
 
 Summaries for data pre NA removal
+
 ```{r}
 # total studies per family
 plastic %>%
@@ -82,8 +86,8 @@ plastic %>%
   summarise(total_birds = sum(n_total))
 ```
 
-
 Summaries for data before we removed NAs
+
 ```{r}
 # total studies per family
 all %>%
@@ -151,7 +155,6 @@ Weighted mean FO for all seabirds
 all %>% 
   summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE))
 ```
-
 
 Weighted mean FO for orders
 
@@ -226,11 +229,17 @@ susceptible <-
 ```
 
 Create dataset for plotting results figures
+
 ```{r}
 results <- all %>%
+  # add whether studied or not
+  mutate(studied = 
+           case_when(n_studies > 0  ~ "yes",                      
+                     n_studies == 0 ~ "no")) %>%
   # add whether well studied or not
   mutate(well_studied = 
-           case_when(n_studies >=3 & total_n >= 100 ~ "yes",                      n_studies <3 | total_n < 100 ~ "no")) %>%
+           case_when(n_studies >=3 & total_n >= 100 ~ "yes",                      
+                     n_studies <3 | total_n < 100 ~ "no")) %>%
   # add weighted mean FO
   mutate(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE)) %>%
   mutate(Family = case_when(Clements2024_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
@@ -248,15 +257,10 @@ results <- all %>%
                             Clements2024_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
                             Clements2024_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
                             Clements2024_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
-                            Clements2024_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae")) %>%
-  ungroup() %>%
-  arrange(-mean_species_FO_weighted) %>%
-  select(Order = Clements2024_Order, Family, Species = clements2024_binomial, mean_species_FO_weighted)
+                            Clements2024_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae"))
 
   # replace NAs with 0s
   #tidyr::replace_na(list(0)
   #
 #write_csv(results, file = here::here("output/results-for-tree-plotting.csv"))
 ```
-
-
