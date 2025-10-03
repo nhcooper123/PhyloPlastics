@@ -42,7 +42,7 @@ species_plastic <- plastic_data %>%
 
 # Select out trait data and recombine with summary plastic data
 species_traits <- plastic_data %>%
-  select(clements2024_binomial, order, body_mass_g:terrestrial_feeding) %>%
+  select(clements2024_binomial, order, family, body_mass_g:terrestrial_feeding) %>%
   distinct()
 
 # Merge
@@ -71,7 +71,7 @@ base_tree <- ggtree(seabird_tree, layout = "fan", open.angle = 10) %<+% species_
 # Add carrion as first ring
 carrion_tree <- base_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = carrion),
+             mapping = aes(fill = as.factor(carrion)),
              colour = "#EBECF0",# colour the lines between the boxes
              width = 4, # width of box       
              offset = 0.04, # distance from tree
@@ -83,7 +83,7 @@ carrion_tree <- base_tree +
 cephalopod_tree <- 
   carrion_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = cephalopods),
+             mapping = aes(fill = as.factor(cephalopods)),
              colour = "#EBECF0",
              width = 4,      
              offset = 0.04,
@@ -94,7 +94,7 @@ cephalopod_tree <-
 # Add crustaceans
 crustacean_tree <- cephalopod_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = crustaceans),
+             mapping = aes(fill = as.factor(crustaceans)),
              colour = "#EBECF0",
              width = 4,        # Width of the diet ring
              offset = 0.04,
@@ -105,7 +105,7 @@ crustacean_tree <- cephalopod_tree +
 # Add fish
 fish_tree <- crustacean_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = fish),
+             mapping = aes(fill = as.factor(fish)),
              colour = "#EBECF0",
              width = 4,       
              offset = 0.04,
@@ -116,7 +116,7 @@ fish_tree <- crustacean_tree +
 # Add other inverts
 invert_tree <- fish_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = other_inverts),
+             mapping = aes(fill = as.factor(other_inverts)),
              colour = "#EBECF0",
              width = 4,        
              offset = 0.04,
@@ -131,7 +131,7 @@ invert_tree <- fish_tree +
 aerial_tree <- invert_tree + 
   new_scale_fill() + # add new scale so we can use different colours
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = aerial_pursuit),
+             mapping = aes(fill = as.factor(aerial_pursuit)),
              colour = "#EBECF0",# colour the lines between the boxes
              width = 4, # width of box       
              offset = 0.04, # distance from tree
@@ -143,7 +143,7 @@ aerial_tree <- invert_tree +
 bottom_tree <- 
   aerial_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = bottom_feeding),
+             mapping = aes(fill = as.factor(bottom_feeding)),
              colour = "#EBECF0",
              width = 4,      
              offset = 0.04,
@@ -154,7 +154,7 @@ bottom_tree <-
 # Add diving
 diving_tree <- bottom_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = diving),
+             mapping = aes(fill = as.factor(diving)),
              colour = "#EBECF0",
              width = 4,        
              offset = 0.04,
@@ -165,7 +165,7 @@ diving_tree <- bottom_tree +
 # Add plunging
 plunging_tree <- diving_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = plunging),
+             mapping = aes(fill = as.factor(plunging)),
              colour = "#EBECF0",
              width = 4,       
              offset = 0.04,
@@ -176,7 +176,7 @@ plunging_tree <- diving_tree +
 # Add terrestrial
 terr_tree <- plunging_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = terrestrial_feeding),
+             mapping = aes(fill = as.factor(terrestrial_feeding)),
              colour = "#EBECF0",
              width = 4,        
              offset = 0.04,
@@ -187,7 +187,7 @@ terr_tree <- plunging_tree +
 # Add scavenging
 scavenge_tree <- terr_tree + 
     geom_fruit(geom = geom_tile,
-               mapping = aes(fill = scavenging),
+               mapping = aes(fill = as.factor(scavenging)),
                              colour = "#EBECF0",
                              width = 4,        
                              offset = 0.04,
@@ -198,7 +198,7 @@ scavenge_tree <- terr_tree +
 # Add skimming
 skim_tree <- scavenge_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = skimming),
+             mapping = aes(fill = as.factor(skimming)),
              colour = "#EBECF0",
              width = 4,        
              offset = 0.04,
@@ -209,7 +209,7 @@ skim_tree <- scavenge_tree +
 # Add surface seizing
 surface_tree <- skim_tree + 
   geom_fruit(geom = geom_tile,
-             mapping = aes(fill = surface_seizing),
+             mapping = aes(fill = as.factor(surface_seizing)),
              colour = "#EBECF0",
              width = 4,        
              offset = 0.04,
@@ -217,56 +217,145 @@ surface_tree <- skim_tree +
              axis.params = list(axis = "x", text = "M", text.size = 1.5, vjust = 1)) + 
   scale_fill_manual(values = c("#EBECF0","#74CEF7"))
 
-# --------------------------------------------------
-# Add species weighted mean FO
-# --------------------------------------------------               
-# Add FO as grey bars
-tree_final <- 
-  surface_tree + 
-  new_scale_fill() + # set new scale for bars 
-  geom_fruit(geom = geom_col,
-             mapping = aes(x = mean_species_FO_weighted),
-             fill = "grey80",
-             offset = 0.04,     # Small gap from feeding method ring
-             width = 1,         
-             axis.params = list(axis = "x", 
-                                text.size = 1.5,
-                                hjust = c(-1, -0.5, -1),
-                                vjust = 0,
-                                nbreak = 3,
-                                text.angle=-90),
-             grid.params=list(alpha = 0.5)) # to force the gridlines for the bars
-
 # --------------------------------------------------  
 # Remove the legend
 # --------------------------------------------------
-tree_final <- tree_final + theme(legend.position = "none")
+tree_final <- surface_tree + theme(legend.position = "none")
 
 # --------------------------------------------------  
 # Label families
 # --------------------------------------------------  
-# 
-ducks <- results$Species[which(results$Family == "Anatidae")]
-anatidae <- findMRCA(tree = seabird_tree, tips = c("Somateria fischeri", "Melanitta stejnegeri"))
+# Extract MRCAs 
+anatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Anatidae")])
+alcidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Alcidae")])
+laridae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Laridae")])
+scolopacidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Scolopacidae")])
+stercorariidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Stercorariidae")])
+gaviidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Gaviidae")])
+pelecanidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Pelecanidae")])
+phaethontidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Phaethontidae")])
+procellariidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Procellariidae")])
+diomedeidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Diomedeidae")])
+oceanitidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Oceanitidae")])
+hydrobatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Hydrobatidae")])
+spheniscidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Spheniscidae")])
+fregatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Fregatidae")])
+phalacrocoracidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Phalacrocoracidae")])
+sulidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Sulidae")])
 
-
-
-
-
-species_plastic$
-
+# add to tree
+tree_final + 
+# anseriforms
+  geom_cladelab(node = anatidae, 
+                label = "", 
+                 offset.text = 5,
+                  barcolour = order_colours[1],
+                  barsize = 2,
+                  offset = 50) +
+# charadriiforms
+geom_cladelab(node = alcidae, 
+              label = "", 
+              offset.text = 7,
+              barcolour = order_colours[2],
+              barsize = 2,
+              offset = 50) +
+  geom_cladelab(node = laridae, 
+                label = "", 
+                offset.text = 12,
+                barcolour = order_colours[2],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = scolopacidae, 
+                label = "", 
+                offset.text = 5,
+                barcolour = order_colours[2],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = stercorariidae, 
+                label = "", 
+                offset.text = 5,
+                barcolour = order_colours[2],
+                barsize = 2,
+                offset = 50) +
+  # gaviiforms
+geom_cladelab(node = gaviidae, 
+                label = "", 
+                offset.text = 45,
+                barcolour = order_colours[3],
+                barsize = 2,
+                offset = 50) +
+# pelecaniforms
+geom_cladelab(node = pelecanidae, 
+             label = "", 
+             offset.text = 45,
+             barcolour = order_colours[4],
+             barsize = 2,
+             offset = 50) +
+  # phaethontiforms
+  geom_cladelab(node = phaethontidae, 
+                label = "", 
+                offset.text = 45,
+                barcolour = order_colours[5],
+                barsize = 2,
+                offset = 50) +
+  # procellariformes
+  geom_cladelab(node = procellariidae, 
+                label = "", 
+                offset.text = 20,
+                barcolour = order_colours[6],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = diomedeidae, 
+                label = "", 
+                offset.text = 35,
+                barcolour = order_colours[6],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = oceanitidae, 
+                label = "", 
+                offset.text = 80,
+                barcolour = order_colours[6],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = hydrobatidae, 
+                label = "", 
+                offset.text = 80,
+                barcolour = order_colours[6],
+                barsize = 2,
+                offset = 50) +
+#penguins
+  geom_cladelab(node = spheniscidae, 
+                label = "", 
+                offset.text = 100,
+                barcolour = order_colours[7],
+                barsize = 2,
+                offset = 50) +
+  #suliiforms
+  geom_cladelab(node = fregatidae, 
+                label = "", 
+                offset.text = 80,
+                barcolour = order_colours[8],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = phalacrocoracidae, 
+                label = "", 
+                offset.text = 150,
+                barcolour = order_colours[8],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = sulidae, 
+                label = "", 
+                offset.text = 80,
+                barcolour = order_colours[8],
+                barsize = 2,
+                offset = 50)
+  
 # Write to file
-# ggsave("figures/tree_diet_feeding_FO.png", width = 8, height = 8)
-
-# label families?
-# colour branches by order?
-# figure for supplemental versus figure for main text
-# 
-# 
-# 
+# ggsave("figures/tree-diet-feeding-families.png", width = 8, height = 8)
+ 
 # --------------------------------------------------
-# Figure 2
-# Just add species weighted mean FO
+# Figure 2(?)
+# Just species weighted mean FO coloured by order
 # --------------------------------------------------               
 # Add FO as bars coloured by order
 tree_FO <- 
@@ -287,58 +376,99 @@ tree_FO <-
   scale_fill_manual(values = order_colours) 
 
 #----------------
-tree_FO + geom_cladelab(aes(node = 10), label = "hi") #, 
-    #label = order, colour = order)
+# Add family labels
+# names removed - these are hard to make look good in ggtree
+# add them in inkscape instead
 
+tree_FO + 
+  # anseriforms
+  geom_cladelab(node = anatidae, 
+                label = "", 
+                barcolour = order_colours[1],
+                barsize = 2,
+                offset = 50) +
+  # charadriiforms
+  geom_cladelab(node = alcidae, 
+                label = "", 
+                barcolour = order_colours[2],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = laridae, 
+                label = "", 
+                barcolour = order_colours[2],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = scolopacidae, 
+                label = "", 
+                barcolour = order_colours[2],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = stercorariidae, 
+                label = "", 
+                barcolour = order_colours[2],
+                barsize = 2,
+                offset = 50) +
+  # gaviiforms
+  geom_cladelab(node = gaviidae, 
+                label = "",
+                barcolour = order_colours[3],
+                barsize = 2,
+                offset = 50) +
+  # pelecaniforms
+  geom_cladelab(node = pelecanidae, 
+                label = "", 
+                barcolour = order_colours[4],
+                barsize = 2,
+                offset = 50) +
+  # phaethontiforms
+  geom_cladelab(node = phaethontidae, 
+                label = "", 
+                barcolour = order_colours[5],
+                barsize = 2,
+                offset = 50) +
+  # procellariformes
+  geom_cladelab(node = procellariidae, 
+                label = "", 
+                barcolour = order_colours[6],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = diomedeidae, 
+                label = "", 
+                barcolour = order_colours[6],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = oceanitidae, 
+                label = "", 
+                barcolour = order_colours[6],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = hydrobatidae, 
+                label = "", 
+                barcolour = order_colours[6],
+                barsize = 2,
+                offset = 50) +
+  #penguins
+  geom_cladelab(node = spheniscidae, 
+                label = "", 
+                barcolour = order_colours[7],
+                barsize = 2,
+                offset = 50) +
+  #suliiforms
+  geom_cladelab(node = fregatidae, 
+                label = "", 
+                barcolour = order_colours[8],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = phalacrocoracidae, 
+                label = "", 
+                barcolour = order_colours[8],
+                barsize = 2,
+                offset = 50) +
+  geom_cladelab(node = sulidae, 
+                label = "", 
+                barcolour = order_colours[8],
+                barsize = 2,
+                offset = 50)
 
-
-tree_FO + groupOTU(p_iris, grp, 'Species') + aes(color=Species)
-
-
-base_tree + geom_cladelab(node = 242, label = "loooooos", offset.text = 6)
-
-
-
-
-nodeids <- nodeid(tree, tree$node.label[nchar(tree$node.label)>4])
-nodedf <- data.frame(node=nodeids)
-nodelab <- gsub("[\\.0-9]", "", tree$node.label[nchar(tree$node.label)>4])
-# The layers of clade and hightlight
-poslist <- c(1.6, 1.4, 1.6, 0.8, 0.1, 0.25, 1.6, 1.6, 1.2, 0.4,
-             1.2, 1.8, 0.3, 0.8, 0.4, 0.3, 0.4, 0.4, 0.4, 0.6,
-             0.3, 0.4, 0.3)
-labdf <- data.frame(node=nodeids, label=nodelab, pos=poslist)
-
-# The circular layout tree.
-p <- ggtree(tree, layout="fan", size=0.15, open.angle=5) +
-  geom_hilight(data=nodedf, mapping=aes(node=node),
-               extendto=6.8, alpha=0.3, fill="grey", color="grey50",
-               size=0.05) +
-  geom_cladelab(data=labdf, 
-                mapping=aes(node=node, 
-                            label=label,
-                            offset.text=pos),
-                hjust=0.5,
-                angle="auto",
-                barsize=NA,
-                horizontal=FALSE, 
-                fontsize=1.4,
-                fontface="italic"
-  )
-
-#-----------------------------
-# Figure 1
-#----------------------------
-
-# Read in dataset for all species
-results <- read_csv("output/results-for-tree-plotting.csv")
-# Read in tree for all species
-species_tree <- read.nexus("data/seabird-tree-Claramont2025_2025-09-11.nex")
-
-# Create the basic tree 
-base_tree <- ggtree(seabird_tree, layout = "fan", open.angle = 10) %<+% species_plastic +
-  theme(legend.position = "right")
-
-
-base_tree + geom_cladelab(node = 242, label = "loooooos", offset.text = 6)
-
+# Write to file
+# ggsave("figures/tree-FO-families.png", width = 8, height = 8)
