@@ -28,13 +28,11 @@ plastic_tree<- di2multi(plastic_tree)
 # Make this into an inverse variance covariance matrix for the models
 inv.phylo <- inverseA(plastic_tree, nodes = "TIPS", scale = TRUE)$Ainv
 
-# Unite the diet categories
-plastic_data <- plastic_data %>%
-  unite(col = "diet_type", carrion:as_refuse, remove = FALSE)
-
 # Replace NAs for 0 for mixed freeflying
 plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying) ~ 0,
                                                                freeflying == 1 ~ 1))
+# Remove family column as it causes MCMCglmm to fail
+plastic_data <- plastic_data %>% select(-family)
 ```
 
 ### Fit a full model
@@ -66,8 +64,8 @@ Fit the model
 
 ```{r}
 model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
-                         fish + carrion + cephalopods + other_inverts + crustaceans +
-                         as_refuse +
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_agriculture + as_fishery + as_refuse +
                          + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
@@ -199,8 +197,8 @@ priors_new <- list(G = list(G1 = list(V = 1, nu = 1), # phylogeny
 
 
 model_prior_test <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
-                         fish + carrion + cephalopods + other_inverts + crustaceans +
-                         as_agriculture + as_fisheries + as_refuse +
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_agriculture + as_fishery + as_refuse +
                          + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
@@ -227,8 +225,8 @@ priors_no_phylo <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
                             R = list(V = 1, nu = 0.02)) # residual variance
 
 model_no_phylo <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
-                         fish + carrion + cephalopods + other_inverts + crustaceans +
-                         as_refuse +
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_agriculture + as_fishery + as_refuse +
                          + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
