@@ -243,3 +243,9 @@ model_no_phylo <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
                    verbose = FALSE)  
 ```
 
+Save models for later use
+```{r}
+saveRDS(model_full, "model_full.rds")
+saveRDS(model_prior_test, "model_prior_test .rds")
+saveRDS(model_no_phylo, "model_no_phylo.rds")
+```
