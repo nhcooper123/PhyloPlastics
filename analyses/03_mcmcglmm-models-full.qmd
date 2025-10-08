@@ -153,10 +153,10 @@ DIC
 model_full$DIC 
 ```
 
-How much variance is explained by phylogeny?
+How much variance is explained by random effects?
 
 ```{r}
-summary(model_full)$Gcovariances # Look at phylogenetic variance component
+summary(model_full)$Gcovariances
 ```
 ```{r}
 # Get lambda
@@ -245,7 +245,7 @@ model_no_phylo <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
 
 Save models for later use
 ```{r}
-saveRDS(model_full, "model_full.rds")
-saveRDS(model_prior_test, "model_prior_test .rds")
-saveRDS(model_no_phylo, "model_no_phylo.rds")
+saveRDS(model_full, here::here("output/model_full.rds"))
+saveRDS(model_prior_test, here::here("output/model_prior_test .rds"))
+saveRDS(model_no_phylo, here::here("output/model_no_phylo.rds"))
 ```
