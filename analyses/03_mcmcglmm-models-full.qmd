@@ -28,13 +28,11 @@ plastic_tree<- di2multi(plastic_tree)
 # Make this into an inverse variance covariance matrix for the models
 inv.phylo <- inverseA(plastic_tree, nodes = "TIPS", scale = TRUE)$Ainv
 
-# Unite the diet categories
-plastic_data <- plastic_data %>%
-  unite(col = "diet_type", carrion:as_refuse, remove = FALSE)
-
 # Replace NAs for 0 for mixed freeflying
 plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying) ~ 0,
                                                                freeflying == 1 ~ 1))
+# Remove family column as it causes MCMCglmm to fail
+plastic_data <- plastic_data %>% select(-family)
 ```
 
 ### Fit a full model
@@ -66,8 +64,8 @@ Fit the model
 
 ```{r}
 model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
-                         fish + carrion + cephalopods + other_inverts + crustaceans +
-                         as_refuse +
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_agriculture + as_fishery + as_refuse +
                          + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
@@ -155,10 +153,10 @@ DIC
 model_full$DIC 
 ```
 
-How much variance is explained by phylogeny?
+How much variance is explained by random effects?
 
 ```{r}
-summary(model_full)$Gcovariances # Look at phylogenetic variance component
+summary(model_full)$Gcovariances
 ```
 ```{r}
 # Get lambda
@@ -177,13 +175,11 @@ HPDinterval(lambda)
 ```{r}
 library(bayesplot)
 
-# Extract posterior samples if available
-
+# Extract posterior samples
 posterior_samples <- model_full$Sol
 
 # Create a posterior plot
-
-mcmc_areas(posterior_samples, prob = 0.8, prob_outer = 0.95) + labs(title = "Posterior Distributions", x = "Parameter Value")
+mcmc_intervals(posterior_samples, prob = 0.8, prob_outer = 0.95) + labs(title = "Posterior Distributions", x = "Parameter Value")
 
 ```
 
@@ -192,10 +188,64 @@ mcmc_areas(posterior_samples, prob = 0.8, prob_outer = 0.95) + labs(title = "Pos
 Set up new priors for MCMCglmm to ensure that the results are not due to prior specifications.
 
 ```{r}
-priors_new <- list(G = list(G1 = list(V = 1, nu = 1), # for HBWv8.1_Binomial (phylogeny) 
-                            G2 = list(V = 1, nu = 1), # for Source (study), 
+priors_new <- list(G = list(G1 = list(V = 1, nu = 1), # phylogeny
+                            G2 = list(V = 1, nu = 1), # source 
                             G3 = list(V = 1, nu = 1), # marine region
-                            G4 = list(V = 1, nu = 1)), # date
+                            G4 = list(V = 1, nu = 1), # date
+                            G5 = list(V = 1, nu = 1)), # freeflying
                             R = list(V = 1, nu = 1)) # residual variance
-                          
+
+
+model_prior_test <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_agriculture + as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         pelagic_specialist + 
+                         body_mass_2sd, 
+                   data = plastic_data, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            date_median +
+                            freeflying,
+                   ginverse = list(tips = inv.phylo), 
+                   prior = priors_new,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)                          
+```
+
+```{r}
+priors_no_phylo <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
+                            #G2 = list(V = 1, nu = 1), # source 
+                            G3 = list(V = 1, nu = 0.02), # marine region
+                            G4 = list(V = 1, nu = 0.02), # date
+                            G5 = list(V = 1, nu = 0.02)), # freeflying
+                            R = list(V = 1, nu = 0.02)) # residual variance
+
+model_no_phylo <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_agriculture + as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         pelagic_specialist + 
+                         body_mass_2sd, 
+                   data = plastic_data, 
+                   family = "multinomial2",
+                   random = ~ source + 
+                            marine_region + 
+                            date_median +
+                            freeflying,
+                   #ginverse = list(tips = inv.phylo), 
+                   prior = priors_no_phylo,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)  
+```
+
+Save models for later use
+```{r}
+saveRDS(model_full, here::here("output/model_full.rds"))
+saveRDS(model_prior_test, here::here("output/model_prior_test .rds"))
+saveRDS(model_no_phylo, here::here("output/model_no_phylo.rds"))
 ```
