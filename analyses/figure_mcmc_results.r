@@ -6,6 +6,7 @@
 # Load libraries
 #-------------------------------------
 library(tidyverse)
+library(MCMCglmm)
 
 #-------------------------------------
 # Load model outputs
