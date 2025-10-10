@@ -31,25 +31,27 @@ effects_df <- data.frame(
 )
 
 # Make sure they're in the right plotting order
+# and change names to make plots look nicer
 effects_df <-
-  effects_df %>% mutate(predictor = factor(predictor, 
-                                            levels = rev(c("carrion", "cephalopods", "crustaceans", "fish", "other_inverts",
-                                                       "as_agriculture", "as_fishery", "as_refuse",          
-                                                       "aerial_pursuit", "bottom_feeding", "diving", "plunging", 
-                                                       "scavenging", "skimming", "surface_seizing", "terrestrial_feeding",
-                                                       "body_mass_2sd", "pelagic_specialist"))))      
-
-rectangles <- data.frame(X = c(min(effects_df$HPD.lower)-1, max(effects_df$HPD.upper)+1),
-                         Y = c(5, 15.5))
-
-
+  effects_df %>% 
+  mutate(predictor = str_replace_all(predictor, "as_", "")) %>%
+  mutate(predictor = str_replace_all(predictor, "_", " ")) %>%
+  mutate(predictor = str_replace_all(predictor, "inverts", "invertebrates")) %>%
+  mutate(predictor = str_replace(predictor, "body mass 2sd", "body mass")) %>%
+  mutate(predictor = factor(predictor,         
+                            levels = rev(c("carrion", "cephalopods", "crustaceans", "fish", "other invertebrates",
+                                            "agriculture", "fishery", "refuse",          
+                                            "aerial pursuit", "bottom feeding", "diving", "plunging", 
+                                             "scavenging", "skimming", "surface seizing", "terrestrial feeding",
+                                             "body mass", "pelagic specialist"))))
+  
 # Plot
 ggplot(effects_df, aes(x = post.mean, y = predictor)) +
   geom_point(size = 1.5) +
   geom_errorbarh(aes(xmin = HPD.lower, xmax = HPD.upper), height = 0.2) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   xlab("posterior mean") +
-  ylab("variables") +
+  ylab("fixed effects") +
   theme_bw() +
   # Add rectangles for diet
   geom_rect(aes(xmin = min(HPD.lower)-1, 
