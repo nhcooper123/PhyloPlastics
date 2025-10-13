@@ -5,8 +5,8 @@
 # Load libraries
 # -------------------------------
 library(ape)
-library(ggtree)
-library(ggtreeExtra) #geom_fruit
+library(ggtree) #(from Bioconductor)
+library(ggtreeExtra) #geom_fruit (from Bioconductor)
 library(tidyverse)
 library(ggnewscale)
 library(phytools)
