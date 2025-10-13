@@ -25,6 +25,10 @@ plastic <- read_csv(here::here("data/plastic-data-aggregated_2025-09-24.csv"))
 # plastic data pre NA removal AND with non studied species added
 all <- read_csv(here::here("data/full_species_list_2025-09-16.csv"))
 ```
+How many papers in analyses?
+```{r}
+length(unique(plastic$source))
+```
 
 Manipulate to add taxonomy data
 
