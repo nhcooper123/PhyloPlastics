@@ -8,7 +8,6 @@ editor: visual
 # Load libraries
 library(MCMCglmm)
 library(tidyverse)
-library(tidybayes)
 library(ape)
 library(here)
 library(coda)
