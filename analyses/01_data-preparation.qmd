@@ -6,10 +6,6 @@ editor: source
 bibliography: references.bib
 ---
 
-*** before final run of models need to update tree and check which species need to be removed from data because
-they are not in the tree, and which species have NAs for diet
-why do some have n total = 0???***
-
 This document performs data cleaning and checking for this study. Note that I (NC) strip down the phylogeny from the full bird phylogeny in a different script (data-preparation/03-get-phylogenetic-trees-BBtree)
 
 ### Reading data
@@ -48,6 +44,11 @@ data_plastic <- read_csv(here::here("data-raw/plastic-ingestion-data-2025-09-12.
 # Look at the data
 glimpse(data_traits) # 391 species of seabird
 glimpse(data_plastic) 
+```
+
+How many papers in total?
+```{r}
+length(unique(plastic_data$source))
 ```
 
 ## Data transformations and calculations
