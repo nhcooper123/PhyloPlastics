@@ -205,7 +205,7 @@ species_FO <-
                             Clements2024_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae")) %>%
   ungroup() %>%
   arrange(-mean_species_FO_weighted) %>%
-  select(Order = Clements2024_Order, Family, Species = clements2024_binomial, mean_species_FO_weighted)
+  select(Order = Clements2024_Order, Family, Species = clements2024_binomial, total_n, mean_species_FO_weighted)
 
 #write_csv(species_FO, file = here::here("output/weighted-mean-species-FO.csv"))
 ```
