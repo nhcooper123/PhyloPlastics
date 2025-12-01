@@ -11,6 +11,7 @@ Load libraries
 ```{r}
 library(tidyverse)
 library(here)
+library(patchwork)
 ```
 
 Read in datasets
@@ -222,6 +223,37 @@ We classify ‘well-studied’ species as those with ≥ 100 sampled birds acros
   all %>%
   filter(n_studies >=3 & total_n >= 100) %>% 
   summarise(n())
+```
+
+Summary of sample sizes
+
+```{r}
+all %>%
+  summarise(min_studies = min(n_studies),
+            max_studies = max(n_studies),
+            median_studies = median(n_studies),
+            min_birds = min(total_n, na.rm = TRUE),
+            max_birds = max(total_n, na.rm = TRUE),
+            median_birds = median(total_n, na.rm = TRUE))
+```
+
+Histograms showing the sample sizes
+```{r}
+studies <-
+  ggplot(all, aes(x = n_studies)) +
+  geom_histogram(fill = "lightgrey") +
+  theme_bw(base_size = 14) +
+  xlab("Number of studies")
+  
+birds <-
+  ggplot(all, aes(x = total_n)) +
+  geom_histogram(fill = "lightgrey") +
+  theme_bw(base_size = 14) +
+  xlab("Number of birds")
+
+studies + birds + plot_annotation(tag_levels = "A")
+
+#ggsave()
 ```
 
 Which are well studied and susceptible?
