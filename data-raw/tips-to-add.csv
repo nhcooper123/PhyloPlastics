@@ -6,19 +6,19 @@ Diomedea_epomophora        ,YES,Diomedea_sanfordi          ,0.268217343,Closely 
 Eudyptes_chrysocome        ,YES,Eudyptes_moseleyi,0.8638603769,Until recently considered conspecific with moseleyi. Date from old tree.,HBW
 Fregetta_lineata           ,NO,All Fregetta,4.859042173,"New species, uncertain relationship to rest of genus. Used most inclusive group containing genus and made into a polytomy using date from new tree",HBW
 Gelochelidon_macrotarsa    ,YES,Gelochelidon_nilotica,0.1,Lumped with nilotica til recently. Arbitrary date,HBW
+Gygis_candida    ,YES,Gygis_alba,0.1,Lumped with alba til recently. Arbitrary date,HBW
 Larus_mongolicus           ,YES,Larus_argentatus,0.1,Until recently considered conspecific with argentatus. Arbitrary date,HBW
 Larus_vegae                ,YES,Larus_argentatus,0.1,Until recently considered conspecific with argentatus. Arbitrary date,HBW
 Megadyptes_antipodes       ,NO,All Eudyptes,4.05234108,Previously sister to all Eudyptes. Date from old tree.,HBW
 Melanitta_deglandi         ,YES,Melanitta_fusca,0.1,"Conspecific with fusca, or subspecies of stejnegeri. Arbitrary date",HBW
 Melanitta_stejnegeri       ,YES,Melanitta_deglandi         ,0.1,Conspecific with fusca. Arbitrary date,HBW
-Mergus_octosetaceus        ,NO,NA,NA,Not seabird,HBW
 Microcarbo_africanus       ,NO,All other Microcarbo,10.54225343,"Close relatives with coronatus, uncertain placement in genus but likely outside of the other three species",HBW
 Microcarbo_coronatus       ,YES,Microcarbo_africanus ,1,Close relatives with africanus. Arbitrary date,HBW
 Oceanites_pincoyae         ,NO,All Oceanites,13.00895487,"New species, uncertain relationship to rest of genus. Used most inclusive group containing genus and made into a polytomy using date from new tree.",HBW
 Phaethon_aethereus         ,YES,Phaethon_lepturus,10.79419885,Sister to lepturus + rubricauda. Date from old tree.,HBW
 Phaethon_rubricauda        ,YES,Phaethon_lepturus,3.441796846,Sister species to lepturus. Date from old tree.,HBW
 Pterodroma_atrata          ,NO,All Pterodroma,14.74645025,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
-Pterodroma_caribbaea       ,NO,NA,NA,Missing from tree possibly extinct      ,HBW
+Pterodroma_deserta    ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
 Pterodroma_defilippiana    ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
 Pterodroma_gouldi          ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW
 Pterodroma_macroptera      ,YES,Pterodroma_atrata      ,25.75071426,Pterodroma hybridise so taxonomy/phylogeny is a mess. All missing Pterodroma added as a polytomy,HBW

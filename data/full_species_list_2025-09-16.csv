@@ -64,7 +64,8 @@ Gavia_immer,1,13,0.07692307692307693,3,yes
 Gavia_pacifica,2,22,0.09090909090909091,2,yes
 Gavia_stellata,1,38,0.02631578947368421,6,yes
 Gulosus_aristotelis,56,115,0.48695652173913045,9,yes
-Gygis_alba,1,298,0.003355704697986577,8,yes
+Gygis_alba,0,11,0,3,no
+Gygis_candida,1,287,0.003484320557491289,5,yes
 Halobaena_caerulea,132,166,0.7951807228915663,8,yes
 Histrionicus_histrionicus,0,7,0,2,no
 Hydrobates_castro,5,19,0.2631578947368421,3,yes
@@ -254,6 +255,7 @@ Chroicocephalus_maculipennis,NA,NA,NA,0,NA
 Chroicocephalus_serranus,NA,NA,NA,0,NA
 Creagrus_furcatus,NA,NA,NA,0,NA
 Diomedea_amsterdamensis,NA,NA,NA,0,NA
+Eudyptes_filholi,NA,NA,NA,0,NA
 Eudyptes_pachyrhynchus,NA,NA,NA,0,NA
 Eudyptes_robustus,NA,NA,NA,0,NA
 Eudyptes_schlegeli,NA,NA,NA,0,NA
@@ -264,6 +266,7 @@ Fregetta_lineata,NA,NA,NA,0,NA
 Fregetta_maoriana,NA,NA,NA,0,NA
 Gelochelidon_macrotarsa,NA,NA,NA,0,NA
 Gelochelidon_nilotica,NA,NA,NA,0,NA
+Gygis_microrhyncha,NA,NA,NA,0,NA
 Hydrobates_cheimomnestes,NA,NA,NA,0,NA
 Hydrobates_homochroa,NA,NA,NA,0,NA
 Hydrobates_jabejabe,NA,NA,NA,0,NA
@@ -288,19 +291,13 @@ Larus_livens,NA,NA,NA,0,NA
 Larus_mongolicus,NA,NA,NA,0,NA
 Larus_occidentalis,NA,NA,NA,0,NA
 Larus_vegae,NA,NA,NA,0,NA
-Leucocarbo_bransfieldensis,NA,NA,NA,0,NA
 Leucocarbo_campbelli,NA,NA,NA,0,NA
 Leucocarbo_carunculatus,NA,NA,NA,0,NA
 Leucocarbo_chalconotus,NA,NA,NA,0,NA
 Leucocarbo_colensoi,NA,NA,NA,0,NA
-Leucocarbo_georgianus,NA,NA,NA,0,NA
 Leucocarbo_magellanicus,NA,NA,NA,0,NA
-Leucocarbo_melanogenis,NA,NA,NA,0,NA
-Leucocarbo_nivalis,NA,NA,NA,0,NA
 Leucocarbo_onslowi,NA,NA,NA,0,NA
-Leucocarbo_purpurascens,NA,NA,NA,0,NA
 Leucocarbo_ranfurlyi,NA,NA,NA,0,NA
-Leucocarbo_verrucosus,NA,NA,NA,0,NA
 Leucophaeus_fuliginosus,NA,NA,NA,0,NA
 Leucophaeus_modestus,NA,NA,NA,0,NA
 Leucophaeus_pipixcan,NA,NA,NA,0,NA
@@ -340,6 +337,7 @@ Pseudobulweria_macgillivrayi,NA,NA,NA,0,NA
 Pterodroma_axillaris,NA,NA,NA,0,NA
 Pterodroma_cahow,NA,NA,NA,0,NA
 Pterodroma_defilippiana,NA,NA,NA,0,NA
+Pterodroma_deserta,NA,NA,NA,0,NA
 Pterodroma_feae,NA,NA,NA,0,NA
 Pterodroma_hasitata,NA,NA,NA,0,NA
 Pterodroma_heraldica,NA,NA,NA,0,NA

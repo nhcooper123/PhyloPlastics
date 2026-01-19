@@ -1,0 +1,45 @@
+#NEXUS
+[R-package APE, Mon Jan 19 17:19:17 2026]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 16;
+	TAXLABELS
+		Anatidae
+		Scolopacidae
+		Stercorariidae
+		Alcidae
+		Laridae
+		Gaviidae
+		Pelecanidae
+		Fregatidae
+		Sulidae
+		Phalacrocoracidae
+		Spheniscidae
+		Oceanitidae
+		Hydrobatidae
+		Diomedeidae
+		Procellariidae
+		Phaethontidae
+	;
+END;
+BEGIN TREES;
+	TRANSLATE
+		1	Anatidae,
+		2	Scolopacidae,
+		3	Stercorariidae,
+		4	Alcidae,
+		5	Laridae,
+		6	Gaviidae,
+		7	Pelecanidae,
+		8	Fregatidae,
+		9	Sulidae,
+		10	Phalacrocoracidae,
+		11	Spheniscidae,
+		12	Oceanitidae,
+		13	Hydrobatidae,
+		14	Diomedeidae,
+		15	Procellariidae,
+		16	Phaethontidae
+	;
+	TREE * UNTITLED = [&R] (1:87.29194971,((2:55.01889331,((3:21.16774326,4:21.16774326):1.552727864,5:22.72047113):32.29842218):14.33985796,((6:66.5954422,((7:58.97349632,(8:56.70000001,(9:46.68689037,10:46.68689036):10.01310965):2.2734963):7.14163752,(11:66.0018333,(((12:32.44501903,13:32.44501903):1.455355268,14:33.90037431):0.004941269013,15:33.90531557):32.09651773):0.1133005314):0.4803083636):2.393384771,16:68.98882697):0.3699243104):17.93319843);
+END;
