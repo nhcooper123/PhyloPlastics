@@ -1,7 +1,7 @@
 Order,Family,total_studies,total_taxa,total_plastic,total_species_studied,percent_taxa,percent_plastic
 Anseriformes,Anatidae,40,20,4,13,65,30.76923076923077
 Charadriiformes,Alcidae,164,24,14,18,75,77.77777777777779
-Charadriiformes,Laridae,257,99,30,48,48.484848484848484,62.5
+Charadriiformes,Laridae,257,101,30,49,48.51485148514851,61.224489795918366
 Charadriiformes,Scolopacidae,9,3,2,2,66.66666666666666,100
 Charadriiformes,Stercorariidae,30,7,5,6,85.71428571428571,83.33333333333334
 Gaviiformes,Gaviidae,13,5,4,5,100,80
@@ -10,8 +10,8 @@ Phaethontiformes,Phaethontidae,19,3,3,3,100,100
 Procellariiformes,Diomedeidae,194,20,18,19,95,94.73684210526315
 Procellariiformes,Hydrobatidae,58,17,8,10,58.82352941176471,80
 Procellariiformes,Oceanitidae,41,10,4,7,70,57.14285714285714
-Procellariiformes,Procellariidae,772,96,62,69,71.875,89.85507246376811
-Sphenisciformes,Spheniscidae,59,18,8,14,77.77777777777779,57.14285714285714
+Procellariiformes,Procellariidae,772,97,62,69,71.1340206185567,89.85507246376811
+Sphenisciformes,Spheniscidae,59,19,8,14,73.68421052631578,57.14285714285714
 Suliformes,Fregatidae,10,5,2,3,60,66.66666666666666
-Suliformes,Phalacrocoracidae,47,39,11,13,33.33333333333333,84.61538461538461
+Suliformes,Phalacrocoracidae,47,33,11,13,39.39393939393939,84.61538461538461
 Suliformes,Sulidae,46,11,5,6,54.54545454545454,83.33333333333334

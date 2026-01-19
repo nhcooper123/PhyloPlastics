@@ -6,7 +6,7 @@ editor: source
 bibliography: references.bib
 ---
 
-This document performs data cleaning and checking for this study. Note that I (NC) strip down the phylogeny from the full bird phylogeny in a different script (data-preparation/03-get-phylogenetic-trees-BBtree)
+This document performs data cleaning and checking for this study. Note that I (NC) strip down the phylogeny from the full bird phylogeny in a different script (`data-preparation/03-get-phylogenetic-trees-BBtree`)
 
 ### Reading data
 
@@ -15,40 +15,39 @@ This document performs data cleaning and checking for this study. Note that I (N
 library(ape) # for phylogeny import
 library(tidyverse) # for data import and manipulation
 library(here) # to ensure paths work
-library(naniar) # to look for NAs
 library(geiger) # to check tips and species match in tree and data
 library(janitor) # clean dataset
 ```
 
 #### Import tree
 
-This is the new Claramont et al 2025 bird tree using the Clements 2024 taxonomy.
+This is the new Claramont et al 2025 bird tree using the Clements 2025 taxonomy.
 
 ```{r}
 # Read in tree
-seabird_tree <- read.nexus(here::here("data/seabird-tree-Claramont2025_2025-09-11.nex"))
+seabird_tree <- read.nexus(here::here("data/seabird-tree-2026.nex"))
 
 # Look at it
-str(seabird_tree) # should have 385 tips
+str(seabird_tree) # should have 383 tips
 plot(seabird_tree, no.margin = TRUE, cex = 0.5, type = "fan")
 ```
 
 #### Read in data
 
-These are datasets from Sept 2025. ***Update to most recent***.
 ```{r}
 # Read in trait data and plastic data
-data_traits <- read_csv(here::here("data-raw/trait-data-2025-09-24.csv"))
-data_plastic <- read_csv(here::here("data-raw/plastic-ingestion-data-2025-09-12.csv"))
+data_traits <- read_csv(here::here("data-raw/trait-data-2026.csv"))
+data_plastic <- read_csv(here::here("data-raw/plastic-ingestion-data-2026.csv"))
 
 # Look at the data
-glimpse(data_traits) # 391 species of seabird
+glimpse(data_traits) # 387 species of seabird
 glimpse(data_plastic) 
 ```
 
 How many papers in total?
+
 ```{r}
-length(unique(plastic_data$source))
+length(unique(data_plastic$Source))
 ```
 
 ## Data transformations and calculations
@@ -59,7 +58,7 @@ We do some data transformations before we get to work:
 -   some columns are dropped
 -   body size is standardized with TWO standard deviations, as suggested by @gelman2008
 -   trait and plastic datasets are merged
--   add a column called tips which is the Binomial name with "_" to match the tree
+-   add a column called tips which is the Binomial name with "\_" to match the tree
 
 ### Calculate median date
 
@@ -76,10 +75,11 @@ data_plastic <- data_plastic %>%
 ```{r data-merge}
 # Join the two data files
 data_all <- data_plastic %>% 
-  left_join(data_traits, by = "Clements2024_Binomial")
+  left_join(data_traits, by = "Clements2025_Binomial")
 ```
 
 ### Convert factors to binary
+
 Make the "Yes/No" variables into 0 or 1 (helps to clarify how they work in the models). 0 = No, 1 = Yes
 
 ```{r binary-factors}
@@ -100,11 +100,13 @@ data_all <- data_all %>%
 ```{r}
 data_all <-
   data_all %>%
-  mutate(tips = gsub(" ", "_", data_all$Clements2024_Binomial))
+  mutate(tips = gsub(" ", "_", data_all$Clements2025_Binomial))
 ```
 
 ### Body mass standardisation
+
 Body size standardized with TWO standard deviations, as suggested by @gelman2008
+
 ```{r}
 data_all <-
   data_all %>%
@@ -143,7 +145,7 @@ data_all <- data_all %>%
 # n  = sample size
 # F0 = frequency of occurrence
 data_full <- data_all %>%
-  dplyr::select(Clements2024_Binomial,
+  dplyr::select(Clements2025_Binomial,
     tips, Order, Family,
     # main response variable and sample sizes
     n, n_plastic, FO, Plastic,
@@ -169,7 +171,6 @@ data_full <- data_all %>%
 ```{r}
 data_full <- data_full %>% clean_names()
 ```
-
 
 ### Drop species that are not in the phylogeny
 
@@ -198,7 +199,7 @@ Note that we have to include all other variables so they aren't lost in the aggr
 ```{r}
 # Group by all variables except unique study ID
 data_agg <- data_full |> 
-  group_by(clements2024_binomial, tips, order, family,
+  group_by(clements2025_binomial, tips, order, family,
            # study level traits
            freeflying,
            source, 
@@ -236,8 +237,8 @@ summarise(n_plastic = sum(n_plastic, na.rm = TRUE),
 
 ### Fix errors in FO
 
-- In some cases n_total and n_plastic are both 0, so FO is NaN. Make this zero.
-- In one case after aggregation n_plastic is higher than n_total meaning FO is Inf, remove this entry.
+-   In some cases n_total and n_plastic are both 0, so FO is NaN. Make this zero.
+-   In one case after aggregation n_plastic is higher than n_total meaning FO is Inf, remove this entry.
 
 ```{r}
 data_agg <- 
@@ -251,15 +252,10 @@ data_agg <-
 
 ### A few quick checks
 
-```{r}
-# Check for missing data
-# This produces a plot showing missing data
-naniar::vis_miss(data_agg)
-```
-
 ## Write out full list of species with plastic studies of some kind
 
 Get species totals for numbers of studies, how many with plastic etc.
+
 ```{r}
 species_list <- 
   data_agg %>%
@@ -282,12 +278,12 @@ no_studies <- data.frame(tips = check$tree_not_data,
 # combine
 full_species_list <- rbind(species_list, no_studies)
 
-write_csv(full_species_list, file = here::here("data/full_species_list_2025-09-16.csv"))
+write_csv(full_species_list, file = here::here("data/full-species-list-2026.csv"))
 ```
 
 ### Without NAs
 
-Remove a small number of annoying NAs which we aren't able to work with. We lose a few studies, which include few species each, and one species with no diet info. 
+Remove a small number of annoying NAs which we aren't able to work with. We lose a few studies, which include few species each, and one species with no diet info.
 
 ```{r}
 ## Remove entries with missing years and diet and sampling method info
@@ -304,7 +300,7 @@ data_agg_noNAs <- data_agg %>%
 ## Write out full dataset
 
 ```{r}
-write_csv(data_agg_noNAs, file = here::here("data/plastic-data-aggregated_2025-09-24.csv"))
+write_csv(data_agg_noNAs, file = here::here("data/plastic-data-aggregated_2026.csv"))
 ```
 
 ## Write out a phylogeny which only includes species in the dataset for the analyses
@@ -322,5 +318,5 @@ str(seabird_tree_plastic) # Should have 230 tips
 length(unique(data_agg_noNAs$tips)) # Should be 230
 
 # Write to file
-write.nexus(seabird_tree_plastic, file = here::here("data/seabird_tree_plastic_2025-09-15.nex"))
+write.nexus(seabird_tree_plastic, file = here::here("data/seabird-tree-plastic-2026.nex"))
 ```

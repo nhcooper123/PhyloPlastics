@@ -5,6 +5,7 @@ editor: visual
 ---
 
 Load libraries
+
 ```{r}
 library(ape)
 library(tidyverse)
@@ -12,7 +13,6 @@ library(geiger)
 library(tidytree)
 library(treeio)
 library(ggtree)
-library(knitr)
 library(ggstance)
 library(patchwork)
 library(here)
@@ -36,36 +36,38 @@ order_colours <- c("#ffd92f","#fc8d62","#8da0cb","#b3b3b3",
 Read in the tree and the data, including the full list of seabirds and whether they have been studied and if they have plastic if they have been studied.
 
 ```{r}
-tree <- read.nexus(here("data/family-tree.nex"))
-full <- read_csv(here("data/full_species_list_2025-09-16.csv"))
-taxa <- read_csv(here("data-raw/seabird-list-Clements2024_2025-09-10.csv"))
+tree <- read.nexus(here("data/family-tree-2026.nex"))
+full <- read_csv(here("data/full-species-list-2026.csv"))
+taxa <- read_csv(here("data-raw/seabird-list-Clements2025.csv"))
 ```
+
 Combine full data with taxonomic info and simplify the family names
+
 ```{r}
 # Create a tips column in the taxa dataset
-taxa <- taxa %>% mutate(tips = str_replace(Clements2024_Binomial, " ", "_"))
+taxa <- taxa %>% mutate(tips = str_replace(Clements2025_Binomial, " ", "_"))
 # join to plastic data
 all <- left_join(full, taxa)
 
 # Simplify family names
 all <-
   all %>%
-  mutate(Family = case_when(Clements2024_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
-                            Clements2024_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
-                            Clements2024_Family == "Stercorariidae (Skuas and Jaegers)" ~ "Stercorariidae",      
-                            Clements2024_Family == "Alcidae (Auks, Murres, and Puffins)" ~ "Alcidae",     
-                            Clements2024_Family == "Laridae (Gulls, Terns, and Skimmers)" ~ "Laridae",    
-                            Clements2024_Family == "Phaethontidae (Tropicbirds)" ~ "Phaethontidae",            
-                            Clements2024_Family == "Gaviidae (Loons)" ~ "Gaviidae",                        
-                            Clements2024_Family == "Spheniscidae (Penguins)" ~ "Spheniscidae",                
-                            Clements2024_Family == "Diomedeidae (Albatrosses)" ~ "Diomedeidae",               
-                            Clements2024_Family == "Oceanitidae (Southern Storm-Petrels)" ~ "Oceanitidae",    
-                            Clements2024_Family == "Hydrobatidae (Northern Storm-Petrels)" ~ "Hydrobatidae",   
-                            Clements2024_Family == "Procellariidae (Shearwaters and Petrels)"~ "Procellariidae",
-                            Clements2024_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
-                            Clements2024_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
-                            Clements2024_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
-                            Clements2024_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae"))      
+  mutate(Family = case_when(Clements2025_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
+                            Clements2025_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
+                            Clements2025_Family == "Stercorariidae (Skuas and Jaegers)" ~ "Stercorariidae",      
+                            Clements2025_Family == "Alcidae (Auks, Murres, and Puffins)" ~ "Alcidae",     
+                            Clements2025_Family == "Laridae (Gulls, Terns, and Skimmers)" ~ "Laridae",    
+                            Clements2025_Family == "Phaethontidae (Tropicbirds)" ~ "Phaethontidae",            
+                            Clements2025_Family == "Gaviidae (Loons)" ~ "Gaviidae",                        
+                            Clements2025_Family == "Spheniscidae (Penguins)" ~ "Spheniscidae",                
+                            Clements2025_Family == "Diomedeidae (Albatrosses)" ~ "Diomedeidae",               
+                            Clements2025_Family == "Oceanitidae (Southern Storm-Petrels)" ~ "Oceanitidae",    
+                            Clements2025_Family == "Hydrobatidae (Northern Storm-Petrels)" ~ "Hydrobatidae",   
+                            Clements2025_Family == "Procellariidae (Shearwaters and Petrels)"~ "Procellariidae",
+                            Clements2025_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
+                            Clements2025_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
+                            Clements2025_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
+                            Clements2025_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae"))      
 
 ```
 
@@ -75,7 +77,7 @@ Now let's look at the numbers per family, and how the % coverage looks for each 
 # Get summary numbers per family
 family_ds <-
   all %>%
-  group_by(Clements2024_Order, Family) %>%
+  group_by(Clements2025_Order, Family) %>%
   # total studies per family
   summarise(total_studies = sum(n_studies),
            # total species per family
@@ -87,7 +89,7 @@ family_ds <-
   # percentage of taxa that have been studied
   mutate(percent_taxa = (total_species_studied/total_taxa) * 100) %>%
   mutate(percent_plastic = (total_plastic/total_species_studied) * 100) %>%
-  rename(Order = Clements2024_Order)
+  rename(Order = Clements2025_Order)
 
 # look at it 
 family_ds
@@ -96,14 +98,13 @@ family_ds
 #write_csv(family_ds, here("output/family-coverage.csv"))
 ```
 
-
 Next let's do the same for the order, and how the % coverage looks for each family relative to the studies and to the taxonomic distributions...
 
 ```{r}
 # Get summary numbers
 order_ds <-
   all %>%
-  group_by(Clements2024_Order) %>%
+  group_by(Clements2025_Order) %>%
   # total studies per order
   summarise(total_studies = sum(n_studies),
            # total species per order
@@ -115,7 +116,7 @@ order_ds <-
   # percentage of taxa that have been studied
   mutate(percent_taxa = (total_species_studied/total_taxa) * 100) %>%
   mutate(percent_plastic = (total_plastic/total_species_studied) * 100) %>%
-  rename(Order = Clements2024_Order)
+  rename(Order = Clements2025_Order)
 
 # look at it 
 order_ds
@@ -127,6 +128,7 @@ order_ds
 ### Plots of distributions
 
 Family level plots
+
 ```{r}
 # Number of studies
 p1 <- 
@@ -189,6 +191,7 @@ p2 + p3 + p4
 ```
 
 Order level plots
+
 ```{r}
 # Number of studies
 p1 <- 
@@ -252,6 +255,7 @@ p2 + p3 + p4
 ### Plotting on the phylogeny
 
 Ensure the data is in the same order as the tree and make it into a dataframe
+
 ```{r}
 # Reorder to match tree
 family_ds <- family_ds[match(tree$tip.label, family_ds$Family),]
@@ -271,6 +275,7 @@ family_ds <- as.data.frame(family_ds)
 Make trees using ggtree.
 
 Note that this code will throw lots of warnings about scales which can be ignored
+
 ```{r}
 # Add colours for orders in the same order as the tree
 tree_colours <- c("#ffd92f", rep("#fc8d62", 4), 
@@ -329,24 +334,5 @@ p3 <-
 p3
 
 # Save the plot
-#ggsave(here("figures/phylogeny-data-coverage.png"), height = 7, width = 10)
-
-
-#### NOT INCLUDED BUT LEFT HERE FOR REFERENCE
-
-# Creat new mini dataset to add the x labels
-#d <- data.frame(.panel = c('Tree', 'Species in dataset (n)', 'Taxonomic coverage (%)'), 
-#                lab = c("time (MYA)", "number", "%"), 
-#                x = c(250, 20, 50), y = -2)
-
-# Add x labels
-#p2 + scale_y_continuous(limits = c(0, 45), 
-                        #expand = c(0,0), 
-                        #oob = function(x, ...) x) +
-    #geom_text(aes(label = lab), data=d) + 
-    #coord_cartesian(clip = 'off')  + 
-    #theme(plot.margin = margin(6, 6, 40, 6))
+#ggsave(here("figures/phylogeny-data-coverage.jpeg"), height = 7, width = 10)
 ```
-
-
-

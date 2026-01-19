@@ -4,8 +4,6 @@ format: html
 editor: visual
 ---
 
-***not many species are well studied and still fewer are susceptible - check this in the previous ms***
-
 # Explore the data that have been collected
 
 ## Load libraries
@@ -21,7 +19,7 @@ library(here)
 
 ```{r, message = FALSE}
 # Read in the data
-seabird_data <- read_csv(file = here::here("data/plastic-data-aggregated_2025-09-24.csv"))
+seabird_data <- read_csv(file = here::here("data/plastic-data-aggregated_2026.csv"))
 ```
 
 ## Unite the diet categories
@@ -36,7 +34,7 @@ seabird_data <- seabird_data %>%
 
 ```{r}
 # How many species?
-length(unique(seabird_data$clements2024_binomial))
+length(unique(seabird_data$clements2025_binomial))
 ```
 
 ```{r}
@@ -51,7 +49,7 @@ We classify ‘well-studied’ species as those with ≥ 100 sampled birds acros
 ```{r}
 well_studied <- 
 seabird_data %>%
-  group_by(clements2024_binomial) %>%
+  group_by(clements2025_binomial) %>%
   summarise(records = n(), sampled = sum(n_total)) %>%
   filter(records >=3 & sampled >= 100)
 
@@ -283,16 +281,6 @@ ggplot(seabird_data, aes(x = as.factor(pelagic_specialist), fill = as.factor(pel
   theme_bw() +
   theme(legend.position = "none") +
   scale_fill_manual(values = c("#74B3CE","#09BC8A"))
-
-# DMS.responsive
-#dms <-
-#ggplot(data_noNA, aes(x = as.factor(DMS.responsive_Dell.Ariccia), fill = #as.factor(DMS.responsive_Dell.Ariccia))) +
-  #geom_bar() +
- # xlab("DMS responsive") +
-  #scale_x_discrete(labels = c("No", "Yes")) +
-  #theme_bw() +
-  #theme(legend.position = "none") +
-  #scale_fill_manual(values = c("#74B3CE","#09BC8A"))
 ```
 
 Fit patchwork grids for plots
@@ -300,10 +288,6 @@ Fit patchwork grids for plots
 Species-level variables, i.e. feeding, body size etc.
 
 ```{r}
-#(fm + bm + diet) / 
-# (f + c + cp) / (cr + plot_spacer()+ oi) / (aa + af + ar)
-#ggsave(file = here("output/species-level-variables.png"), height = 8)
-
 (diet  / (c + cp) / (cr + f) / (oi + aa) / (af + ar)) + plot_annotation(tag_levels = 'a')
 #ggsave(file = here("figures/diet-variables.png"), height = 8)
 
