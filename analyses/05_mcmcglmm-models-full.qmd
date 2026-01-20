@@ -18,10 +18,10 @@ Read in data and tree
 ```{r}
 # Read in data
 # Use read.csv because read_csv creates tibbles which MCMCglmm hates
-plastic_data <- read.csv(file = here::here("data/plastic-data-aggregated_2025-09-24.csv"))
+plastic_data <- read.csv(file = here::here("data/plastic-data-aggregated_2026.csv"))
 
 # Read in tree
-plastic_tree <- read.nexus(here::here("data/seabird_tree_plastic_2025-09-15.nex"))
+plastic_tree <- read.nexus(here::here("data/seabird-tree-plastic-2026.nex"))
 # Replace plotomies with 0 length branches
 plastic_tree<- di2multi(plastic_tree)
 # Make this into an inverse variance covariance matrix for the models
@@ -53,6 +53,7 @@ prior <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
 ```
 
 Set values for iterations, burnin and thinning interval
+
 ```{r}
 nitt <- 10000000
 thin <- 10000
@@ -82,20 +83,7 @@ model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
                    verbose = FALSE)
 ```
 
-
-Suggested priors?
-#model1_full_model_priors <- c(
- # prior(normal(.5, .5), class = "Intercept", resp = "freeflying"),
- # prior(exponential(3), class = "sd",        resp = "freeflying"),
- # prior(exponential(1), class = "sd",        resp = "n_plastic"),
- # prior(normal(0, .2),  class = "Intercept", resp = "n_plastic"),
- # prior(normal(0, .2),  class = "b", coef = "Date_median", resp = "n_plastic"),
- # prior(normal(1, .5),  class = "b", coef = "mifreeflying", resp = "n_plastic"),
- # prior(lkj(2),         class = "cor", group = "Clements2024_Binomial"),
- # prior(normal(0, .2), class = "b", resp = "n_plastic")
-)
-
-Did the model converge? 
+Did the model converge?
 
 ## Plot model diagnostics for MCMCglmm
 
@@ -130,6 +118,7 @@ autocorr(model_full$VCV) # Autocorrelation close to 0
 ```
 
 Look at summary of fixed effect results
+
 ```{r}
 summary(model_full)$solutions
 ```
@@ -157,6 +146,7 @@ How much variance is explained by random effects?
 ```{r}
 summary(model_full)$Gcovariances
 ```
+
 ```{r}
 # Get lambda
 lambda <- model_full$VCV[,'tips']/
@@ -171,6 +161,7 @@ HPDinterval(lambda)
 ```
 
 # visualise
+
 ```{r}
 library(bayesplot)
 
@@ -243,6 +234,7 @@ model_no_phylo <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
 ```
 
 Save models for later use
+
 ```{r}
 saveRDS(model_full, here::here("output/model_full.rds"))
 saveRDS(model_prior_test, here::here("output/model_prior_test .rds"))
