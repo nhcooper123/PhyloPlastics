@@ -60,7 +60,7 @@ thin <- 10000
 burnin <- 100000
 ```
 
-Fit the model
+Fit the model. This takes a very long time to fit!
 
 ```{r}
 model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
@@ -236,7 +236,7 @@ model_no_phylo <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
 Save models for later use
 
 ```{r}
-saveRDS(model_full, here::here("output/model_full.rds"))
-saveRDS(model_prior_test, here::here("output/model_prior_test .rds"))
-saveRDS(model_no_phylo, here::here("output/model_no_phylo.rds"))
+saveRDS(model_full, here::here("output/model-full_2026.rds"))
+saveRDS(model_prior_test, here::here("output/model-prior-test_2026.rds"))
+saveRDS(model_no_phylo, here::here("output/model-no-phylo_2026.rds"))
 ```
