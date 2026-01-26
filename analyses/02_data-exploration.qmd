@@ -50,14 +50,22 @@ We classify ‘well-studied’ species as those with ≥ 100 sampled birds acros
 well_studied <- 
 seabird_data %>%
   group_by(clements2025_binomial) %>%
-  summarise(records = n(), sampled = sum(n_total)) %>%
+  summarise(records = n(), sampled = sum(n_total), plastic = sum(n_plastic)) %>%
   filter(records >=3 & sampled >= 100)
-
-well_studied %>% summarise(n())
 ```
 
+How many well-studied species are there?
+```{r}
+well_studied %>% summarise(n())
+```
+How many well-studied species eat plastic?
+
+```{r}
+well_studied %>% filter(plastic > 0) %>% summarise(n())
+```
 ## Make distributional plots of each variable
 
+For the supplemental materials
 ```{r}
 # Body mass
 bm <-
