@@ -1,5 +1,5 @@
 # Figure for the MCMCglmm model outputs
-# Oct 2025
+# Figure 3 in the text
 #-------------------------------------
 
 #-------------------------------------
@@ -11,7 +11,7 @@ library(MCMCglmm)
 #-------------------------------------
 # Load model outputs
 #-------------------------------------
-model_full <- readRDS("output/model_full.rds")
+model_full <- readRDS("output/model-full_2026.rds")
 
 #-------------------------------------
 # Extract required info for plot
