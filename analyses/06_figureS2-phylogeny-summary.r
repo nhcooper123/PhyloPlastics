@@ -1,5 +1,4 @@
-# Phylogeny figure S1
-# Oct 2025
+# Phylogeny figure S2
 # Natalie Cooper
 # -------------------------------
 # Load libraries
