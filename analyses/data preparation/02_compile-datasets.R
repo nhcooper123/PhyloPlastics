@@ -1,5 +1,5 @@
 # Prepare datasets with updated taxonomy
-# Clements 2025 to match Claramunt 2025 tree
+# of Clements 2025 to match Claramunt 2025 tree
 #-----------------------------------------
 # Load libraries
 library(tidyverse)
@@ -43,7 +43,7 @@ write_csv(cleaned_data, "data-raw/plastic-ingestion-data-2026.csv")
 #------------------------------------------
 # 2. Trait data
 #------------------------------------------
-# Read in the old data and modify as needed
+# Read in the trait data
 traits <- read_csv("data-raw/03_trait-data.csv")
 
 # Update taxonomy to match Clements 2025
@@ -78,13 +78,13 @@ traits$HBWv8.1_Binomial <- gsub("Larus leucophthalmus", "Ichthyaetus leucophthal
 traits$HBWv8.1_Binomial <- gsub("Anous albivittus", "Anous albivitta", traits$HBWv8.1_Binomial) 
 
 #--------------------------------------------
-# Combine old data with new taxonomy
-# Join is based on tree as old data does not have species names
+# Combine trait data with new Clements 2025 taxonomy
 # Only keeps species that match new taxonomy - excludes extinct species
 both_traits <- right_join(traits, birds, by = join_by(HBWv8.1_Binomial == Clements2025_Binomial))
 
 #--------------------------------------------
-# Remove un-necessary columns and reorganise
+# Remove un-necessary columns, rename where needed, and reorganise
+# More cleaning is done in later scripts
 cleaned_traits <- 
   both_traits %>%
   select(Clements2025_Binomial = HBWv8.1_Binomial,
