@@ -1,6 +1,5 @@
 # Phylogeny figure
-# Sept 2025
-# Natalie Cooper
+# Figure 2 in text
 # -------------------------------
 # Load libraries
 # -------------------------------
@@ -18,12 +17,12 @@ order_colours <- c("#ffd92f","#fc8d62","#8da0cb","#b3b3b3",
 # Read in the data and tree
 # -------------------------
 # Read in the tree of species in the study
-seabird_tree <- read.nexus("data/seabird_tree_plastic_2025-09-15.nex") 
+seabird_tree <- read.nexus("data/seabird-tree-plastic-2026.nex") 
 # Remove _ from tip labels
 seabird_tree$tip.label <- gsub("_", " ", seabird_tree$tip.label)
 
 # Read in the data
-plastic_data <- read_csv("data/plastic-data-aggregated_2025-09-24.csv")
+plastic_data <- read_csv("data/plastic-data-aggregated_2026.csv")
 # Check data
 str(plastic_data)
 
@@ -32,7 +31,7 @@ str(plastic_data)
 # --------------------------------------------------
 # Summarise to get mean FO
 species_plastic <- plastic_data %>%
-  group_by(order, clements2024_binomial) %>%
+  group_by(order, clements2025_binomial) %>%
   summarise(
     species_n = sum(n_total), 
     species_plastic = sum(n_plastic), 
@@ -42,20 +41,20 @@ species_plastic <- plastic_data %>%
 
 # Select out trait data and recombine with summary plastic data
 species_traits <- plastic_data %>%
-  select(clements2024_binomial, order, family, body_mass_g:terrestrial_feeding) %>%
+  select(clements2025_binomial, order, family, body_mass_g:terrestrial_feeding) %>%
   distinct()
 
 # Merge
 species_plastic <- 
   as.data.frame(full_join(species_plastic, species_traits)) %>%
   # for ggtree to work species names MUST be the first column
-  dplyr::select(clements2024_binomial, everything())
+  dplyr::select(clements2025_binomial, everything())
 
 # Check it
 str(species_plastic)
 
 # Reorder to match tree
-species_plastic <- species_plastic[match(seabird_tree$tip.label, species_plastic$clements2024_binomial), ]
+species_plastic <- species_plastic[match(seabird_tree$tip.label, species_plastic$clements2025_binomial), ]
 
 ## --------------------------------------------------
 # Plotting the tree - separate categories
@@ -226,22 +225,22 @@ tree_final <- surface_tree + theme(legend.position = "none")
 # Label families
 # --------------------------------------------------  
 # Extract MRCAs 
-anatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Anatidae")])
-alcidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Alcidae")])
-laridae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Laridae")])
-scolopacidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Scolopacidae")])
-stercorariidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Stercorariidae")])
-gaviidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Gaviidae")])
-pelecanidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Pelecanidae")])
-phaethontidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Phaethontidae")])
-procellariidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Procellariidae")])
-diomedeidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Diomedeidae")])
-oceanitidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Oceanitidae")])
-hydrobatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Hydrobatidae")])
-spheniscidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Spheniscidae")])
-fregatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Fregatidae")])
-phalacrocoracidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Phalacrocoracidae")])
-sulidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2024_binomial[which(species_plastic$family == "Sulidae")])
+anatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Anatidae")])
+alcidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Alcidae")])
+laridae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Laridae")])
+scolopacidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Scolopacidae")])
+stercorariidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Stercorariidae")])
+gaviidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Gaviidae")])
+pelecanidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Pelecanidae")])
+phaethontidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Phaethontidae")])
+procellariidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Procellariidae")])
+diomedeidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Diomedeidae")])
+oceanitidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Oceanitidae")])
+hydrobatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Hydrobatidae")])
+spheniscidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Spheniscidae")])
+fregatidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Fregatidae")])
+phalacrocoracidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Phalacrocoracidae")])
+sulidae <- findMRCA(tree = seabird_tree, tips = species_plastic$clements2025_binomial[which(species_plastic$family == "Sulidae")])
 
 # add to tree
 tree_final + 
@@ -471,4 +470,4 @@ tree_FO +
                 offset = 50)
 
 # Write to file
-# ggsave("figures/tree-FO-families.png", width = 8, height = 8)
+# ggsave("figures/figure2-tree-FO-families.jpeg", width = 8, height = 8)
