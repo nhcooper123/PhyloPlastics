@@ -1,4 +1,4 @@
-# Phylogeny figure 1
+# Phylogeny figure S1
 # Oct 2025
 # Natalie Cooper
 # -------------------------------
