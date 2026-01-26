@@ -1,4 +1,4 @@
-tips,total_plastic,total_n,species_FO,n_studies,plastic,clements2024_binomial,Clements2024_Order,Clements2024_Family,Clements2024_Common_name,Clements2024_Genus,studied,well_studied,mean_species_FO_weighted,Family
+tips,total_plastic,total_n,species_FO,n_studies,plastic,clements2025_binomial,Clements2025_Order,Clements2025_Family,Clements2025_Common_name,Clements2025_Genus,studied,well_studied,mean_species_FO_weighted,Family
 Aethia_cristatella,7,1243,0.00563153660498793,17,yes,Aethia cristatella,Charadriiformes,"Alcidae (Auks, Murres, and Puffins)",Crested Auklet,Aethia,yes,yes,0.31647387999699833,Alcidae
 Aethia_psittacula,284,468,0.6068376068376068,16,yes,Aethia psittacula,Charadriiformes,"Alcidae (Auks, Murres, and Puffins)",Parakeet Auklet,Aethia,yes,yes,0.31647387999699833,Alcidae
 Aethia_pygmaea,1,516,0.00193798449612403,16,yes,Aethia pygmaea,Charadriiformes,"Alcidae (Auks, Murres, and Puffins)",Whiskered Auklet,Aethia,yes,yes,0.31647387999699833,Alcidae
@@ -43,7 +43,7 @@ Diomedea_dabbenena,2,16,0.125,6,yes,Diomedea dabbenena,Procellariiformes,Diomede
 Diomedea_epomophora,6,36,0.16666666666666666,9,yes,Diomedea epomophora,Procellariiformes,Diomedeidae (Albatrosses),Southern Royal Albatross,Diomedea,yes,no,0.31647387999699833,Diomedeidae
 Diomedea_exulans,513,1144,0.44842657342657344,20,yes,Diomedea exulans,Procellariiformes,Diomedeidae (Albatrosses),Snowy Albatross,Diomedea,yes,yes,0.31647387999699833,Diomedeidae
 Diomedea_sanfordi,14,63,0.2222222222222222,2,yes,Diomedea sanfordi,Procellariiformes,Diomedeidae (Albatrosses),Northern Royal Albatross,Diomedea,yes,no,0.31647387999699833,Diomedeidae
-Eudyptes_chrysocome,2,177,0.01129943502824858,1,yes,Eudyptes chrysocome,Sphenisciformes,Spheniscidae (Penguins),Southern Rockhopper Penguin,Eudyptes,yes,no,0.31647387999699833,Spheniscidae
+Eudyptes_chrysocome,2,177,0.01129943502824858,1,yes,Eudyptes chrysocome,Sphenisciformes,Spheniscidae (Penguins),Western Rockhopper Penguin,Eudyptes,yes,no,0.31647387999699833,Spheniscidae
 Eudyptes_chrysolophus,0,46,0,1,no,Eudyptes chrysolophus,Sphenisciformes,Spheniscidae (Penguins),Macaroni Penguin,Eudyptes,yes,no,0.31647387999699833,Spheniscidae
 Eudyptes_moseleyi,0,12,0,1,no,Eudyptes moseleyi,Sphenisciformes,Spheniscidae (Penguins),Moseley's Rockhopper Penguin,Eudyptes,yes,no,0.31647387999699833,Spheniscidae
 Eudyptula_minor,0,124,0,2,no,Eudyptula minor,Sphenisciformes,Spheniscidae (Penguins),Little Penguin,Eudyptula,yes,no,0.31647387999699833,Spheniscidae
@@ -64,7 +64,8 @@ Gavia_immer,1,13,0.07692307692307693,3,yes,Gavia immer,Gaviiformes,Gaviidae (Loo
 Gavia_pacifica,2,22,0.09090909090909093,2,yes,Gavia pacifica,Gaviiformes,Gaviidae (Loons),Pacific Loon,Gavia,yes,no,0.31647387999699833,Gaviidae
 Gavia_stellata,1,38,0.02631578947368421,6,yes,Gavia stellata,Gaviiformes,Gaviidae (Loons),Red-throated Loon,Gavia,yes,no,0.31647387999699833,Gaviidae
 Gulosus_aristotelis,56,115,0.48695652173913045,9,yes,Gulosus aristotelis,Suliformes,Phalacrocoracidae (Cormorants and Shags),European Shag,Gulosus,yes,yes,0.31647387999699833,Phalacrocoracidae
-Gygis_alba,1,298,0.00335570469798657,8,yes,Gygis alba,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",White Tern,Gygis,yes,yes,0.31647387999699833,Laridae
+Gygis_alba,0,11,0,3,no,Gygis alba,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Atlantic White-Tern,Gygis,yes,no,0.31647387999699833,Laridae
+Gygis_candida,1,287,0.00348432055749128,5,yes,Gygis candida,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Blue-billed White-Tern,Gygis,yes,yes,0.31647387999699833,Laridae
 Halobaena_caerulea,132,166,0.7951807228915663,8,yes,Halobaena caerulea,Procellariiformes,Procellariidae (Shearwaters and Petrels),Blue Petrel,Halobaena,yes,yes,0.31647387999699833,Procellariidae
 Histrionicus_histrionicus,0,7,0,2,no,Histrionicus histrionicus,Anseriformes,"Anatidae (Ducks, Geese, and Waterfowl)",Harlequin Duck,Histrionicus,yes,no,0.31647387999699833,Anatidae
 Hydrobates_castro,5,19,0.2631578947368421,3,yes,Hydrobates castro,Procellariiformes,Hydrobatidae (Northern Storm-Petrels),Band-rumped Storm-Petrel,Hydrobates,yes,no,0.31647387999699833,Hydrobatidae
@@ -254,6 +255,7 @@ Chroicocephalus_maculipennis,NA,NA,NA,0,NA,Chroicocephalus maculipennis,Charadri
 Chroicocephalus_serranus,NA,NA,NA,0,NA,Chroicocephalus serranus,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Andean Gull,Chroicocephalus,no,no,0.31647387999699833,Laridae
 Creagrus_furcatus,NA,NA,NA,0,NA,Creagrus furcatus,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Swallow-tailed Gull,Creagrus,no,no,0.31647387999699833,Laridae
 Diomedea_amsterdamensis,NA,NA,NA,0,NA,Diomedea amsterdamensis,Procellariiformes,Diomedeidae (Albatrosses),Amsterdam Albatross,Diomedea,no,no,0.31647387999699833,Diomedeidae
+Eudyptes_filholi,NA,NA,NA,0,NA,Eudyptes filholi,Sphenisciformes,Spheniscidae (Penguins),Eastern Rockhopper Penguin,Eudyptes,no,no,0.31647387999699833,Spheniscidae
 Eudyptes_pachyrhynchus,NA,NA,NA,0,NA,Eudyptes pachyrhynchus,Sphenisciformes,Spheniscidae (Penguins),Fiordland Penguin,Eudyptes,no,no,0.31647387999699833,Spheniscidae
 Eudyptes_robustus,NA,NA,NA,0,NA,Eudyptes robustus,Sphenisciformes,Spheniscidae (Penguins),Snares Penguin,Eudyptes,no,no,0.31647387999699833,Spheniscidae
 Eudyptes_schlegeli,NA,NA,NA,0,NA,Eudyptes schlegeli,Sphenisciformes,Spheniscidae (Penguins),Royal Penguin,Eudyptes,no,no,0.31647387999699833,Spheniscidae
@@ -264,6 +266,7 @@ Fregetta_lineata,NA,NA,NA,0,NA,Fregetta lineata,Procellariiformes,Oceanitidae (S
 Fregetta_maoriana,NA,NA,NA,0,NA,Fregetta maoriana,Procellariiformes,Oceanitidae (Southern Storm-Petrels),New Zealand Storm-Petrel,Fregetta,no,no,0.31647387999699833,Oceanitidae
 Gelochelidon_macrotarsa,NA,NA,NA,0,NA,Gelochelidon macrotarsa,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Australian Tern,Gelochelidon,no,no,0.31647387999699833,Laridae
 Gelochelidon_nilotica,NA,NA,NA,0,NA,Gelochelidon nilotica,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Gull-billed Tern,Gelochelidon,no,no,0.31647387999699833,Laridae
+Gygis_microrhyncha,NA,NA,NA,0,NA,Gygis microrhyncha,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Little White-Tern,Gygis,no,no,0.31647387999699833,Laridae
 Hydrobates_cheimomnestes,NA,NA,NA,0,NA,Hydrobates cheimomnestes,Procellariiformes,Hydrobatidae (Northern Storm-Petrels),Ainley's Storm-Petrel,Hydrobates,no,no,0.31647387999699833,Hydrobatidae
 Hydrobates_homochroa,NA,NA,NA,0,NA,Hydrobates homochroa,Procellariiformes,Hydrobatidae (Northern Storm-Petrels),Ashy Storm-Petrel,Hydrobates,no,no,0.31647387999699833,Hydrobatidae
 Hydrobates_jabejabe,NA,NA,NA,0,NA,Hydrobates jabejabe,Procellariiformes,Hydrobatidae (Northern Storm-Petrels),Cape Verde Storm-Petrel,Hydrobates,no,no,0.31647387999699833,Hydrobatidae
@@ -288,19 +291,13 @@ Larus_livens,NA,NA,NA,0,NA,Larus livens,Charadriiformes,"Laridae (Gulls, Terns, 
 Larus_mongolicus,NA,NA,NA,0,NA,Larus mongolicus,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Mongolian Gull,Larus,no,no,0.31647387999699833,Laridae
 Larus_occidentalis,NA,NA,NA,0,NA,Larus occidentalis,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Western Gull,Larus,no,no,0.31647387999699833,Laridae
 Larus_vegae,NA,NA,NA,0,NA,Larus vegae,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Vega Gull,Larus,no,no,0.31647387999699833,Laridae
-Leucocarbo_bransfieldensis,NA,NA,NA,0,NA,Leucocarbo bransfieldensis,Suliformes,Phalacrocoracidae (Cormorants and Shags),Antarctic Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
 Leucocarbo_campbelli,NA,NA,NA,0,NA,Leucocarbo campbelli,Suliformes,Phalacrocoracidae (Cormorants and Shags),Campbell Islands Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
 Leucocarbo_carunculatus,NA,NA,NA,0,NA,Leucocarbo carunculatus,Suliformes,Phalacrocoracidae (Cormorants and Shags),New Zealand King Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
 Leucocarbo_chalconotus,NA,NA,NA,0,NA,Leucocarbo chalconotus,Suliformes,Phalacrocoracidae (Cormorants and Shags),Stewart Island Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
 Leucocarbo_colensoi,NA,NA,NA,0,NA,Leucocarbo colensoi,Suliformes,Phalacrocoracidae (Cormorants and Shags),Auckland Islands Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
-Leucocarbo_georgianus,NA,NA,NA,0,NA,Leucocarbo georgianus,Suliformes,Phalacrocoracidae (Cormorants and Shags),South Georgia Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
 Leucocarbo_magellanicus,NA,NA,NA,0,NA,Leucocarbo magellanicus,Suliformes,Phalacrocoracidae (Cormorants and Shags),Magellanic Cormorant,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
-Leucocarbo_melanogenis,NA,NA,NA,0,NA,Leucocarbo melanogenis,Suliformes,Phalacrocoracidae (Cormorants and Shags),Crozet Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
-Leucocarbo_nivalis,NA,NA,NA,0,NA,Leucocarbo nivalis,Suliformes,Phalacrocoracidae (Cormorants and Shags),Heard Island Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
 Leucocarbo_onslowi,NA,NA,NA,0,NA,Leucocarbo onslowi,Suliformes,Phalacrocoracidae (Cormorants and Shags),Chatham Islands Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
-Leucocarbo_purpurascens,NA,NA,NA,0,NA,Leucocarbo purpurascens,Suliformes,Phalacrocoracidae (Cormorants and Shags),Macquarie Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
 Leucocarbo_ranfurlyi,NA,NA,NA,0,NA,Leucocarbo ranfurlyi,Suliformes,Phalacrocoracidae (Cormorants and Shags),Bounty Islands Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
-Leucocarbo_verrucosus,NA,NA,NA,0,NA,Leucocarbo verrucosus,Suliformes,Phalacrocoracidae (Cormorants and Shags),Kerguelen Shag,Leucocarbo,no,no,0.31647387999699833,Phalacrocoracidae
 Leucophaeus_fuliginosus,NA,NA,NA,0,NA,Leucophaeus fuliginosus,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Lava Gull,Leucophaeus,no,no,0.31647387999699833,Laridae
 Leucophaeus_modestus,NA,NA,NA,0,NA,Leucophaeus modestus,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Gray Gull,Leucophaeus,no,no,0.31647387999699833,Laridae
 Leucophaeus_pipixcan,NA,NA,NA,0,NA,Leucophaeus pipixcan,Charadriiformes,"Laridae (Gulls, Terns, and Skimmers)",Franklin's Gull,Leucophaeus,no,no,0.31647387999699833,Laridae
@@ -340,7 +337,8 @@ Pseudobulweria_macgillivrayi,NA,NA,NA,0,NA,Pseudobulweria macgillivrayi,Procella
 Pterodroma_axillaris,NA,NA,NA,0,NA,Pterodroma axillaris,Procellariiformes,Procellariidae (Shearwaters and Petrels),Chatham Islands Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
 Pterodroma_cahow,NA,NA,NA,0,NA,Pterodroma cahow,Procellariiformes,Procellariidae (Shearwaters and Petrels),Bermuda Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
 Pterodroma_defilippiana,NA,NA,NA,0,NA,Pterodroma defilippiana,Procellariiformes,Procellariidae (Shearwaters and Petrels),Masatierra Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
-Pterodroma_feae,NA,NA,NA,0,NA,Pterodroma feae,Procellariiformes,Procellariidae (Shearwaters and Petrels),Fea's Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
+Pterodroma_deserta,NA,NA,NA,0,NA,Pterodroma deserta,Procellariiformes,Procellariidae (Shearwaters and Petrels),Desertas Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
+Pterodroma_feae,NA,NA,NA,0,NA,Pterodroma feae,Procellariiformes,Procellariidae (Shearwaters and Petrels),Cape Verde Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
 Pterodroma_hasitata,NA,NA,NA,0,NA,Pterodroma hasitata,Procellariiformes,Procellariidae (Shearwaters and Petrels),Black-capped Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
 Pterodroma_heraldica,NA,NA,NA,0,NA,Pterodroma heraldica,Procellariiformes,Procellariidae (Shearwaters and Petrels),Herald Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
 Pterodroma_madeira,NA,NA,NA,0,NA,Pterodroma madeira,Procellariiformes,Procellariidae (Shearwaters and Petrels),Zino's Petrel,Pterodroma,no,no,0.31647387999699833,Procellariidae
