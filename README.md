@@ -56,20 +56,20 @@ Prior to analyses we ran three scripts to prepare the data for analyses. These s
 
 The main analyses scripts are as follows.
 
-- **01_data-preparation.qmd**. This takes the cleaned data from script `02_` in `data-preparation` (`plastic-ingestion-data-2026.csv` and `trait-data-2026.csv`.) and performs further cleaning to remove NAs, and to aggregate the dataset to remove pseudoreplicates.	This results in cleaned and aggregated dataset that is used in the rest of the analyses (``)		
-- **02_data-exploration.qmd**				
-- **03_dataset-coverage.qmd**				
-- **04_summaries-for-results.qmd**			
-- **05_mcmcglmm-models-full.qmd**. Runs the MCMCglmm models including sensitivity analyses.			
-- **06_figure1-phylogeny-summary.R**. Summary figure showing FO for seabirds across the seabird phylogeny, i.e. Figure 1. Note this requires a little extra processing in Inkscape to add silhouettes and clade labels.		
-- **07_figure3_mcmc_results.R**. Code to take the outputs of the models from script 05 to create results figure 3.	
-- **08_figure_phylogenies-and-data.R**. This builds the figures for the supplemental that show data coverage and/or summaries of results.	
+- **01_data-preparation.qmd**. This takes the cleaned data from script `02_` in `data-preparation` (`plastic-ingestion-data-2026.csv` and `trait-data-2026.csv`) and performs further cleaning to remove NAs, and to aggregate the dataset to remove pseudoreplicates.	This results in cleaned and aggregated dataset and tree for 230 species that is used in the rest of the analyses (`plastic-data-aggregated_2026.csv` and `seabird-tree-plastic-2026.nex`).		
+- **02_data-exploration.qmd**. Extracts some summary data, including number of records, species, sources and number of well-studied species. Creates distributional plots of variables for the supplemental materials (Figures S1 and S4-S7). 				
+- **03_dataset-coverage.qmd**. Calculates various dataset coverage metrics, including for orders and families (Table S2 in the supplemental). Family level coverage is also plotted to create Figure 1. 				
+- **04_summaries-for-results.qmd**. Calculates summary stats including total numbers of birds, studies and species in each model for the text and for Table S2, and order and family level FO for the supplemental results Table S3.			
+- **05_mcmcglmm-models-full.qmd**. Runs the MCMCglmm models including sensitivity analyses and saves outputs.			
+- **06_figureS2-phylogeny-summary.R**. Summary figure showing FO for seabirds across the seabird phylogeny, i.e. Figure S2. Note this requires a little extra processing in Inkscape to add silhouettes and clade labels.		
+- **07_figure3_mcmc_results.R**. Code to take the outputs of the models from script 05 to create results Figure 3.	
+- **08_figures_phylogenies-and-data.R**. This creates the figures for the supplemental that show data coverage (Figure S3) and also Figure 2 of FO across the tree for the main text. Note that these require some post processing in Inkscape to add the silhouettes.
 - **09_get-citations.R**. This uses the `grateful` package to extract citations for all R packages. Note that this required some post extraction cleaning before inclusion in the paper.
 
 -------
 ## Other folders
 
-The folders `figures` and `output` contains the main figures and tables as well as the MCMCglmm model outputs.
+The folders `figures` and `output` contains the main and supplemental figures and tables as well as the MCMCglmm model outputs. `final-figures` contains the post Inkscape processed figures for Figures S2, S3 and Figure 2.
 
 -------
 ## Session Info
