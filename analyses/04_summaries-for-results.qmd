@@ -18,13 +18,13 @@ Read in datasets
 
 ```{r}
 # taxonomy info
-species <- read_csv(here::here("data-raw/seabird-list-Clements2024_2025-09-10.csv"))
+species <- read_csv(here::here("data-raw/seabird-list-Clements2025.csv"))
   
 # plastic data post NA removal i.e. used in models
-plastic <- read_csv(here::here("data/plastic-data-aggregated_2025-09-24.csv"))
+plastic <- read_csv(here::here("data/plastic-data-aggregated_2026.csv"))
 
 # plastic data pre NA removal AND with non studied species added
-all <- read_csv(here::here("data/full_species_list_2025-09-16.csv"))
+all <- read_csv(here::here("data/full-species-list-2026.csv"))
 ```
 
 How many papers in analyses?
@@ -37,13 +37,13 @@ Manipulate to add taxonomy data
 
 ```{r}
 # make a binomial column
-all$clements2024_binomial <- gsub("_", " ", all$tips)
+all$clements2025_binomial <- gsub("_", " ", all$tips)
 
 # combine with taxonomy info
-all <- left_join(all, species, by = c("clements2024_binomial" = "Clements2024_Binomial"))
+all <- left_join(all, species, by = c("clements2025_binomial" = "Clements2025_Binomial"))
 ```
 
-Summaries for data pre NA removal
+Summaries for data that is included in the models (Table S2)
 
 ```{r}
 # total studies per family
@@ -63,14 +63,14 @@ plastic %>%
 # total species per family
 plastic %>%
   group_by(order, family) %>%
-  summarise(total_species = length(unique(clements2024_binomial)))
+  summarise(total_species = length(unique(clements2025_binomial)))
 ```
 
 ```{r}
 # total species per order
 plastic %>%
   group_by(order) %>%
-  summarise(total_species = length(unique(clements2024_binomial)))
+  summarise(total_species = length(unique(clements2025_binomial)))
 ```
 
 ```{r}
@@ -98,14 +98,14 @@ Summaries for data before we removed NAs
 ```{r}
 # total studies per family
 all %>%
-  group_by(Clements2024_Order, Clements2024_Family) %>%
+  group_by(Clements2025_Order, Clements2025_Family) %>%
   summarise(total_studies = sum(n_studies))
 ```
 
 ```{r}
 # total studies per order
 all %>%
-  group_by(Clements2024_Order) %>%
+  group_by(Clements2025_Order) %>%
   summarise(total_studies = sum(n_studies))
 ```
 
@@ -113,28 +113,28 @@ all %>%
 # total species per family
 # this is a bit fiddly as we need to record species that do have data
 all %>%
-  group_by(Clements2024_Order, Clements2024_Family) %>%
+  group_by(Clements2025_Order, Clements2025_Family) %>%
   summarise(total_species = length(which(!is.na(total_n) == TRUE)))
 ```
 
 ```{r}
 # total species per order
 all %>%
-  group_by(Clements2024_Order) %>%
+  group_by(Clements2025_Order) %>%
   summarise(total_species = length(which(!is.na(total_n) == TRUE)))
 ```
 
 ```{r}
 # total birds per family
 all %>%
-  group_by(Clements2024_Order, Clements2024_Family) %>%
+  group_by(Clements2025_Order, Clements2025_Family) %>%
   summarise(total_birds = sum(total_n, na.rm = TRUE))
 ```
 
 ```{r}
 # total birds per order
 all %>%
-  group_by(Clements2024_Order) %>%
+  group_by(Clements2025_Order) %>%
   summarise(total_birds = sum(total_n, na.rm = TRUE))
 ```
 
@@ -167,7 +167,7 @@ Weighted mean FO for orders
 
 ```{r}
 all %>%
-  group_by(Clements2024_Order) %>%
+  group_by(Clements2025_Order) %>%
   summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE))
 ```
 
@@ -175,7 +175,7 @@ Weighted mean FO for families
 
 ```{r}
 all %>%
-  group_by(Clements2024_Order, Clements2024_Family) %>%
+  group_by(Clements2025_Order, Clements2025_Family) %>%
   summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE))
 ```
 
@@ -185,28 +185,28 @@ Weighted mean FO for species
 species_FO <-
   all %>%
   filter(!is.na(total_n)) %>%
-  group_by(Clements2024_Order, Clements2024_Family, clements2024_binomial) %>%
+  group_by(Clements2025_Order, Clements2025_Family, clements2025_binomial) %>%
   summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE) *100,
             total_n) %>%
-  mutate(Family = case_when(Clements2024_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
-                            Clements2024_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
-                            Clements2024_Family == "Stercorariidae (Skuas and Jaegers)" ~ "Stercorariidae",      
-                            Clements2024_Family == "Alcidae (Auks, Murres, and Puffins)" ~ "Alcidae",     
-                            Clements2024_Family == "Laridae (Gulls, Terns, and Skimmers)" ~ "Laridae",    
-                            Clements2024_Family == "Phaethontidae (Tropicbirds)" ~ "Phaethontidae",            
-                            Clements2024_Family == "Gaviidae (Loons)" ~ "Gaviidae",                        
-                            Clements2024_Family == "Spheniscidae (Penguins)" ~ "Spheniscidae",                
-                            Clements2024_Family == "Diomedeidae (Albatrosses)" ~ "Diomedeidae",               
-                            Clements2024_Family == "Oceanitidae (Southern Storm-Petrels)" ~ "Oceanitidae",    
-                            Clements2024_Family == "Hydrobatidae (Northern Storm-Petrels)" ~ "Hydrobatidae",   
-                            Clements2024_Family == "Procellariidae (Shearwaters and Petrels)"~ "Procellariidae",
-                            Clements2024_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
-                            Clements2024_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
-                            Clements2024_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
-                            Clements2024_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae")) %>%
+  mutate(Family = case_when(Clements2025_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
+                            Clements2025_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
+                            Clements2025_Family == "Stercorariidae (Skuas and Jaegers)" ~ "Stercorariidae",      
+                            Clements2025_Family == "Alcidae (Auks, Murres, and Puffins)" ~ "Alcidae",     
+                            Clements2025_Family == "Laridae (Gulls, Terns, and Skimmers)" ~ "Laridae",    
+                            Clements2025_Family == "Phaethontidae (Tropicbirds)" ~ "Phaethontidae",            
+                            Clements2025_Family == "Gaviidae (Loons)" ~ "Gaviidae",                        
+                            Clements2025_Family == "Spheniscidae (Penguins)" ~ "Spheniscidae",                
+                            Clements2025_Family == "Diomedeidae (Albatrosses)" ~ "Diomedeidae",               
+                            Clements2025_Family == "Oceanitidae (Southern Storm-Petrels)" ~ "Oceanitidae",    
+                            Clements2025_Family == "Hydrobatidae (Northern Storm-Petrels)" ~ "Hydrobatidae",   
+                            Clements2025_Family == "Procellariidae (Shearwaters and Petrels)"~ "Procellariidae",
+                            Clements2025_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
+                            Clements2025_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
+                            Clements2025_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
+                            Clements2025_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae")) %>%
   ungroup() %>%
   arrange(-mean_species_FO_weighted) %>%
-  select(Order = Clements2024_Order, Family, Species = clements2024_binomial, total_n, mean_species_FO_weighted)
+  select(Order = Clements2025_Order, Family, Species = clements2025_binomial, total_n, mean_species_FO_weighted)
 
 #write_csv(species_FO, file = here::here("output/weighted-mean-species-FO.csv"))
 ```
@@ -238,6 +238,7 @@ all %>%
 ```
 
 Histograms showing the sample sizes
+
 ```{r}
 studies <-
   ggplot(all, aes(x = n_studies)) +
@@ -262,7 +263,7 @@ Which are well studied and susceptible?
 susceptible <-
   all %>%
   filter(n_studies >=3 & total_n >= 100) %>% 
-  group_by(clements2024_binomial) %>%
+  group_by(clements2025_binomial) %>%
   summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE)) %>%
   filter(mean_species_FO_weighted > 0.50)
 
@@ -283,22 +284,22 @@ results <- all %>%
                      n_studies <3 | total_n < 100 ~ "no")) %>%
   # add weighted mean FO
   mutate(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE)) %>%
-  mutate(Family = case_when(Clements2024_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
-                            Clements2024_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
-                            Clements2024_Family == "Stercorariidae (Skuas and Jaegers)" ~ "Stercorariidae",      
-                            Clements2024_Family == "Alcidae (Auks, Murres, and Puffins)" ~ "Alcidae",     
-                            Clements2024_Family == "Laridae (Gulls, Terns, and Skimmers)" ~ "Laridae",    
-                            Clements2024_Family == "Phaethontidae (Tropicbirds)" ~ "Phaethontidae",            
-                            Clements2024_Family == "Gaviidae (Loons)" ~ "Gaviidae",                        
-                            Clements2024_Family == "Spheniscidae (Penguins)" ~ "Spheniscidae",                
-                            Clements2024_Family == "Diomedeidae (Albatrosses)" ~ "Diomedeidae",               
-                            Clements2024_Family == "Oceanitidae (Southern Storm-Petrels)" ~ "Oceanitidae",    
-                            Clements2024_Family == "Hydrobatidae (Northern Storm-Petrels)" ~ "Hydrobatidae",   
-                            Clements2024_Family == "Procellariidae (Shearwaters and Petrels)"~ "Procellariidae",
-                            Clements2024_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
-                            Clements2024_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
-                            Clements2024_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
-                            Clements2024_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae"))
+  mutate(Family = case_when(Clements2025_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
+                            Clements2025_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
+                            Clements2025_Family == "Stercorariidae (Skuas and Jaegers)" ~ "Stercorariidae",      
+                            Clements2025_Family == "Alcidae (Auks, Murres, and Puffins)" ~ "Alcidae",     
+                            Clements2025_Family == "Laridae (Gulls, Terns, and Skimmers)" ~ "Laridae",    
+                            Clements2025_Family == "Phaethontidae (Tropicbirds)" ~ "Phaethontidae",            
+                            Clements2025_Family == "Gaviidae (Loons)" ~ "Gaviidae",                        
+                            Clements2025_Family == "Spheniscidae (Penguins)" ~ "Spheniscidae",                
+                            Clements2025_Family == "Diomedeidae (Albatrosses)" ~ "Diomedeidae",               
+                            Clements2025_Family == "Oceanitidae (Southern Storm-Petrels)" ~ "Oceanitidae",    
+                            Clements2025_Family == "Hydrobatidae (Northern Storm-Petrels)" ~ "Hydrobatidae",   
+                            Clements2025_Family == "Procellariidae (Shearwaters and Petrels)"~ "Procellariidae",
+                            Clements2025_Family == "Fregatidae (Frigatebirds)" ~ "Fregatidae",             
+                            Clements2025_Family == "Sulidae (Boobies and Gannets)" ~ "Sulidae",         
+                            Clements2025_Family == "Phalacrocoracidae (Cormorants and Shags)" ~ "Phalacrocoracidae", 
+                            Clements2025_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae"))
 
   # replace NAs with 0s
   #tidyr::replace_na(list(0)
