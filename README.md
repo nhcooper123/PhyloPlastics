@@ -12,7 +12,7 @@ To cite this repo:
 
 ADD ZENODO BADGE WHEN PUBLISHED
 
-![alt text](https://github.com/nhcooper123/PhyloPlastics/raw/main/final-figures/FigureS2.png)
+![alt text](https://github.com/nhcooper123/PhyloPlastics/raw/main/final-figures/FigureS3-cropped.png)
 
 -------
 
