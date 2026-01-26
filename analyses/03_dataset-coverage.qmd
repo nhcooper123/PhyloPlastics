@@ -93,9 +93,6 @@ family_ds <-
 
 # look at it 
 family_ds
-
-# Save results
-#write_csv(family_ds, here("output/family-coverage.csv"))
 ```
 
 Next let's do the same for the order, and how the % coverage looks for each family relative to the studies and to the taxonomic distributions...
@@ -120,9 +117,6 @@ order_ds <-
 
 # look at it 
 order_ds
-
-# Save results
-#write_csv(order_ds, here("output/order-coverage.csv"))
 ```
 
 ### Plots of distributions
@@ -179,10 +173,6 @@ p4 <-
   ylab("% with plastic") +
   theme(legend.position = "right") +
   remove_y
-
-#p1 + p4
-# Save plot
-#ggsave(here("figures/family-level-plastic-coverage.png"), width = 10)
 
 p2 + p3 + p4
 # Save plot
@@ -253,6 +243,7 @@ p2 + p3 + p4
 ```
 
 ### Plotting on the phylogeny
+
 This creates Figure 1
 
 Ensure the data is in the same order as the tree and make it into a dataframe
