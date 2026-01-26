@@ -253,6 +253,7 @@ p2 + p3 + p4
 ```
 
 ### Plotting on the phylogeny
+This creates Figure 1
 
 Ensure the data is in the same order as the tree and make it into a dataframe
 
