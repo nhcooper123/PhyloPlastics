@@ -350,7 +350,7 @@ geom_cladelab(node = pelecanidae,
                 offset = 50)
   
 # Write to file
-# ggsave("figures/tree-diet-feeding-families.png", width = 8, height = 8)
+# ggsave("figures/figureS3-tree-diet-feeding-families.png", width = 8, height = 8)
  
 # --------------------------------------------------
 # Figure 2(?)
