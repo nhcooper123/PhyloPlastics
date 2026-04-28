@@ -34,6 +34,21 @@ plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying)
 plastic_data <- plastic_data %>% select(-family)
 ```
 
+Look at multicollinearity...
+```{r}
+library(corrr)
+
+# Remove variables not used in the analyses
+plastic_data2 <- 
+  plastic_data %>%
+  dplyr::select(c(-body_mass_g, -anthropogenic_subsidy, -FO))
+
+# Correlation matrix
+cor_matrix <- correlate(plastic_data2)
+write_csv(cor_matrix, here("output/correlations.csv"))
+```
+
+
 ### Fit a full model
 
 We are modelling this as a binomial response, with number of individuals with plastics and total number of individuals jointly modelled. Need priors for each random effect.
