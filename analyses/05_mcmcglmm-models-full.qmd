@@ -37,6 +37,14 @@ plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying)
 plastic_data <- plastic_data %>% select(-family)
 ```
 
+### Scale and centre year
+
+```{r}
+plastic_data <- 
+  plastic_data %>%
+  mutate(year_centered = scale(date_median))
+```
+
 Look at multicollinearity...
 
 ```{r}
@@ -45,19 +53,11 @@ library(corrr)
 # Remove variables not used in the analyses
 plastic_data2 <- 
   plastic_data %>%
-  dplyr::select(c(-body_mass_g, -anthropogenic_subsidy, -FO))
+  dplyr::select(c(-body_mass_g, -anthropogenic_subsidy, -FO, -date_median))
 
 # Correlation matrix
 cor_matrix <- correlate(plastic_data2)
 write_csv(cor_matrix, here("output/correlations.csv"))
-```
-
-### Scale and centre year
-
-```{r}
-plastic_data <- 
-  plastic_data %>%
-  mutate(year_centered = scale(date_median))
 ```
 
 ### Fit a full model
