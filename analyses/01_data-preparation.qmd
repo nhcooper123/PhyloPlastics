@@ -278,7 +278,7 @@ no_studies <- data.frame(tips = check$tree_not_data,
 # combine
 full_species_list <- rbind(species_list, no_studies)
 
-write_csv(full_species_list, file = here::here("data/full-species-list-2026.csv"))
+#write_csv(full_species_list, file = here::here("data/full-species-list-2026.csv"))
 ```
 
 ### Without NAs
@@ -297,10 +297,22 @@ data_agg_noNAs <- data_agg %>%
   filter(freeflying == 1 | is.na(freeflying))
 ```
 
+```{r}
+## Remove entries with missing years and diet and sampling method info
+# KEEP the nestbound individuals
+data_agg_noNAs_nest <- data_agg %>%
+  filter(!is.na(date_median)) %>%
+  filter(!is.na(main_diet)) %>%
+  filter(!is.na(carrion)) %>%
+  filter(!is.na(body_mass_g)) %>%
+  filter(!is.na(sampling_method))
+```
+
 ## Write out full dataset
 
 ```{r}
 write_csv(data_agg_noNAs, file = here::here("data/plastic-data-aggregated_2026.csv"))
+write_csv(data_agg_noNAs_nest, file = here::here("data/plastic-data-aggregated-nest_2026.csv"))
 ```
 
 ## Write out a phylogeny which only includes species in the dataset for the analyses
