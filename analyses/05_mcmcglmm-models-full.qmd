@@ -582,61 +582,70 @@ HPDinterval(lambda_proc)
 
 ## FAMILIES
 
-### Suliformes
+### Laridae
 
 Subset the data
 ```{r}
-plastic_data_sul <- 
+plastic_data_lar <- 
   plastic_data %>%
-  filter(taxonomic_family == "Suliformes")
+  filter(taxonomic_family == "Laridae")
+
+# Subset the tree
+remove <- name.check(data = plastic_data_lar, phy = plastic_tree, 
+           data.names = plastic_data_lar$tips)
+
+plastic_tree_lar <- drop.tip(plastic_tree, remove$tree_not_data)
+
+# Make this into an inverse variance covariance matrix for the models
+inv.phylo_lar <- inverseA(plastic_tree_lar, nodes = "TIPS", scale = TRUE)$Ainv
 ```
 
 Run the model
 ```{r}
-model_sul <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
-                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+model_lar <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + other_inverts + 
                          as_fishery + as_refuse +
-                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         + aerial_pursuit + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
                          body_mass_2sd +
                          year_centered -1, 
-                   data = plastic_data_sul, 
+                   data = plastic_data_lar, 
                    family = "multinomial2",
                    random = ~ tips + 
                             source + 
                             marine_region + 
                             freeflying,
-                   ginverse = list(tips = inv.phylo_nb), 
+                   ginverse = list(tips = inv.phylo_lar), 
                    prior = prior,
                    nitt = nitt, thin = thin, burnin = burnin,
                    verbose = FALSE)
 
 # Save model
-saveRDS(model_sul, here::here("output/model_Suliformes_2026.rds"))
+saveRDS(model_lar, here::here("output/model_Laridae_2026.rds"))
 ```
 
 ```{r}
 # Checks
-plot(model_sul$Sol)
-plot(model_sul$VCV)
+plot(model_lar$Sol)
+plot(model_lar$VCV)
 
 # Outputs fixed effects
-summary(model_sul)$solutions
+summary(model_lar)$solutions
 
 # Random effects
-summary(model_sul)$Gcovariances
+summary(model_lar)$Gcovariances
 
 # Get lambda
-lambda_sul <- model_sul$VCV[,'tips']/
-  (model_sul$VCV[,'tips'] + model_sul$VCV[,'units'])
+lambda_lar <- model_lar$VCV[,'tips']/
+  (model_lar$VCV[,'tips'] + model_lar$VCV[,'units'])
 
 # Posterior mean of lambda
-mean(lambda_sul)
+mean(lambda_lar)
 # Posterior mode of lambda
-posterior.mode(lambda_sul) 
+posterior.mode(lambda_lar) 
 # Posterior median of lambda
-median(lambda_sul) 
+median(lambda_lar) 
 # HPD interval 
-HPDinterval(lambda_sul)
+HPDinterval(lambda_lar)
 ```
