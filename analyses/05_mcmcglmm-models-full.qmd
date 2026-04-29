@@ -40,8 +40,8 @@ inv.phylo <- inverseA(plastic_tree, nodes = "TIPS", scale = TRUE)$Ainv
 # Replace NAs for 0 for mixed freeflying
 plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying) ~ 0,
                                                                freeflying == 1 ~ 1))
-# Remove family column as it causes MCMCglmm to fail
-plastic_data <- plastic_data %>% select(-family)
+# Rename family column as it causes MCMCglmm to fail
+plastic_data <- plastic_data %>% rename(taxonomic_family = family)
 ```
 
 ### Scale and centre year
@@ -582,30 +582,13 @@ HPDinterval(lambda_proc)
 
 ## FAMILIES
 
-```{r}
-# Read in data
-# Use read.csv because read_csv creates tibbles which MCMCglmm hates
-plastic_data <- read.csv(file = here::here("data/plastic-data-aggregated_2026.csv"))
-
-# Read in tree
-plastic_tree <- read.nexus(here::here("data/seabird-tree-plastic-2026.nex"))
-# Replace plotomies with 0 length branches
-plastic_tree<- di2multi(plastic_tree)
-
-# Replace NAs for 0 for mixed freeflying
-plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying) ~ 0,
-                                                               freeflying == 1 ~ 1))
-# Remove family column as it causes MCMCglmm to fail
-plastic_data <- plastic_data %>% select(-family)
-```
-
 ### Suliformes
 
 Subset the data
 ```{r}
 plastic_data_sul <- 
   plastic_data %>%
-  filter(order == "Suliformes")
+  filter(taxonomic_family == "Suliformes")
 ```
 
 Run the model
