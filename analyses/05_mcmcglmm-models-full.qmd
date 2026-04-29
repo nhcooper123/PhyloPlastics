@@ -11,6 +11,9 @@ library(tidyverse)
 library(ape)
 library(here)
 library(coda)
+
+# set seed
+set.seed(42)
 ```
 
 Read in data and tree
@@ -35,6 +38,7 @@ plastic_data <- plastic_data %>% select(-family)
 ```
 
 Look at multicollinearity...
+
 ```{r}
 library(corrr)
 
@@ -48,6 +52,13 @@ cor_matrix <- correlate(plastic_data2)
 write_csv(cor_matrix, here("output/correlations.csv"))
 ```
 
+### Scale and centre year
+
+```{r}
+plastic_data <- 
+  plastic_data %>%
+  mutate(year_centered = scale(date_median))
+```
 
 ### Fit a full model
 
@@ -61,8 +72,7 @@ We are modelling this as a binomial response, with number of individuals with pl
 prior <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
                        G2 = list(V = 1, nu = 0.02), # source
                        G3 = list(V = 1, nu = 0.02), # marine region
-                       G4 = list(V = 1, nu = 0.02), # date
-                       G5 = list(V = 1, nu = 0.02)), # freeflying
+                       G4 = list(V = 1, nu = 0.02)), # freeflying
               R = list(V = 1, nu = 0.02)) # residuals
 
 ```
@@ -70,9 +80,9 @@ prior <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
 Set values for iterations, burnin and thinning interval
 
 ```{r}
-nitt <- 10000000
-thin <- 10000
-burnin <- 100000
+nitt <- 100000
+thin <- 10
+burnin <- 3000
 ```
 
 Fit the model. This takes a very long time to fit!
@@ -84,13 +94,13 @@ model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
                          + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
-                         body_mass_2sd, 
+                         body_mass_2sd +
+                         year_centered, 
                    data = plastic_data, 
                    family = "multinomial2",
                    random = ~ tips + 
                             source + 
                             marine_region + 
-                            date_median +
                             freeflying,
                    ginverse = list(tips = inv.phylo), 
                    prior = prior,
@@ -171,6 +181,8 @@ lambda <- model_full$VCV[,'tips']/
 mean(lambda)
 # Posterior mode of lambda
 posterior.mode(lambda) 
+# Posterior median of lambda
+median(lambda) 
 # HPD interval 
 HPDinterval(lambda)
 ```
@@ -221,37 +233,19 @@ model_prior_test <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
                    verbose = FALSE)                          
 ```
 
-```{r}
-priors_no_phylo <- list(G = list(G1 = list(V = 1, nu = 0.02), # phylogeny
-                            #G2 = list(V = 1, nu = 1), # source 
-                            G3 = list(V = 1, nu = 0.02), # marine region
-                            G4 = list(V = 1, nu = 0.02), # date
-                            G5 = list(V = 1, nu = 0.02)), # freeflying
-                            R = list(V = 1, nu = 0.02)) # residual variance
-
-model_no_phylo <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
-                         carrion + cephalopods + crustaceans + fish + other_inverts + 
-                         as_agriculture + as_fishery + as_refuse +
-                         + aerial_pursuit + bottom_feeding + diving + plunging + 
-                         scavenging + skimming + surface_seizing + terrestrial_feeding +
-                         pelagic_specialist + 
-                         body_mass_2sd, 
-                   data = plastic_data, 
-                   family = "multinomial2",
-                   random = ~ source + 
-                            marine_region + 
-                            date_median +
-                            freeflying,
-                   #ginverse = list(tips = inv.phylo), 
-                   prior = priors_no_phylo,
-                   nitt = nitt, thin = thin, burnin = burnin,
-                   verbose = FALSE)  
-```
-
 Save models for later use
 
 ```{r}
 saveRDS(model_full, here::here("output/model-full_2026.rds"))
 saveRDS(model_prior_test, here::here("output/model-prior-test_2026.rds"))
-saveRDS(model_no_phylo, here::here("output/model-no-phylo_2026.rds"))
 ```
+
+# Sensitivity analyses
+
+## Remove pelagic specialists
+
+## Remove terrestrial feeding
+
+## Include nestbound birds
+
+# Family and order level analyses
