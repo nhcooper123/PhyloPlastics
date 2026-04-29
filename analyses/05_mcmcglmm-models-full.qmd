@@ -4,6 +4,12 @@ format: html
 editor: visual
 ---
 
+Odds ratios?
+poo <- summary(model_full)
+exp(poo$solutions[,1])
+An odds ratio greater than 1 indicates that the condition or event is more likely to occur in the first group. And an odds ratio less than 1 indicates that the condition or event is less likely to occur in the first group.
+
+
 ```{r setup}
 # Load libraries
 library(MCMCglmm)
@@ -11,6 +17,7 @@ library(tidyverse)
 library(ape)
 library(here)
 library(coda)
+library(geiger)
 
 # set seed
 set.seed(42)
@@ -53,7 +60,7 @@ library(corrr)
 # Remove variables not used in the analyses
 plastic_data2 <- 
   plastic_data %>%
-  dplyr::select(c(-body_mass_g, -anthropogenic_subsidy, -FO, -date_median))
+  dplyr::select(c(-body_mass_g, -anthropogenic_subsidy, -FO, -date_median, -as_agriculture))
 
 # Correlation matrix
 cor_matrix <- correlate(plastic_data2)
@@ -81,8 +88,8 @@ Set values for iterations, burnin and thinning interval
 
 ```{r}
 nitt <- 100000
-thin <- 10
-burnin <- 3000
+thin <- 100
+burnin <- 5000
 ```
 
 Fit the model. This takes a very long time to fit!
@@ -90,12 +97,12 @@ Fit the model. This takes a very long time to fit!
 ```{r}
 model_full <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
                          carrion + cephalopods + crustaceans + fish + other_inverts + 
-                         as_agriculture + as_fishery + as_refuse +
+                         as_fishery + as_refuse +
                          + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
                          body_mass_2sd +
-                         year_centered, 
+                         year_centered -1, 
                    data = plastic_data, 
                    family = "multinomial2",
                    random = ~ tips + 
@@ -200,6 +207,12 @@ mcmc_intervals(posterior_samples, prob = 0.8, prob_outer = 0.95) + labs(title = 
 
 ```
 
+Save model for later use
+
+```{r}
+saveRDS(model_full, here::here("output/model-full_2026.rds"))
+```
+
 # Prior testing
 
 Set up new priors for MCMCglmm to ensure that the results are not due to prior specifications.
@@ -208,24 +221,23 @@ Set up new priors for MCMCglmm to ensure that the results are not due to prior s
 priors_new <- list(G = list(G1 = list(V = 1, nu = 1), # phylogeny
                             G2 = list(V = 1, nu = 1), # source 
                             G3 = list(V = 1, nu = 1), # marine region
-                            G4 = list(V = 1, nu = 1), # date
-                            G5 = list(V = 1, nu = 1)), # freeflying
+                            G4 = list(V = 1, nu = 1)), # freeflying
                             R = list(V = 1, nu = 1)) # residual variance
 
 
 model_prior_test <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
                          carrion + cephalopods + crustaceans + fish + other_inverts + 
-                         as_agriculture + as_fishery + as_refuse +
+                         as_fishery + as_refuse +
                          + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
-                         body_mass_2sd, 
+                         body_mass_2sd +
+                         year_centered -1, 
                    data = plastic_data, 
                    family = "multinomial2",
                    random = ~ tips + 
                             source + 
                             marine_region + 
-                            date_median +
                             freeflying,
                    ginverse = list(tips = inv.phylo), 
                    prior = priors_new,
@@ -233,19 +245,415 @@ model_prior_test <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~
                    verbose = FALSE)                          
 ```
 
-Save models for later use
+Save model for later use
 
 ```{r}
-saveRDS(model_full, here::here("output/model-full_2026.rds"))
 saveRDS(model_prior_test, here::here("output/model-prior-test_2026.rds"))
 ```
 
-# Sensitivity analyses
+# Sensitivity analyses [added in response to reviewer comments]
 
 ## Remove pelagic specialists
 
+```{r}
+model_no_pelagic <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+
+# Save model
+saveRDS(model_no_pelagic, here::here("output/model-no-pelagic_2026.rds"))
+```
+
+```{r}
+# Checks
+plot(model_no_pelagic$Sol)
+plot(model_no_pelagic$VCV)
+
+# Outputs fixed effects
+summary(model_no_pelagic)$solutions
+
+# Random effects
+summary(model_no_pelagic)$Gcovariances
+
+# Get lambda
+lambda_no_pelagic <- model_no_pelagic$VCV[,'tips']/
+  (model_no_pelagic$VCV[,'tips'] + model_no_pelagic$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda_no_pelagic)
+# Posterior mode of lambda
+posterior.mode(lambda_no_pelagic) 
+# Posterior median of lambda
+median(lambda_no_pelagic) 
+# HPD interval 
+HPDinterval(lambda_no_pelagic)
+```
+
 ## Remove terrestrial feeding
+
+```{r}
+model_no_tf <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing +
+                         pelagic_specialist + 
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+
+# Save model
+saveRDS(model_no_tf, here::here("output/model-no-tf_2026.rds"))
+```
+
+```{r}
+# Checks
+plot(model_no_tf$Sol)
+plot(model_no_tf$VCV)
+
+# Outputs fixed effects
+summary(model_no_tf)$solutions
+
+# Random effects
+summary(model_no_tf)$Gcovariances
+
+# Get lambda
+lambda_no_tf <- model_no_tf$VCV[,'tips']/
+  (model_no_tf$VCV[,'tips'] + model_no_tf$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda_no_tf)
+# Posterior mode of lambda
+posterior.mode(lambda_no_tf) 
+# Posterior median of lambda
+median(lambda_no_tf) 
+# HPD interval 
+HPDinterval(lambda_no_tf)
+```
 
 ## Include nestbound birds
 
+Prep the data
+```{r}
+# Read in data
+# Use read.csv because read_csv creates tibbles which MCMCglmm hates
+plastic_data_nb <- read.csv(file = here::here("data/plastic-data-aggregated-nest_2026.csv"))
+
+# Read in tree
+plastic_tree_nb <- read.nexus(here::here("data/seabird-tree-plastic-nest-2026.nex"))
+# Replace plotomies with 0 length branches
+plastic_tree_nb <- di2multi(plastic_tree_nb)
+# Make this into an inverse variance covariance matrix for the models
+inv.phylo_nb <- inverseA(plastic_tree_nb, nodes = "TIPS", scale = TRUE)$Ainv
+
+# Replace NAs for 2 for mixed freeflying
+plastic_data_nb <- plastic_data_nb %>% mutate(freeflying = case_when(is.na(freeflying) ~ 2,
+                                                               freeflying == 1 ~ 1,
+                                                               freeflying == 0 ~ 0))
+# Remove family column as it causes MCMCglmm to fail
+plastic_data_nb <- plastic_data_nb %>% select(-family)
+
+plastic_data_nb <- 
+  plastic_data_nb %>%
+  mutate(year_centered = scale(date_median))
+```
+
+Run the model
+```{r}
+model_with_nb <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         pelagic_specialist + 
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data_nb, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo_nb), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+
+# Save model
+saveRDS(model_no_tf, here::here("output/model-with-nb_2026.rds"))
+```
+
+```{r}
+# Checks
+plot(model_with_nb$Sol)
+plot(model_with_nb$VCV)
+
+# Outputs fixed effects
+summary(model_with_nb)$solutions
+
+# Random effects
+summary(model_with_nb)$Gcovariances
+
+# Get lambda
+lambda_with_nb <- model_with_nb$VCV[,'tips']/
+  (model_with_nb$VCV[,'tips'] + model_with_nb$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda_with_nb)
+# Posterior mode of lambda
+posterior.mode(lambda_with_nb) 
+# Posterior median of lambda
+median(lambda_with_nb) 
+# HPD interval 
+HPDinterval(lambda_with_nb)
+```
+
 # Family and order level analyses
+
+Only for families/orders with >30 studies that can be modelled, i.e.
+
+ORDERS: Charadriiformes, Procellariiformes, Sphenisciformes and Suliformes
+
+FAMILIES: Alcidae, Laridae, Diomedidae, Hydrobatidae, Oceanidae, Procellaridae, Spheniscidae (same as order Sphenisciformes), Phalacorcoridae, Sulidae.
+
+## ORDERS
+
+### Charadriiformes
+
+Subset the data
+```{r}
+plastic_data_char <- 
+  plastic_data %>%
+  filter(order == "Charadriiformes")
+
+# Subset the tree
+remove <- name.check(data = plastic_data_char, phy = plastic_tree, 
+           data.names = plastic_data_char$tips)
+
+plastic_tree_char <- drop.tip(plastic_tree, remove$tree_not_data)
+
+# Make this into an inverse variance covariance matrix for the models
+inv.phylo_char <- inverseA(plastic_tree_char, nodes = "TIPS", scale = TRUE)$Ainv
+```
+
+Run the model
+
+```{r}
+model_char <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         pelagic_specialist + 
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data_char, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo_char), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+
+# Save model
+saveRDS(model_char, here::here("output/model_Charadriiformes_2026.rds"))
+```
+
+```{r}
+# Checks
+plot(model_char$Sol)
+plot(model_char$VCV)
+
+# Outputs fixed effects
+summary(model_char)$solutions
+
+# Random effects
+summary(model_char)$Gcovariances
+
+# Get lambda
+lambda_char <- model_char$VCV[,'tips']/
+  (model_char$VCV[,'tips'] + model_char$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda_char)
+# Posterior mode of lambda
+posterior.mode(lambda_char) 
+# Posterior median of lambda
+median(lambda_char) 
+# HPD interval 
+HPDinterval(lambda_char)
+```
+
+### Procellariiformes
+
+Subset the data
+```{r}
+plastic_data_proc <- 
+  plastic_data %>%
+  filter(order == "Procellariiformes")
+
+# Subset the tree
+remove <- name.check(data = plastic_data_proc, phy = plastic_tree, 
+           data.names = plastic_data_proc$tips)
+
+plastic_tree_proc <- drop.tip(plastic_tree, remove$tree_not_data)
+
+# Make this into an inverse variance covariance matrix for the models
+inv.phylo_proc <- inverseA(plastic_tree_proc, nodes = "TIPS", scale = TRUE)$Ainv
+
+```
+
+Run the model
+
+Exclude pelagic specialist because they all are
+```{r}
+model_proc <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data_proc, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo_proc), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+
+# Save model
+saveRDS(model_proc, here::here("output/model_Procellariiformes_2026.rds"))
+```
+
+```{r}
+# Checks
+plot(model_proc$Sol)
+plot(model_proc$VCV)
+
+# Outputs fixed effects
+summary(model_proc)$solutions
+
+# Random effects
+summary(model_proc)$Gcovariances
+
+# Get lambda
+lambda_proc <- model_proc$VCV[,'tips']/
+  (model_proc$VCV[,'tips'] + model_proc$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda_proc)
+# Posterior mode of lambda
+posterior.mode(lambda_proc) 
+# Posterior median of lambda
+median(lambda_proc) 
+# HPD interval 
+HPDinterval(lambda_proc)
+```
+
+## FAMILIES
+
+```{r}
+# Read in data
+# Use read.csv because read_csv creates tibbles which MCMCglmm hates
+plastic_data <- read.csv(file = here::here("data/plastic-data-aggregated_2026.csv"))
+
+# Read in tree
+plastic_tree <- read.nexus(here::here("data/seabird-tree-plastic-2026.nex"))
+# Replace plotomies with 0 length branches
+plastic_tree<- di2multi(plastic_tree)
+
+# Replace NAs for 0 for mixed freeflying
+plastic_data <- plastic_data %>% mutate(freeflying = case_when(is.na(freeflying) ~ 0,
+                                                               freeflying == 1 ~ 1))
+# Remove family column as it causes MCMCglmm to fail
+plastic_data <- plastic_data %>% select(-family)
+```
+
+### Suliformes
+
+Subset the data
+```{r}
+plastic_data_sul <- 
+  plastic_data %>%
+  filter(order == "Suliformes")
+```
+
+Run the model
+```{r}
+model_sul <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         pelagic_specialist + 
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data_sul, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo_nb), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+
+# Save model
+saveRDS(model_sul, here::here("output/model_Suliformes_2026.rds"))
+```
+
+```{r}
+# Checks
+plot(model_sul$Sol)
+plot(model_sul$VCV)
+
+# Outputs fixed effects
+summary(model_sul)$solutions
+
+# Random effects
+summary(model_sul)$Gcovariances
+
+# Get lambda
+lambda_sul <- model_sul$VCV[,'tips']/
+  (model_sul$VCV[,'tips'] + model_sul$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda_sul)
+# Posterior mode of lambda
+posterior.mode(lambda_sul) 
+# Posterior median of lambda
+median(lambda_sul) 
+# HPD interval 
+HPDinterval(lambda_sul)
+```
