@@ -68,7 +68,7 @@ ggplot(effects_df, aes(x = post.mean, y = predictor)) +
   coord_cartesian(xlim = c(min(effects_df$HPD.lower), max(effects_df$HPD.upper)))
 
 # Save effect size plot
-ggsave("figures/effect-size-plot.png", dpi = 1200)
+ggsave("figures/effect-size-plot.jpeg", dpi = 1200)
 
 #-----------------------------------
 # Figures for the taxonomic subsets
