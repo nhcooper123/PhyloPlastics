@@ -677,9 +677,9 @@ Run the model
 
 ```{r}
 model_n <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
-                         carrion + cephalopods + crustaceans + other_inverts + 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
                          as_fishery + as_refuse +
-                         + aerial_pursuit + plunging + 
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
                          scavenging + skimming + surface_seizing + terrestrial_feeding +
                          pelagic_specialist + 
                          body_mass_2sd +
