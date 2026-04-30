@@ -4,11 +4,7 @@ format: html
 editor: visual
 ---
 
-Odds ratios?
-poo <- summary(model_full)
-exp(poo$solutions[,1])
-An odds ratio greater than 1 indicates that the condition or event is more likely to occur in the first group. And an odds ratio less than 1 indicates that the condition or event is less likely to occur in the first group.
-
+Odds ratios? poo \<- summary(model_full) exp(poo\$solutions\[,1\]) An odds ratio greater than 1 indicates that the condition or event is more likely to occur in the first group. And an odds ratio less than 1 indicates that the condition or event is less likely to occur in the first group.
 
 ```{r setup}
 # Load libraries
@@ -251,7 +247,7 @@ Save model for later use
 saveRDS(model_prior_test, here::here("output/model-prior-test_2026.rds"))
 ```
 
-# Sensitivity analyses [added in response to reviewer comments]
+# Sensitivity analyses \[added in response to reviewer comments\]
 
 ## Remove pelagic specialists
 
@@ -357,6 +353,7 @@ HPDinterval(lambda_no_tf)
 ## Include nestbound birds
 
 Prep the data
+
 ```{r}
 # Read in data
 # Use read.csv because read_csv creates tibbles which MCMCglmm hates
@@ -382,6 +379,7 @@ plastic_data_nb <-
 ```
 
 Run the model
+
 ```{r}
 model_with_nb <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
                          carrion + cephalopods + crustaceans + fish + other_inverts + 
@@ -433,7 +431,7 @@ HPDinterval(lambda_with_nb)
 
 # Family and order level analyses
 
-Only for families/orders with >30 studies that can be modelled, i.e.
+Only for families/orders with \>30 studies that can be modelled, i.e.
 
 ORDERS: Charadriiformes, Procellariiformes, Sphenisciformes and Suliformes
 
@@ -444,6 +442,7 @@ FAMILIES: Alcidae, Laridae, Diomedidae, Hydrobatidae, Oceanidae, Procellaridae, 
 ### Charadriiformes
 
 Subset the data
+
 ```{r}
 plastic_data_char <- 
   plastic_data %>%
@@ -513,6 +512,7 @@ HPDinterval(lambda_char)
 ### Procellariiformes
 
 Subset the data
+
 ```{r}
 plastic_data_proc <- 
   plastic_data %>%
@@ -532,6 +532,7 @@ inv.phylo_proc <- inverseA(plastic_tree_proc, nodes = "TIPS", scale = TRUE)$Ainv
 Run the model
 
 Exclude pelagic specialist because they all are
+
 ```{r}
 model_proc <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
                          carrion + cephalopods + crustaceans + fish + other_inverts + 
@@ -585,6 +586,7 @@ HPDinterval(lambda_proc)
 ### Laridae
 
 Subset the data
+
 ```{r}
 plastic_data_lar <- 
   plastic_data %>%
@@ -601,6 +603,7 @@ inv.phylo_lar <- inverseA(plastic_tree_lar, nodes = "TIPS", scale = TRUE)$Ainv
 ```
 
 Run the model
+
 ```{r}
 model_lar <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
                          carrion + cephalopods + crustaceans + other_inverts + 
@@ -649,3 +652,75 @@ median(lambda_lar)
 # HPD interval 
 HPDinterval(lambda_lar)
 ```
+
+
+# Models only for species with n > 10
+
+Subset the data
+
+```{r}
+plastic_data_n <- 
+  plastic_data %>%
+  filter(n_total > 10)
+
+# Subset the tree
+remove <- name.check(data = plastic_data_n, phy = plastic_tree, 
+           data.names = plastic_data_n$tips)
+
+plastic_tree_n <- drop.tip(plastic_tree, remove$tree_not_data)
+
+# Make this into an inverse variance covariance matrix for the models
+inv.phylo_n <- inverseA(plastic_tree_n, nodes = "TIPS", scale = TRUE)$Ainv
+```
+
+Run the model
+
+```{r}
+model_n <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         pelagic_specialist + 
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data_n, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo_n), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+
+# Save model
+saveRDS(model_n, here::here("output/model_n_greater_than_10.rds"))
+```
+
+```{r}
+# Checks
+plot(model_n$Sol)
+plot(model_n$VCV)
+
+# Outputs fixed effects
+summary(model_n)$solutions
+
+# Random effects
+summary(model_n)$Gcovariances
+
+# Get lambda
+lambda_n <- model_n$VCV[,'tips']/
+  (model_n$VCV[,'tips'] + model_n$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda_n)
+# Posterior mode of lambda
+posterior.mode(lambda_n) 
+# Posterior median of lambda
+median(lambda_n) 
+# HPD interval 
+HPDinterval(lambda_n)
+```
+
