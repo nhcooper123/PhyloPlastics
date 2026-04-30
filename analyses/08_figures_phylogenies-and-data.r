@@ -471,3 +471,11 @@ tree_FO +
 
 # Write to file
 # ggsave("figures/figure2-tree-FO-families.jpeg", width = 8, height = 8)
+# 
+# ------------------
+# Get lambda for FO
+# -----------------
+#
+FO <- pull(species_plastic, mean_species_FO_weighted)
+names(FO) <- species_plastic$clements2025_binomial
+lambdaFO <- phylosig(seabird_tree, FO, method = "lambda", test = TRUE)
