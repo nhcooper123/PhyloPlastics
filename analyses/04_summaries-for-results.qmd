@@ -170,8 +170,8 @@ Weighted mean FO for orders
 ```{r}
 all %>%
   group_by(Clements2025_Order) %>%
-  summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE),
-            sd_species_FO_weighted = sqrt(wtd.var((total_plastic/total_n), total_n, na.rm = TRUE)))
+  summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE) *100,
+            sd_species_FO_weighted = sqrt(wtd.var((total_plastic/total_n), total_n, na.rm = TRUE)) * 100)
 ```
 
 Weighted mean FO for families
@@ -179,8 +179,8 @@ Weighted mean FO for families
 ```{r}
 all %>%
   group_by(Clements2025_Order, Clements2025_Family) %>%
-  summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE),
-            sd_species_FO_weighted = sqrt(wtd.var((total_plastic/total_n), total_n, na.rm = TRUE)))
+  summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE) *100,
+            sd_species_FO_weighted = sqrt(wtd.var((total_plastic/total_n), total_n, na.rm = TRUE)) *100)
 ```
 
 Weighted mean FO for species
@@ -191,7 +191,6 @@ species_FO <-
   filter(!is.na(total_n)) %>%
   group_by(Clements2025_Order, Clements2025_Family, clements2025_binomial) %>%
   summarise(mean_species_FO_weighted = weighted.mean((total_plastic/total_n), total_n, na.rm = TRUE) *100,
-            sd_species_FO_weighted = sqrt(wtd.var((total_plastic/total_n), total_n, na.rm = TRUE)) * 100,
             total_n) %>%
   mutate(Family = case_when(Clements2025_Family == "Anatidae (Ducks, Geese, and Waterfowl)" ~ "Anatidae",
                             Clements2025_Family == "Scolopacidae (Sandpipers and Allies)" ~ "Scolopacidae",    
@@ -211,7 +210,7 @@ species_FO <-
                             Clements2025_Family == "Pelecanidae (Pelicans)" ~ "Pelecanidae")) %>%
   ungroup() %>%
   arrange(-mean_species_FO_weighted) %>%
-  select(Order = Clements2025_Order, Family, Species = clements2025_binomial, total_n, mean_species_FO_weighted)
+  select(Order = Clements2025_Order, Family, Species = clements2025_binomial, total_n, mean_species_FO_weighted, sd_species_FO_weighted)
 
 #write_csv(species_FO, file = here::here("output/weighted-mean-species-FO.csv"))
 ```
