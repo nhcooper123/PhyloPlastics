@@ -1,11 +1,11 @@
 # PhyloPlastics
 
-Code and data for paper: Global seabird plastic ingestion varies across phylogeny but not behavioural traits. 
+Code and data for paper: Frequency of occurrence of plastic varies across phylogeny but not behavioural traits in seabirds. 
 
 This repository contains all the code and some data used in the [paper](ADD LINK WHEN PUBLISHED). 
 
 To cite the paper: 
->  Global seabird plastic ingestion varies across phylogeny but not behavioural traits. 2026. Stephanie Avery-Gomm, Nia Potapova, Chrissie Potter,  Alexander L. Bond, Stephanie B. Borrelle, Jennifer L. Lavers, Steven J. Portugal, Hugh P. Possingham, Jennifer F. Provencher, and Natalie Cooper. ADD DETAILS WHEN PUBLISHED.
+>  Frequency of occurrence of plastic varies across phylogeny but not behavioural traits in seabirds. 2026. Stephanie Avery-Gomm, Nia Potapova, Chrissie Potter,  Alexander L. Bond, Stephanie B. Borrelle, Jennifer L. Lavers, Steven J. Portugal, Hugh P. Possingham, Jennifer F. Provencher, and Natalie Cooper. ADD DETAILS WHEN PUBLISHED.
 
 To cite this repo: 
 >  Natalie Cooper & Andrew Macdonald. Code for the paper v1. GitHub: nhcooper123/PhyloPlastics. Zenodo. DOI: ADD ON PUBLICATION
@@ -58,7 +58,7 @@ The main analyses scripts are as follows.
 - **02_data-exploration.qmd**. Extracts some summary data, including number of records, species, sources and number of well-studied species. Creates distributional plots of variables for the supplemental materials (Figures S1 and S4-S7). 				
 - **03_dataset-coverage.qmd**. Calculates various dataset coverage metrics, including for orders and families (Table S2 in the supplemental). Family level coverage is also plotted to create Figure 1. 				
 - **04_summaries-for-results.qmd**. Calculates summary stats including total numbers of birds, studies and species in each model for the text and for Table S2, and order and family level FO for the supplemental results Table S3.			
-- **05_mcmcglmm-models-full.qmd**. Runs the MCMCglmm models including sensitivity analyses and saves outputs.			
+- **05_mcmcglmm-models-full.qmd**. Runs the MCMCglmm models including a lot of sensitivity analyses requested by reviewers and saves outputs.			
 - **06_figureS2-phylogeny-summary.R**. Summary figure showing FO for seabirds across the seabird phylogeny, i.e. Figure S2. Note this requires a little extra processing in Inkscape to add silhouettes and clade labels.		
 - **07_figure3_mcmc_results.R**. Code to take the outputs of the models from script 05 to create results Figure 3.	
 - **08_figures_phylogenies-and-data.R**. This creates the figures for the supplemental that show data coverage (Figure S3) and also Figure 2 of FO across the tree for the main text. Note that these require some post processing in Inkscape to add the silhouettes.
@@ -75,7 +75,7 @@ For reproducibility purposes, here is the output of `devtools::session_info()` u
 
     ─ Session info ────────────────────────────────────────────────────
     setting  value
-    version  R version 4.5.2 (2025-10-31)
+    version  R version 4.5.3 (2026-03-11)
     os       macOS Sequoia 15.6.1
     system   aarch64, darwin20
     ui       RStudio
@@ -83,10 +83,10 @@ For reproducibility purposes, here is the output of `devtools::session_info()` u
     collate  en_US.UTF-8
     ctype    en_US.UTF-8
     tz       Europe/London
-    date     2026-01-26
-    rstudio  2025.09.0+387 Cucumberleaf Sunflower (desktop)
-    pandoc   3.6.3 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/ (via rmarkdown)
-    quarto   1.7.32 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto
+    date     2026-05-01
+    rstudio  2026.04.0+526 Globemaster Allium (desktop)
+    pandoc   3.8.3 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/ (via rmarkdown)
+    quarto   1.9.36 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto
 
     ─ Packages ────────────────────────────────────────────────────────
     package           * version    date (UTC) lib source
@@ -131,6 +131,7 @@ For reproducibility purposes, here is the output of `devtools::session_info()` u
     gridGraphics        0.5-1      2020-12-13 [1] CRAN (R 4.5.0)
     gtable              0.3.6      2024-10-25 [1] CRAN (R 4.5.0)
     here              * 1.0.2      2025-09-15 [1] CRAN (R 4.5.0)
+    Hmisc             * 5.2-5      2026-01-09 [1] CRAN (R 4.5.2)
     hms                 1.1.3      2023-03-21 [1] CRAN (R 4.5.0)
     htmltools           0.5.8.1    2024-04-04 [1] CRAN (R 4.5.0)
     htmlwidgets         1.6.4      2023-12-06 [1] CRAN (R 4.5.0)
