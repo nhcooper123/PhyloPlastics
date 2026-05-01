@@ -51,7 +51,9 @@ seabird_tree <- drop.tip(BBtree, x$tree_not_data)
 # Check
 str(seabird_tree)
 # should have 348 tips
- 
+
+# Write out non-modified tree for sensitivity analyses
+write.nexus(seabird_tree, file = "data/seabird-tree-2026-no-additions.nex")
 # --------------------------------------------------------------------------- 
 # Add missing species to tips 
 # ---------------------------------------------------------------------------
