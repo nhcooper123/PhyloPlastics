@@ -1,11 +1,11 @@
 # PhyloPlastics
 
-Code and data for paper: Frequency of occurrence of plastic varies across phylogeny but not behavioural traits in seabirds. 
+Code and data for paper: Frequency of occurrence of plastic varies across phylogeny but not ecology in seabirds. 
 
 This repository contains all the code and some data used in the [paper](ADD LINK WHEN PUBLISHED). 
 
 To cite the paper: 
->  Frequency of occurrence of plastic varies across phylogeny but not behavioural traits in seabirds. 2026. Stephanie Avery-Gomm, Nia Potapova, Chrissie Potter,  Alexander L. Bond, Stephanie B. Borrelle, Jennifer L. Lavers, Steven J. Portugal, Hugh P. Possingham, Jennifer F. Provencher, and Natalie Cooper. ADD DETAILS WHEN PUBLISHED.
+>  Frequency of occurrence of plastic varies across phylogeny but not ecology in seabirds. 2026. Stephanie Avery-Gomm, Nia Potapova, Chrissie Potter,  Alexander L. Bond, Stephanie B. Borrelle, Jennifer L. Lavers, Steven J. Portugal, Hugh P. Possingham, Jennifer F. Provencher, and Natalie Cooper. ADD DETAILS WHEN PUBLISHED.
 
 To cite this repo: 
 >  Natalie Cooper & Andrew Macdonald. Code for the paper v1. GitHub: nhcooper123/PhyloPlastics. Zenodo. DOI: ADD ON PUBLICATION
