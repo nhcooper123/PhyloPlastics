@@ -724,3 +724,73 @@ median(lambda_n)
 HPDinterval(lambda_n)
 ```
 
+# Without adding species to the tree
+
+Prep the data
+```{r}
+# Read in non modified tree
+seabird_tree_no_additions <- read.nexus(here("data/seabird-tree-2026-no-additions.nex"))
+
+# Match the data to the tree
+remove <- name.check(data = plastic_data, phy = seabird_tree_no_additions, 
+           data.names = plastic_data$tips)
+
+# Remove the species not in the data from the tree
+plastic_tree_no_additions <- drop.tip(seabird_tree_no_additions, remove$tree_not_data)
+
+# Remove the species not in the tree from the data
+plastic_data_no_additions <-
+  plastic_data[is.na(match(plastic_data$tips, remove$data_not_tree)),]
+
+# Make this into an inverse variance covariance matrix for the models
+inv.phylo_no_additions <- inverseA(plastic_tree_no_additions, nodes = "TIPS", scale = TRUE)$Ainv
+```
+
+```{r}
+model_no_additions <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         pelagic_specialist + 
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data_no_additions, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo_no_additions), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+
+# Save model
+saveRDS(model_no_additions, here::here("output/model_no_additions_2026.rds"))
+```
+
+```{r}
+# Checks
+plot(model_no_additions$Sol)
+plot(model_no_additions$VCV)
+
+# Outputs fixed effects
+summary(model_no_additions)$solutions
+
+# Random effects
+summary(model_no_additions)$Gcovariances
+
+# Get lambda
+lambda_no_additions <- model_no_additions$VCV[,'tips']/
+  (model_no_additions$VCV[,'tips'] + model_no_additions$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda_no_additions)
+# Posterior mode of lambda
+posterior.mode(lambda_no_additions) 
+# Posterior median of lambda
+median(lambda_no_additions) 
+# HPD interval 
+HPDinterval(lambda_no_additions)
+```
