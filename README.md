@@ -8,9 +8,9 @@ To cite the paper:
 >  Frequency of occurrence of plastic varies across phylogeny but not ecology in seabirds. 2026. Stephanie Avery-Gomm, Nia Potapova, Chrissie Potter,  Alexander L. Bond, Stephanie B. Borrelle, Jennifer L. Lavers, Steven J. Portugal, Hugh P. Possingham, Jennifer F. Provencher, and Natalie Cooper. ADD DETAILS WHEN PUBLISHED.
 
 To cite this repo: 
->  Natalie Cooper & Andrew Macdonald. Code for the paper v1. GitHub: nhcooper123/PhyloPlastics. Zenodo. DOI: ADD ON PUBLICATION
+>  Natalie Cooper & Andrew MacDonald. Code for the paper v1.0. Zenodo. DOI: 10.5281/zenodo.20072871.
 
-ADD ZENODO BADGE WHEN PUBLISHED
+[![DOI](https://zenodo.org/badge/846587384.svg)](https://doi.org/10.5281/zenodo.20072871)
 
 ![alt text](https://github.com/nhcooper123/PhyloPlastics/raw/main/final-figures/FigureS3-cropped.png)
 
