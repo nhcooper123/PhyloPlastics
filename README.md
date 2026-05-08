@@ -9,8 +9,10 @@ To cite the paper:
 
 To cite this repo: 
 >  Natalie Cooper & Andrew MacDonald. Code for the paper v1.0. Zenodo. DOI: 10.5281/zenodo.20072871.
+> 
 
 [![DOI](https://zenodo.org/badge/846587384.svg)](https://doi.org/10.5281/zenodo.20072871)
+
 
 ![alt text](https://github.com/nhcooper123/PhyloPlastics/raw/main/final-figures/FigureS3-cropped.png)
 
