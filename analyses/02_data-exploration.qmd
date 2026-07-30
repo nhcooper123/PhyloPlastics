@@ -169,17 +169,6 @@ ggplot(seabird_data, aes(x = as.factor(as_fishery), fill = as.factor(as_fishery)
   theme(legend.position = "none") +
   scale_fill_manual(values = c("#74B3CE","#09BC8A"))
 
-# Agricultural
-aa <-
-ggplot(seabird_data, aes(x = as.factor(as_agriculture), fill = as.factor(as_agriculture))) +
-  geom_bar() +
-  xlab("Agriculture") +
-  ylim(0, 1650) +
-  scale_x_discrete(labels = c("No", "Yes")) +
-  theme_bw() +
-  theme(legend.position = "none") +
-  scale_fill_manual(values = c("#74B3CE","#09BC8A"))
-
 # Feeding method
 fm <-
 ggplot(seabird_data, aes(x = as.factor(feeding_method), fill = as.factor(feeding_method))) +
