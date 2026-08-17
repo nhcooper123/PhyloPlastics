@@ -26,8 +26,8 @@ plastic_data <- read.csv(file = here::here("data/plastic-data-aggregated_2026.cs
 
 # Read in tree
 plastic_tree <- read.nexus(here::here("data/seabird-tree-plastic-2026.nex"))
-# Replace plotomies with 0 length branches
-plastic_tree<- di2multi(plastic_tree)
+# Replace polytomies with 0 length branches
+plastic_tree <- di2multi(plastic_tree)
 # Make this into an inverse variance covariance matrix for the models
 inv.phylo <- inverseA(plastic_tree, nodes = "TIPS", scale = TRUE)$Ainv
 
@@ -791,4 +791,238 @@ posterior.mode(lambda_no_additions)
 median(lambda_no_additions) 
 # HPD interval 
 HPDinterval(lambda_no_additions)
+```
+
+# Model with only species where there are 10 or more individuals
+
+```{r}
+# Remove species with too few samples
+plastic_data_10plus <- filter(plastic_data, n_total >= 10)
+
+# Match the data to the tree
+remove <- name.check(data = plastic_data_10plus, phy = plastic_tree, 
+           data.names = plastic_data_10plus$tips)
+
+# Remove the species not in the data from the tree
+plastic_tree_10plus <- drop.tip(plastic_tree, remove$tree_not_data)
+
+# Remove the species not in the tree from the data
+plastic_data_10plus <-
+  plastic_data_10plus[is.na(match(plastic_data_10plus$tips, remove$data_not_tree)),]
+
+# Make this into an inverse variance covariance matrix for the models
+inv.phylo_10plus <- inverseA(plastic_tree_10plus, nodes = "TIPS", scale = TRUE)$Ainv
+```
+
+Fit the model
+```{r}
+model_10plus <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         carrion + cephalopods + crustaceans + fish + other_inverts + 
+                         as_fishery + as_refuse +
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         pelagic_specialist + 
+                         body_mass_2sd +
+                         year_centered -1, 
+                   data = plastic_data_10plus, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo_10plus), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+```
+
+Did the model converge?
+
+## Plot model diagnostics for MCMCglmm
+
+For fixed effects
+
+```{r}
+plot(model_10plus$Sol)
+```
+
+For random effects
+
+```{r}
+plot(model_10plus$VCV)
+```
+
+```{r}
+summary(model_10plus)
+```
+
+Calculate ESS
+
+```{r}
+effectiveSize(model_10plus$Sol[, 1:model_10plus$Fixed$nfl, drop = FALSE])[[1]] 
+```
+
+If this is above 200 so model has converged
+
+Look for autocorrelation
+
+```{r}
+autocorr(model_10plus$VCV) # Autocorrelation close to 0
+```
+
+Look at summary of fixed effect results
+
+```{r}
+summary(model_10plus)$solutions
+```
+
+Look at G-structure and R-structure posterior modes
+
+```{r}
+posterior.mode(model_10plus$VCV)
+```
+
+Look at G-structure and R-structure 95% credible intervals
+
+```{r}
+HPDinterval(model_10plus$VCV)
+```
+
+DIC
+
+```{r}
+model_10plus$DIC 
+```
+
+How much variance is explained by random effects?
+
+```{r}
+summary(model_10plus)$Gcovariances
+```
+
+```{r}
+# Get lambda
+lambda <- model_10plus$VCV[,'tips']/
+  (model_10plus$VCV[,'tips'] + model_10plus$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda)
+# Posterior mode of lambda
+posterior.mode(lambda) 
+# Posterior median of lambda
+median(lambda) 
+# HPD interval 
+HPDinterval(lambda)
+```
+
+And a simpler model
+
+```{r}
+# Add a dietary generalist yes/no variable
+plastic_data2 <- 
+  plastic_data %>%
+  rowwise() %>%
+  mutate(n_diets = sum(carrion, cephalopods, crustaceans, fish, other_inverts)) %>%
+  ungroup() %>%
+  mutate(diet_generalist = case_when(n_diets > 1 ~ 1, n_diets == 1 ~ 0)) %>%
+  as.data.frame()
+```
+
+Fit model
+
+```{r}
+model_simple <- MCMCglmm(cbind(n_plastic, n_total-n_plastic) ~ 
+                         diet_generalist + 
+                         + aerial_pursuit + bottom_feeding + diving + plunging + 
+                         scavenging + skimming + surface_seizing + terrestrial_feeding +
+                         year_centered -1, 
+                   data = plastic_data2, 
+                   family = "multinomial2",
+                   random = ~ tips + 
+                            source + 
+                            marine_region + 
+                            freeflying,
+                   ginverse = list(tips = inv.phylo), 
+                   prior = prior,
+                   nitt = nitt, thin = thin, burnin = burnin,
+                   verbose = FALSE)
+```
+
+Did the model converge?
+
+## Plot model diagnostics for MCMCglmm
+
+For fixed effects
+
+```{r}
+plot(model_simple$Sol)
+```
+
+For random effects
+
+```{r}
+plot(model_simple$VCV)
+```
+
+```{r}
+summary(model_simple)
+```
+
+Calculate ESS
+
+```{r}
+effectiveSize(model_simple$Sol[, 1:model_simple$Fixed$nfl, drop = FALSE])[[1]] 
+```
+
+If this is above 200 so model has converged
+
+Look for autocorrelation
+
+```{r}
+autocorr(model_simple$VCV) # Autocorrelation close to 0
+```
+
+Look at summary of fixed effect results
+
+```{r}
+summary(model_simple)$solutions
+```
+
+Look at G-structure and R-structure posterior modes
+
+```{r}
+posterior.mode(model_simple$VCV)
+```
+
+Look at G-structure and R-structure 95% credible intervals
+
+```{r}
+HPDinterval(model_simple$VCV)
+```
+
+DIC
+
+```{r}
+model_simple$DIC 
+```
+
+How much variance is explained by random effects?
+
+```{r}
+summary(model_simple)$Gcovariances
+```
+
+```{r}
+# Get lambda
+lambda <- model_simple$VCV[,'tips']/
+  (model_simple$VCV[,'tips'] + model_simple$VCV[,'units'])
+
+# Posterior mean of lambda
+mean(lambda)
+# Posterior mode of lambda
+posterior.mode(lambda) 
+# Posterior median of lambda
+median(lambda) 
+# HPD interval 
+HPDinterval(lambda)
 ```
