@@ -4,8 +4,6 @@ format: html
 editor: visual
 ---
 
-Odds ratios? poo \<- summary(model_full) exp(poo\$solutions\[,1\]) An odds ratio greater than 1 indicates that the condition or event is more likely to occur in the first group. And an odds ratio less than 1 indicates that the condition or event is less likely to occur in the first group.
-
 ```{r setup}
 # Load libraries
 library(MCMCglmm)
