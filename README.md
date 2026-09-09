@@ -2,10 +2,10 @@
 
 Code and data for paper: Frequency of occurrence of plastic varies across phylogeny but not ecology in seabirds. 
 
-This repository contains all the code and some data used in the [paper](ADD LINK WHEN PUBLISHED). 
+This repository contains all the code and some data used in the [paper](https://doi.org/10.1098/rsbl.2026.0079). 
 
 To cite the paper: 
->  Frequency of occurrence of plastic varies across phylogeny but not ecology in seabirds. 2026. Stephanie Avery-Gomm, Nia Potapova, Chrissie Potter,  Alexander L. Bond, Stephanie B. Borrelle, Jennifer L. Lavers, Steven J. Portugal, Hugh P. Possingham, Jennifer F. Provencher, and Natalie Cooper. ADD DETAILS WHEN PUBLISHED.
+>  Frequency of occurrence of plastic varies across phylogeny but not ecology in seabirds. 2026. Stephanie Avery-Gomm, Nia Potapova, Chrissie Potter,  Alexander L. Bond, Stephanie B. Borrelle, Jennifer L. Lavers, Steven J. Portugal, Hugh P. Possingham, Jennifer F. Provencher, and Natalie Cooper. 2026. Biology Letters, 22 :20260079. DOI: 10.1098/rsbl.2026.0079.
 
 To cite this repo: 
 >  Natalie Cooper & Andrew MacDonald. Code for the paper v2.0. Zenodo. DOI: 10.5281/zenodo.22011099.
